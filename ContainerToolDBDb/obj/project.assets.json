@@ -3463,19 +3463,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\gutja\\.nuget\\packages\\": {}
+    "C:\\Users\\User\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\gutja\\Tamino\\SYP\\5_Klasse\\Theorie\\Backend\\ContainerToolDBDb\\ContainerToolDBDb.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Documents\\GitHub\\DiplomBackend\\ContainerToolDBDb\\ContainerToolDBDb.csproj",
       "projectName": "ContainerToolDBDb",
-      "projectPath": "C:\\Users\\gutja\\Tamino\\SYP\\5_Klasse\\Theorie\\Backend\\ContainerToolDBDb\\ContainerToolDBDb.csproj",
-      "packagesPath": "C:\\Users\\gutja\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\gutja\\Tamino\\SYP\\5_Klasse\\Theorie\\Backend\\ContainerToolDBDb\\obj\\",
+      "projectPath": "C:\\Users\\User\\Documents\\GitHub\\DiplomBackend\\ContainerToolDBDb\\ContainerToolDBDb.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\User\\Documents\\GitHub\\DiplomBackend\\ContainerToolDBDb\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\gutja\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3534,7 +3534,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
       }
     }
   }
