@@ -1,0 +1,14 @@
+C:\Users\gutja\Tamino\SYP\5_Klasse\Theorie\Backend\ContainerToolDBDb\bin\Debug\net7.0\ContainerToolDBDb.deps.json
+C:\Users\gutja\Tamino\SYP\5_Klasse\Theorie\Backend\ContainerToolDBDb\bin\Debug\net7.0\ContainerToolDBDb.runtimeconfig.json
+C:\Users\gutja\Tamino\SYP\5_Klasse\Theorie\Backend\ContainerToolDBDb\bin\Debug\net7.0\ContainerToolDBDb.dll
+C:\Users\gutja\Tamino\SYP\5_Klasse\Theorie\Backend\ContainerToolDBDb\bin\Debug\net7.0\ContainerToolDBDb.pdb
+C:\Users\gutja\Tamino\SYP\5_Klasse\Theorie\Backend\ContainerToolDBDb\obj\Debug\net7.0\ContainerToolDBDb.csproj.AssemblyReference.cache
+C:\Users\gutja\Tamino\SYP\5_Klasse\Theorie\Backend\ContainerToolDBDb\obj\Debug\net7.0\ContainerToolDBDb.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gutja\Tamino\SYP\5_Klasse\Theorie\Backend\ContainerToolDBDb\obj\Debug\net7.0\ContainerToolDBDb.AssemblyInfoInputs.cache
+C:\Users\gutja\Tamino\SYP\5_Klasse\Theorie\Backend\ContainerToolDBDb\obj\Debug\net7.0\ContainerToolDBDb.AssemblyInfo.cs
+C:\Users\gutja\Tamino\SYP\5_Klasse\Theorie\Backend\ContainerToolDBDb\obj\Debug\net7.0\ContainerToolDBDb.csproj.CoreCompileInputs.cache
+C:\Users\gutja\Tamino\SYP\5_Klasse\Theorie\Backend\ContainerToolDBDb\obj\Debug\net7.0\ContainerToolDBDb.dll
+C:\Users\gutja\Tamino\SYP\5_Klasse\Theorie\Backend\ContainerToolDBDb\obj\Debug\net7.0\refint\ContainerToolDBDb.dll
+C:\Users\gutja\Tamino\SYP\5_Klasse\Theorie\Backend\ContainerToolDBDb\obj\Debug\net7.0\ContainerToolDBDb.pdb
+C:\Users\gutja\Tamino\SYP\5_Klasse\Theorie\Backend\ContainerToolDBDb\obj\Debug\net7.0\ContainerToolDBDb.genruntimeconfig.cache
+C:\Users\gutja\Tamino\SYP\5_Klasse\Theorie\Backend\ContainerToolDBDb\obj\Debug\net7.0\ref\ContainerToolDBDb.dll
