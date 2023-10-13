@@ -13,7 +13,7 @@ public class OrderService
             .ToList();
     }
 
-    public OrderDto GetOrdersWithId(int id)
+    public OrderDto GetOrderWithId(int id)
     {
         Order order = _db.Orders
             .Single(x => x.Id == id);

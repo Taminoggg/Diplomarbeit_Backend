@@ -8,61 +8,59 @@ public class CsinquiryService
 
     public CsinquiryService(ContainerToolDBContext db) => _db = db;
 
-    public List<TlinquiryDto> GetAllTlinquirys()
+    public List<CsinquiryDto> GetAllCsinquiries()
     {
-        return _db.Tlinquiries.Select(x => new TlinquiryDto().CopyFrom(x)).ToList();
+        return _db.Csinquiries.Select(x => new CsinquiryDto().CopyFrom(x)).ToList();
     }
 
-    public TlinquiryDto GetTlinquiryWithId(int id)
+    public CsinquiryDto GetCsinquiryWithId(int id)
     {
-        var tlinquiry = _db.Tlinquiries.Single(x => x.Id == id);
+        var csinquiry = _db.Csinquiries.Single(x => x.Id == id);
 
-        return new TlinquiryDto().CopyFrom(tlinquiry);
+        return new CsinquiryDto().CopyFrom(csinquiry);
     }
 
-    public TlinquiryDto AddTlinquiry(AddTlinquiryDto addTlinquiryDto)
+    public CsinquiryDto AddCsinquiry(AddCsinquiryDto addCsinquiryDto)
     {
-        var tlinquiry = new Tlinquiry().CopyFrom(addTlinquiryDto);
+        var csinquiry = new Csinquiry().CopyFrom(addCsinquiryDto);
 
-        _db.Tlinquiries.Add(tlinquiry);
+        _db.Csinquiries.Add(csinquiry);
         _db.SaveChanges();
 
-        return new TlinquiryDto().CopyFrom(tlinquiry);
+        return new CsinquiryDto().CopyFrom(csinquiry);
     }
 
-    public TlinquiryDto EditTlinquiry(TlinquiryDto editTlinquiryDto)
+    public CsinquiryDto EditCsinquiry(CsinquiryDto editCsinquiryDto)
     {
-        var tlinquiry = _db.Tlinquiries.Single(x => x.Id == editTlinquiryDto.Id);
-        tlinquiry.InquiryNumber = editTlinquiryDto.InquiryNumber;
-        tlinquiry.Boat = editTlinquiryDto.Boat;
-        tlinquiry.RetrieveDate = editTlinquiryDto.RetrieveDate;
-        tlinquiry.RetrieveLocation = editTlinquiryDto.RetrieveLocation;
-        tlinquiry.ExpectedRetrieveWeek = editTlinquiryDto.ExpectedRetrieveWeek;
-        tlinquiry.AcceptingPort = editTlinquiryDto.AcceptingPort;
-        tlinquiry.Country = editTlinquiryDto.Country;
-        tlinquiry.DebtCapitalGeneralForerunEur = editTlinquiryDto.DebtCapitalGeneralForerunEur;
-        tlinquiry.DebtCapitalMainDol = editTlinquiryDto.DebtCapitalMainDol;
-        tlinquiry.DebtCapitalTrailingDol = editTlinquiryDto.DebtCapitalTrailingDol;
-        tlinquiry.Eta = editTlinquiryDto.Eta;
-        tlinquiry.Ets = editTlinquiryDto.Ets;
-        tlinquiry.InvoiceOn = editTlinquiryDto.InvoiceOn;
-        tlinquiry.IsContainer40 = editTlinquiryDto.IsContainer40;
-        tlinquiry.IsContainerHc = editTlinquiryDto.IsContainerHc;
-        tlinquiry.PortOfDeparture = editTlinquiryDto.PortOfDeparture;
-        tlinquiry.Sped = editTlinquiryDto.Sped;
-        tlinquiry.WeightInKg = editTlinquiryDto.WeightInKg;
+        var csinquiry = _db.Csinquiries.Single(x => x.Id == editCsinquiryDto.Id);
+        csinquiry.Thctb = editCsinquiryDto.Thctb;
+        csinquiry.FastLine = editCsinquiryDto.FastLine;
+        csinquiry.DirectLine = editCsinquiryDto.DirectLine;
+        csinquiry.ContainersizeB = editCsinquiryDto.ContainersizeB;
+        csinquiry.Container = editCsinquiryDto.Container;
+        csinquiry.Abnumber = editCsinquiryDto.Abnumber;
+        csinquiry.ArticleNumber = editCsinquiryDto.ArticleNumber;
+        csinquiry.BruttoWeightInKg = editCsinquiryDto.BruttoWeightInKg;
+        csinquiry.ContainersizeA = editCsinquiryDto.ContainersizeA;
+        csinquiry.ContainersizeHc = editCsinquiryDto.ContainersizeHc;
+        csinquiry.Customer = editCsinquiryDto.Customer;
+        csinquiry.FreeDetention = editCsinquiryDto.FreeDetention;
+        csinquiry.Incoterm = editCsinquiryDto.Incoterm;
+        csinquiry.LoadingPlattform = editCsinquiryDto.LoadingPlattform;
+        csinquiry.Palletamount = editCsinquiryDto.Palletamount;
+        csinquiry.ReadyToLoad = editCsinquiryDto.ReadyToLoad;
         _db.SaveChanges();
 
-        return new TlinquiryDto().CopyFrom(tlinquiry);
+        return new CsinquiryDto().CopyFrom(csinquiry);
     }
 
-    public TlinquiryDto DeleteTlinquiry(int id)
+    public CsinquiryDto DeleteCsinquiry(int id)
     {
-        var tlinquiry = _db.Tlinquiries.Single(x => x.Id == id);
+        var csinquiry = _db.Csinquiries.Single(x => x.Id == id);
 
-        _db.Tlinquiries.Remove(tlinquiry);
+        _db.Csinquiries.Remove(csinquiry);
         _db.SaveChanges();
 
-        return new TlinquiryDto().CopyFrom(tlinquiry);
+        return new CsinquiryDto().CopyFrom(csinquiry);
     }
 }

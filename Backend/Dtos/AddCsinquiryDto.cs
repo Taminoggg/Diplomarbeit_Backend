@@ -3,39 +3,22 @@ using System.Collections.Generic;
 
 namespace ContainerToolDBDb;
 
-public partial class AddCsinquiryDto
+public class AddCsinquiryDto
 {
-    public string Container { get; set; } = null!;
-
-    public string FastLine { get; set; } = null!;
-
-    public string DirectLine { get; set; } = null!;
-
-    public string ArticleNumber { get; set; } = null!;
-
-    public int Palletamount { get; set; }
-
-    public string Customer { get; set; } = null!;
-
-    public int Abnumber { get; set; }
-
-    public int BruttoWeightInKg { get; set; }
-
-    public string Incoterm { get; set; } = null!;
-
-    public int ContainersizeA { get; set; }
-
-    public int ContainersizeB { get; set; }
-
-    public int ContainersizeHc { get; set; }
-
-    public bool FreeDetention { get; set; }
-
-    public bool Thctb { get; set; }
-
-    public DateTime ReadyToLoad { get; set; }
-
-    public string LoadingPlattform { get; set; } = null!;
-
-    public virtual ICollection<Order> Orders { get; } = new List<Order>();
+    [Required] public string Container { get; set; } = null!;
+    [Required] public string FastLine { get; set; } = null!;
+    [Required] public string DirectLine { get; set; } = null!;
+    [Required] public string ArticleNumber { get; set; } = null!;
+    [Required] public int Palletamount { get; set; }
+    [Required] public string Customer { get; set; } = null!;
+    [Required] public int Abnumber { get; set; }
+    [Required] public int BruttoWeightInKg { get; set; }
+    [Required] public string Incoterm { get; set; } = null!;
+    [Required] public int ContainersizeA { get; set; }
+    [Required] public int ContainersizeB { get; set; }
+    [Required] public int ContainersizeHc { get; set; }
+    [Required] public bool FreeDetention { get; set; }
+    [Required] public bool Thctb { get; set; }
+    [Required] public DateTime ReadyToLoad { get; set; }
+    [Required] public string LoadingPlattform { get; set; } = null!;
 }

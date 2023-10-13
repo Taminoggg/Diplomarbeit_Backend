@@ -1,6 +1,6 @@
 namespace ContainerToolDBDb;
 
-public partial class AddTlinquiryDto
+public class AddTlinquiryDto
 {
     [Required] public int InquiryNumber { get; set; }
     [Required] public string Sped { get; set; } = null!;

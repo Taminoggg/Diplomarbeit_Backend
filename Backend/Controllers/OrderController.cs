@@ -15,6 +15,27 @@ public class OrderController : ControllerBase
         return _orderService.GetAllOrders();
     }
 
+    [HttpGet("GetOrderWithId/{id}")]
+    public OrderDto GetOrderWithId(int id)
+    {
+        return _orderService.GetOrderWithId(id);
+    }
 
+    [HttpPost("AddNewOrder")]
+    public OrderDto AddOrder(AddOrderDto addOrderDto)
+    {
+        return _orderService.AddOrder(addOrderDto);
+    }
 
+    [HttpPut("EditOrder")]
+    public OrderDto EditOrder(OrderDto editOrderDto)
+    {
+        return _orderService.EditOrder(editOrderDto);
+    }
+
+    [HttpDelete("DeleteOrder")]
+    public OrderDto DeleteOrder(int id)
+    {
+        return _orderService.DeleteOrder(id);
+    }
 }
