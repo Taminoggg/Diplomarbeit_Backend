@@ -11064,19 +11064,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\User\\.nuget\\packages\\": {}
+    "C:\\Users\\gutja\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\Documents\\GitHub\\DiplomBackend\\Backend\\Backend.csproj",
+      "projectUniqueName": "C:\\Users\\gutja\\Tamino\\DiplomBackend\\Backend\\Backend.csproj",
       "projectName": "Backend",
-      "projectPath": "C:\\Users\\User\\Documents\\GitHub\\DiplomBackend\\Backend\\Backend.csproj",
-      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\Documents\\GitHub\\DiplomBackend\\Backend\\obj\\",
+      "projectPath": "C:\\Users\\gutja\\Tamino\\DiplomBackend\\Backend\\Backend.csproj",
+      "packagesPath": "C:\\Users\\gutja\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\gutja\\Tamino\\DiplomBackend\\Backend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\gutja\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -11084,15 +11084,14 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\sdk\\7.0.306\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\User\\Documents\\GitHub\\DiplomBackend\\ContainerToolDBDb\\ContainerToolDBDb.csproj": {
-              "projectPath": "C:\\Users\\User\\Documents\\GitHub\\DiplomBackend\\ContainerToolDBDb\\ContainerToolDBDb.csproj"
+            "C:\\Users\\gutja\\Tamino\\DiplomBackend\\ContainerToolDBDb\\ContainerToolDBDb.csproj": {
+              "projectPath": "C:\\Users\\gutja\\Tamino\\DiplomBackend\\ContainerToolDBDb\\ContainerToolDBDb.csproj"
             }
           }
         }
@@ -11143,7 +11142,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }
