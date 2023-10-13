@@ -18,52 +18,41 @@ public class OrderService
         Order order = _db.Orders
             .Single(x => x.Id == id);
 
-        return new OrderDto
-        {
-            Id = order.Id,
-            Amount = order.Amount,
-            Approved = order.Approved,
-            ChecklistId = order.ChecklistId,
-            CreatedBy = order.CreatedBy,
-            Csid = order.Csid,
-            CustomerName = order.CustomerName,
-            LastUpdated = order.LastUpdated,
-            Status = order.Status,
-            Tlid = order.Tlid
-        };
+        return new OrderDto().CopyFrom(order);
     }
 
-    public OrderDto AddOrderDto(AddOrderDto addOrderDto)
+    public OrderDto AddOrder(AddOrderDto addOrderDto)
     {
-        var order = new Order
-        {
-            Amount = addOrderDto.Amount,
-            Approved = addOrderDto.Approved,
-            ChecklistId = addOrderDto.ChecklistId,
-            CreatedBy = addOrderDto.CreatedBy,
-            Csid = addOrderDto.Csid,
-            CustomerName = addOrderDto.CustomerName,
-            LastUpdated = addOrderDto.LastUpdated,
-            Status = addOrderDto.Status,
-            Tlid = addOrderDto.Tlid
-        };
+        var order = new Order().CopyFrom(addOrderDto);
 
         _db.Orders.Add(order);
         _db.SaveChanges();
 
-        return new OrderDto
-        {
-            Id = order.Id,
-            Amount = order.Amount,
-            Approved = order.Approved,
-            ChecklistId = order.ChecklistId,
-            CreatedBy = order.CreatedBy,
-            Csid = order.Csid,
-            CustomerName = order.CustomerName,
-            LastUpdated = order.LastUpdated,
-            Status = order.Status,
-            Tlid = order.Tlid
-        };
+        return new OrderDto().CopyFrom(order);
+    }
+
+    public OrderDto EditOrder(OrderDto editOrderDto)
+    {
+        var checklist = _db.Checklists.Single(x => x.Id == editOrderDto.ChecklistId);
+        var cs = _db.Csinquiries.Single(x => x.Id == editOrderDto.Csid);
+        var tl = _db.Tlinquiries.Single(x => x.Id == editOrderDto.Tlid);
+
+        var order = _db.Orders.Single(x => x.Id == editOrderDto.Id);
+        order.Approved = editOrderDto.Approved;
+        order.Checklist = checklist;
+        order.LastUpdated = editOrderDto.LastUpdated;
+        order.ChecklistId = editOrderDto.ChecklistId;
+        order.Csid = editOrderDto.Csid;
+        order.Amount = editOrderDto.Amount;
+        order.CreatedBy = editOrderDto.CreatedBy;
+        order.CustomerName = editOrderDto.CustomerName;
+        order.Cs = cs;
+        order.Status = editOrderDto.Status;
+        order.Tl = tl;
+        order.Tlid = editOrderDto.Tlid;
+        _db.SaveChanges();
+
+        return new OrderDto().CopyFrom(order);
     }
 
     public OrderDto DeleteOrder(int id)
@@ -73,18 +62,6 @@ public class OrderService
         _db.Orders.Remove(order);
         _db.SaveChanges();
 
-        return new OrderDto
-        {
-            Id = order.Id,
-            Amount = order.Amount,
-            Approved = order.Approved,
-            ChecklistId = order.ChecklistId,
-            CreatedBy = order.CreatedBy,
-            Csid = order.Csid,
-            CustomerName = order.CustomerName,
-            LastUpdated = order.LastUpdated,
-            Status = order.Status,
-            Tlid = order.Tlid
-        };
+        return new OrderDto().CopyFrom(order);
     }
 }
