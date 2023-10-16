@@ -21,8 +21,6 @@ global using Microsoft.Extensions.Logging;
 global using Microsoft.EntityFrameworkCore;
 
 global using Backend;
-global using Backend.Dtos;
 global using Backend.Logging;
-global using Backend.Services;
 
 global using ContainerToolDBDb;

@@ -2,11 +2,11 @@ using ContainerToolDBDb;
 
 namespace TippsBackend.Services;
 
-public class ChechlistService
+public class ChecklistService
 {
     private readonly ContainerToolDBContext _db;
 
-    public ChechlistService(ContainerToolDBContext db) => _db = db;
+    public ChecklistService(ContainerToolDBContext db) => _db = db;
 
     public List<ChecklistDto> GetAllChecklists()
     {

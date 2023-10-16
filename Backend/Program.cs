@@ -6,6 +6,7 @@
 
 using GrueneisR.RestClientGenerator;
 using Microsoft.OpenApi.Models;
+using TippsBackend.Services;
 
 string corsKey = "_myCorsKey";
 string swaggerVersion = "v1";
@@ -35,6 +36,11 @@ builder.Services
 	  //.EnableLogging()
   );
 builder.Services.AddLogging(x => x.AddCustomFormatter());
+builder.Services.AddScoped<ConversationService>();
+builder.Services.AddScoped<CsinquiryService>();
+builder.Services.AddScoped<OrderService>();
+builder.Services.AddScoped<TlinquiryService>();
+builder.Services.AddScoped<ChecklistService>();
 
 string? connectionString = builder.Configuration.GetConnectionString("ContainerToolDB");
 string location = System.Reflection.Assembly.GetEntryAssembly()!.Location;

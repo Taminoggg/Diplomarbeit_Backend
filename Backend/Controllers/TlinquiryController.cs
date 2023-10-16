@@ -10,9 +10,9 @@ public class TlinquiryController : ControllerBase
     public TlinquiryController(TlinquiryService tlinquiryService) => _tlinquiryService = tlinquiryService;
 
     [HttpGet("GetAllTlinquiries")]
-    public List<CsinquiryDto> GetAllCsinquiries()
+    public List<TlinquiryDto> GetAllCsinquiries()
     {
-        return _tlinquiryService.GetAllTlinquiries();
+        return _tlinquiryService.GetAllTlinquirys();
     }
 
     [HttpGet("GetTlinquiryWithId/{id}")]
