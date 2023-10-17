@@ -1,5 +1,3 @@
-using ContainerToolDBDb;
-
 namespace TippsBackend.Services;
 
 public class ChecklistService
@@ -23,7 +21,7 @@ public class ChecklistService
         return new ChecklistDto().CopyFrom(checklist);
     }
 
-    public ChecklistDto AddConversation(AddChecklistDto addChecklistDto)
+    public ChecklistDto AddNewChecklist(AddChecklistDto addChecklistDto)
     {
         var checklist = new Checklist().CopyFrom(addChecklistDto);
 
@@ -33,7 +31,7 @@ public class ChecklistService
         return new ChecklistDto().CopyFrom(checklist);
     }
 
-    public ChecklistDto EditChecklíst(ChecklistDto editChecklist)
+    public ChecklistDto EditChecklist(ChecklistDto editChecklist)
     {
         var checklist = _db.Checklists.Single(x => x.Id == editChecklist.Id);
         checklist.CustomerName = editChecklist.CustomerName;

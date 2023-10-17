@@ -6,36 +6,36 @@ namespace TippsBackend.Controllers;
 [ApiController]
 public class ChecklistController : ControllerBase
 {
-    private readonly ChecklistController _checklistController;
-    public ChecklistController(ChecklistController checklistController) => _checklistController = checklistController;
+    private readonly ChecklistService _checklistService;
+    public ChecklistController(ChecklistService checklistService) => _checklistService = checklistService;
 
     [HttpGet("GetAllChecklists")]
     public List<ChecklistDto> GetAllChecklists()
     {
-        return _checklistController.GetAllChecklists();
+        return _checklistService.GetAllChecklists();
     }
 
     [HttpGet("GetChecklistWithId/{id}")]
     public ChecklistDto GetChecklistWithId(int id)
     {
-        return _checklistController.GetChecklistWithId(id);
+        return _checklistService.GetChecklistWithId(id);
     }
 
     [HttpPost("AddNewChecklist")]
     public ChecklistDto AddNewChecklist(AddChecklistDto addChecklistDto)
     {
-        return _checklistController.AddNewChecklist(addChecklistDto);
+        return _checklistService.AddNewChecklist(addChecklistDto);
     }
 
     [HttpPut("EditChecklist")]
     public ChecklistDto EditChecklist(ChecklistDto checklistDto)
     {
-        return _checklistController.EditChecklist(checklistDto);
+        return _checklistService.EditChecklist(checklistDto);
     }
 
     [HttpDelete("DeleteChecklist")]
     public ChecklistDto DeleteChecklist(int id)
     {
-        return _checklistController.DeleteChecklist(id);
+        return _checklistService.DeleteChecklist(id);
     }
 }
