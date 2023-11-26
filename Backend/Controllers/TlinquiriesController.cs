@@ -4,12 +4,12 @@ namespace TippsBackend.Controllers;
 
 [Route("[controller]/[action]")]
 [ApiController]
-public class TlinquiryController : ControllerBase
+public class TlinquiriesController : ControllerBase
 {
     private readonly TlinquiryService _tlinquiryService;
-    public TlinquiryController(TlinquiryService tlinquiryService) => _tlinquiryService = tlinquiryService;
+    public TlinquiriesController(TlinquiryService tlinquiryService) => _tlinquiryService = tlinquiryService;
 
-    [HttpGet("GetAllTlinquiries")]
+    [HttpGet]
     public List<TlinquiryDto> GetAllCsinquiries()
     {
         return _tlinquiryService.GetAllTlinquirys();

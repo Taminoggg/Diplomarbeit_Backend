@@ -4,12 +4,12 @@ namespace TippsBackend.Controllers;
 
 [Route("[controller]/[action]")]
 [ApiController]
-public class ChecklistController : ControllerBase
+public class ChecklistStepsController : ControllerBase
 {
     private readonly ChecklistService _checklistService;
     public ChecklistController(ChecklistService checklistService) => _checklistService = checklistService;
 
-    [HttpGet("GetAllChecklists")]
+    [HttpGet]
     public List<ChecklistDto> GetAllChecklists()
     {
         return _checklistService.GetAllChecklists();

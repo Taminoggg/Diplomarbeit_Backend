@@ -4,12 +4,12 @@ namespace TippsBackend.Controllers;
 
 [Route("[controller]/[action]")]
 [ApiController]
-public class OrderController : ControllerBase
+public class OrdersController : ControllerBase
 {
     private readonly OrderService _orderService;
-    public OrderController(OrderService orderService) => _orderService = orderService;
+    public OrdersController(OrderService orderService) => _orderService = orderService;
 
-    [HttpGet("GetAllOrders")]
+    [HttpGet]
     public List<OrderDto> GetAllOrders()
     {
         return _orderService.GetAllOrders();

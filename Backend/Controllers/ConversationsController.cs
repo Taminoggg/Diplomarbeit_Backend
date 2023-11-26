@@ -4,12 +4,12 @@ namespace TippsBackend.Controllers;
 
 [Route("[controller]/[action]")]
 [ApiController]
-public class ConversationController : ControllerBase
+public class ConversationsController : ControllerBase
 {
     private readonly ConversationService _conversationService;
-    public ConversationController(ConversationService conversationService) => _conversationService = conversationService;
+    public ConversationsController(ConversationService conversationService) => _conversationService = conversationService;
 
-    [HttpGet("GetAllConversations")]
+    [HttpGet]
     public List<ConversationDto> GetAllConversations()
     {
         return _conversationService.GetAllConversations();
