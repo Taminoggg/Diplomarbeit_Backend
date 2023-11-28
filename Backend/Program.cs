@@ -41,6 +41,8 @@ builder.Services.AddScoped<CsinquiryService>();
 builder.Services.AddScoped<OrderService>();
 builder.Services.AddScoped<TlinquiryService>();
 builder.Services.AddScoped<ChecklistService>();
+builder.Services.AddScoped<StepService>();
+builder.Services.AddScoped<StepChecklistService>();
 
 string? connectionString = builder.Configuration.GetConnectionString("ContainerToolDB");
 string location = System.Reflection.Assembly.GetEntryAssembly()!.Location;

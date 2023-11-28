@@ -55,60 +55,6 @@ Content-type: application/json
 }
 #####
 
-################################################## ChecklistSteps
-DELETE {{baseUrl}}/ChecklistSteps/DeleteChecklist/DeleteChecklist?id=1
-#####
-GET {{baseUrl}}/ChecklistSteps/GetAllChecklists
-#####
-GET {{baseUrl}}/ChecklistSteps/GetChecklistWithId/GetChecklistWithId/1
-#####
-POST {{baseUrl}}/ChecklistSteps/AddNewChecklist/AddNewChecklist
-Content-type: application/json
-
-{
-   "customerName": "abc"
-}
-#####
-PUT {{baseUrl}}/ChecklistSteps/EditChecklist/EditChecklist
-Content-type: application/json
-
-{
-   "id": 1,
-   "customerName": "abc",
-   "steps": 
-   [{
-      "id": 1,
-      "stepNumber": 1,
-      "stepDescription": "abc",
-      "stepName": "abc",
-      "stepChecklists": 
-      [{
-         "id": 1,
-         "checklistId": 1,
-         "stepId": 1,
-         "checklist": 
-         {
-            "id": 1,
-            "customerName": "abc",
-            "orders": 
-            [],
-            "stepChecklists": 
-            []
-         },
-         "step": 
-         {
-            "id": 1,
-            "stepNumber": 1,
-            "stepDescription": "abc",
-            "stepName": "abc",
-            "stepChecklists": 
-            []
-         }
-      }]
-   }]
-}
-#####
-
 ################################################## Conversations
 DELETE {{baseUrl}}/Conversations/DeleteConversation/DeleteConversation?id=1
 #####
@@ -213,6 +159,24 @@ Content-type: application/json
    "checklistId": 1,
    "csid": 1,
    "tlid": 1
+}
+#####
+
+################################################## StepChecklists
+GET {{baseUrl}}/StepChecklists/GetChecklistWithId
+#####
+
+################################################## Steps
+GET {{baseUrl}}/Steps/GetChecklistWithId/GetStepsForChecklist/1
+#####
+POST {{baseUrl}}/Steps/AddNewChecklist/AddNewStep
+Content-type: application/json
+
+{
+   "stepNumber": 1,
+   "checklistId": 1,
+   "stepDescription": "abc",
+   "stepName": "abc"
 }
 #####
 
