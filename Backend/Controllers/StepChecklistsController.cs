@@ -2,7 +2,7 @@ using TippsBackend.Services;
 
 namespace TippsBackend.Controllers;
 
-[Route("[controller]/[action]")]
+[Route("[controller]")]
 [ApiController]
 public class StepChecklistsController : ControllerBase
 {
@@ -10,7 +10,7 @@ public class StepChecklistsController : ControllerBase
     public StepChecklistsController(StepChecklistService stepChecklistService) => _stepChecklistService = stepChecklistService;
 
     [HttpGet]
-    public List<StepChecklistDto> GetChecklistWithId()
+    public List<StepChecklistDto> ChecklistWithId()
     {
         return _stepChecklistService.GetAllStepChecklists();
     }

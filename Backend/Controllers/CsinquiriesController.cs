@@ -2,7 +2,7 @@ using TippsBackend.Services;
 
 namespace TippsBackend.Controllers;
 
-[Route("[controller]/[action]")]
+[Route("[controller]")]
 [ApiController]
 public class CsinquiriesController : ControllerBase
 {
@@ -10,31 +10,31 @@ public class CsinquiriesController : ControllerBase
     public CsinquiriesController(CsinquiryService csinquiryService) => _csinquiryService = csinquiryService;
 
     [HttpGet]
-    public List<CsinquiryDto> GetAllCsinquiries()
+    public List<CsinquiryDto> AllCsinquiries()
     {
         return _csinquiryService.GetAllCsinquiries();
     }
 
-    [HttpGet("GetCsinquiryWithId/{id}")]
-    public CsinquiryDto GetCsinquiryWithId(int id)
+    [HttpGet("{id}")]
+    public CsinquiryDto CsinquiryWithId(int id)
     {
         return _csinquiryService.GetCsinquiryWithId(id);
     }
 
-    [HttpPost("AddNewCsinquiry")]
-    public CsinquiryDto AddNewCsinquiry(AddCsinquiryDto addCsinquiryDto)
+    [HttpPost]
+    public CsinquiryDto Csinquiry(AddCsinquiryDto addCsinquiryDto)
     {
         return _csinquiryService.AddCsinquiry(addCsinquiryDto);
     }
 
-    [HttpPut("EditCsinquiry")]
-    public CsinquiryDto EditCsinquiry(EditCsinquiryDto editCsinquiry)
+    [HttpPut]
+    public CsinquiryDto Csinquiry(EditCsinquiryDto editCsinquiry)
     {
         return _csinquiryService.EditCsinquiry(editCsinquiry);
     }
 
-    [HttpDelete("DeleteCsinquiry")]
-    public CsinquiryDto DeleteCsinquiry(int id)
+    [HttpDelete]
+    public CsinquiryDto Csinquiry(int id)
     {
         return _csinquiryService.DeleteCsinquiry(id);
     }

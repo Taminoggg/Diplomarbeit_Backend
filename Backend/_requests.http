@@ -2,20 +2,20 @@
 
 
 ################################################## Checklists
-DELETE {{baseUrl}}/Checklists/DeleteChecklist/DeleteChecklist?id=1
+DELETE {{baseUrl}}/Checklists?id=1
 #####
-GET {{baseUrl}}/Checklists/GetAllChecklists
+GET {{baseUrl}}/Checklists
 #####
-GET {{baseUrl}}/Checklists/GetChecklistWithId/GetChecklistWithId/1
+GET {{baseUrl}}/Checklists/1
 #####
-POST {{baseUrl}}/Checklists/AddNewChecklist/AddNewChecklist
+POST {{baseUrl}}/Checklists
 Content-type: application/json
 
 {
    "customerName": "abc"
 }
 #####
-PUT {{baseUrl}}/Checklists/EditChecklist/EditChecklist
+PUT {{baseUrl}}/Checklists
 Content-type: application/json
 
 {
@@ -56,13 +56,13 @@ Content-type: application/json
 #####
 
 ################################################## Conversations
-DELETE {{baseUrl}}/Conversations/DeleteConversation/DeleteConversation?id=1
+DELETE {{baseUrl}}/Conversations?id=1
 #####
-GET {{baseUrl}}/Conversations/GetAllConversations
+GET {{baseUrl}}/Conversations
 #####
-GET {{baseUrl}}/Conversations/GetConversationWithId/GetConversationWithId/1
+GET {{baseUrl}}/Conversations/1
 #####
-POST {{baseUrl}}/Conversations/AddNewConversation/AddNewConversation
+POST {{baseUrl}}/Conversations
 Content-type: application/json
 
 {
@@ -71,13 +71,13 @@ Content-type: application/json
 #####
 
 ################################################## Csinquiries
-DELETE {{baseUrl}}/Csinquiries/DeleteCsinquiry/DeleteCsinquiry?id=1
+DELETE {{baseUrl}}/Csinquiries?id=1
 #####
-GET {{baseUrl}}/Csinquiries/GetAllCsinquiries
+GET {{baseUrl}}/Csinquiries
 #####
-GET {{baseUrl}}/Csinquiries/GetCsinquiryWithId/GetCsinquiryWithId/1
+GET {{baseUrl}}/Csinquiries/1
 #####
-POST {{baseUrl}}/Csinquiries/AddNewCsinquiry/AddNewCsinquiry
+POST {{baseUrl}}/Csinquiries
 Content-type: application/json
 
 {
@@ -99,7 +99,7 @@ Content-type: application/json
    "loadingPlattform": "abc"
 }
 #####
-PUT {{baseUrl}}/Csinquiries/EditCsinquiry/EditCsinquiry
+PUT {{baseUrl}}/Csinquiries
 Content-type: application/json
 
 {
@@ -124,13 +124,13 @@ Content-type: application/json
 #####
 
 ################################################## Orders
-DELETE {{baseUrl}}/Orders/DeleteOrder/DeleteOrder?id=1
+DELETE {{baseUrl}}/Orders?id=1
 #####
-GET {{baseUrl}}/Orders/GetAllOrders
+GET {{baseUrl}}/Orders
 #####
-GET {{baseUrl}}/Orders/GetOrderWithId/GetOrderWithId/1
+GET {{baseUrl}}/Orders/1
 #####
-POST {{baseUrl}}/Orders/AddOrder/AddNewOrder
+POST {{baseUrl}}/Orders
 Content-type: application/json
 
 {
@@ -143,7 +143,7 @@ Content-type: application/json
    "tlid": 1
 }
 #####
-PUT {{baseUrl}}/Orders/EditOrder/EditOrder
+PUT {{baseUrl}}/Orders
 Content-type: application/json
 
 {
@@ -158,13 +158,13 @@ Content-type: application/json
 #####
 
 ################################################## StepChecklists
-GET {{baseUrl}}/StepChecklists/GetChecklistWithId
+GET {{baseUrl}}/StepChecklists
 #####
 
 ################################################## Steps
-GET {{baseUrl}}/Steps/GetChecklistWithId/GetStepsForChecklist/1
+GET {{baseUrl}}/Steps/1
 #####
-POST {{baseUrl}}/Steps/AddNewChecklist/AddNewStep
+POST {{baseUrl}}/Steps
 Content-type: application/json
 
 {
@@ -176,13 +176,13 @@ Content-type: application/json
 #####
 
 ################################################## Tlinquiries
-DELETE {{baseUrl}}/Tlinquiries/DeleteTlinquiry/DeleteTlinquiry?id=1
+DELETE {{baseUrl}}/Tlinquiries?id=1
 #####
-GET {{baseUrl}}/Tlinquiries/GetAllCsinquiries
+GET {{baseUrl}}/Tlinquiries
 #####
-GET {{baseUrl}}/Tlinquiries/GetTlinquiryWithId/GetTlinquiryWithId/1
+GET {{baseUrl}}/Tlinquiries/1
 #####
-POST {{baseUrl}}/Tlinquiries/AddNewTlinquiry/AddNewTlinquiry
+POST {{baseUrl}}/Tlinquiries
 Content-type: application/json
 
 {
@@ -206,7 +206,7 @@ Content-type: application/json
    "boat": "abc"
 }
 #####
-PUT {{baseUrl}}/Tlinquiries/EditTlinquiry/EditTlinquiry
+PUT {{baseUrl}}/Tlinquiries
 Content-type: application/json
 
 {

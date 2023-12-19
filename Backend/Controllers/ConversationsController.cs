@@ -2,7 +2,7 @@ using TippsBackend.Services;
 
 namespace TippsBackend.Controllers;
 
-[Route("[controller]/[action]")]
+[Route("[controller]")]
 [ApiController]
 public class ConversationsController : ControllerBase
 {
@@ -10,25 +10,25 @@ public class ConversationsController : ControllerBase
     public ConversationsController(ConversationService conversationService) => _conversationService = conversationService;
 
     [HttpGet]
-    public List<ConversationDto> GetAllConversations()
+    public List<ConversationDto> AllConversations()
     {
         return _conversationService.GetAllConversations();
     }
 
-    [HttpGet("GetConversationWithId/{id}")]
-    public ConversationDto GetConversationWithId(int id)
+    [HttpGet("{id}")]
+    public ConversationDto ConversationWithId(int id)
     {
         return _conversationService.GetConersationWithId(id);
     }
 
-    [HttpPost("AddNewConversation")]
-    public ConversationDto AddNewConversation(AddConversationDto addConversationDto)
+    [HttpPost]
+    public ConversationDto Conversation(AddConversationDto addConversationDto)
     {
         return _conversationService.AddConversation(addConversationDto);
     }
 
-    [HttpDelete("DeleteConversation")]
-    public ConversationDto DeleteConversation(int id)
+    [HttpDelete]
+    public ConversationDto Conversation(int id)
     {
         return _conversationService.DeleteConversaion(id);
     }

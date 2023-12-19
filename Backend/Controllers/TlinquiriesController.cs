@@ -2,7 +2,7 @@ using TippsBackend.Services;
 
 namespace TippsBackend.Controllers;
 
-[Route("[controller]/[action]")]
+[Route("[controller]")]
 [ApiController]
 public class TlinquiriesController : ControllerBase
 {
@@ -10,31 +10,31 @@ public class TlinquiriesController : ControllerBase
     public TlinquiriesController(TlinquiryService tlinquiryService) => _tlinquiryService = tlinquiryService;
 
     [HttpGet]
-    public List<TlinquiryDto> GetAllCsinquiries()
+    public List<TlinquiryDto> AllCsinquiries()
     {
         return _tlinquiryService.GetAllTlinquirys();
     }
 
-    [HttpGet("GetTlinquiryWithId/{id}")]
-    public TlinquiryDto GetTlinquiryWithId(int id)
+    [HttpGet("{id}")]
+    public TlinquiryDto TlinquiryWithId(int id)
     {
         return _tlinquiryService.GetTlinquiryWithId(id);
     }
 
-    [HttpPost("AddNewTlinquiry")]
-    public TlinquiryDto AddNewTlinquiry(AddTlinquiryDto addTlinquiryDto)
+    [HttpPost]
+    public TlinquiryDto Tlinquiry(AddTlinquiryDto addTlinquiryDto)
     {
         return _tlinquiryService.AddTlinquiry(addTlinquiryDto);
     }
 
-    [HttpPut("EditTlinquiry")]
-    public TlinquiryDto EditTlinquiry(EditTlInqueryDto editTlinquiry)
+    [HttpPut]
+    public TlinquiryDto Tlinquiry(EditTlInqueryDto editTlinquiry)
     {
         return _tlinquiryService.EditTlinquiry(editTlinquiry);
     }
 
-    [HttpDelete("DeleteTlinquiry")]
-    public TlinquiryDto DeleteTlinquiry(int id)
+    [HttpDelete]
+    public TlinquiryDto Tlinquiry(int id)
     {
         return _tlinquiryService.DeleteTlinquiry(id);
     }

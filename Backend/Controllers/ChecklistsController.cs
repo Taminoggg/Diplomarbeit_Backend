@@ -2,7 +2,7 @@ using TippsBackend.Services;
 
 namespace TippsBackend.Controllers;
 
-[Route("[controller]/[action]")]
+[Route("[controller]")]
 [ApiController]
 public class ChecklistsController : ControllerBase
 {
@@ -10,32 +10,29 @@ public class ChecklistsController : ControllerBase
     public ChecklistsController(ChecklistService checklistService) => _checklistService = checklistService;
 
     [HttpGet]
-    public List<ChecklistDto> GetAllChecklists()
+    public List<ChecklistDto> Checklist()
     {
         return _checklistService.GetAllChecklists();
     }
 
-    [HttpGet("GetChecklistWithId/{id}")]
-    public ChecklistDto GetChecklistWithId(int id)
+    [HttpGet("{id}")]
+    public ChecklistDto ChecklistWithId(int id)
     {
         return _checklistService.GetChecklistWithId(id);
     }
 
-    [HttpPost("AddNewChecklist")]
-    public ChecklistDto AddNewChecklist(AddChecklistDto addChecklistDto)
+    [HttpPost]
+    public ChecklistDto Checklist(AddChecklistDto addChecklistDto)
     {
         return _checklistService.AddNewChecklist(addChecklistDto);
     }
 
-    [HttpPut("EditChecklist")]
-    public ChecklistDto EditChecklist(ChecklistDto checklistDto)
+    [HttpPut]
+    public ChecklistDto Checklist(ChecklistDto checklistDto)
     {
         return _checklistService.EditChecklist(checklistDto);
     }
 
-    [HttpDelete("DeleteChecklist")]
-    public ChecklistDto DeleteChecklist(int id)
-    {
-        return _checklistService.DeleteChecklist(id);
-    }
+    [HttpDelete]
+    public ChecklistDto Checklist(int id) => _checklistService.DeleteChecklist(id);
 }
