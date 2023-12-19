@@ -10,14 +10,52 @@ public class CsinquiryService
 
     public List<CsinquiryDto> GetAllCsinquiries()
     {
-        return _db.Csinquiries.Select(x => new CsinquiryDto().CopyFrom(x)).ToList();
+        return _db.Csinquiries.Select(x => new CsinquiryDto 
+        {
+            DirectLine = x.DirectLine,
+            FreeDetention = x.FreeDetention,
+            Abnumber = x.Abnumber,
+            ArticleNumber = x.ArticleNumber,
+            BruttoWeightInKg = x.BruttoWeightInKg,
+            Container = x.Container,
+            ContainersizeA = x.ContainersizeA,
+            ContainersizeB = x.ContainersizeB,
+            ContainersizeHc = x.ContainersizeHc,
+            Customer = x.Customer,
+            FastLine = x.FastLine,
+            Id = x.Id,
+            Incoterm = x.Incoterm,
+            LoadingPlattform = x.LoadingPlattform,
+            Palletamount = x.Palletamount,
+            ReadyToLoad = x.ReadyToLoad.ToString("dd.MM.yyyy"),
+            Thctb = x.Thctb
+        }).ToList();
     }
 
     public CsinquiryDto GetCsinquiryWithId(int id)
     {
         var csinquiry = _db.Csinquiries.Single(x => x.Id == id);
 
-        return new CsinquiryDto().CopyFrom(csinquiry);
+        return new CsinquiryDto 
+        {
+            DirectLine = csinquiry.DirectLine,
+            FreeDetention = csinquiry.FreeDetention,
+            Abnumber = csinquiry.Abnumber,
+            ArticleNumber = csinquiry.ArticleNumber,
+            BruttoWeightInKg = csinquiry.BruttoWeightInKg,
+            Container = csinquiry.Container,
+            ContainersizeA = csinquiry.ContainersizeA,
+            ContainersizeB = csinquiry.ContainersizeB,
+            ContainersizeHc = csinquiry.ContainersizeHc,
+            Customer = csinquiry.Customer,
+            FastLine = csinquiry.FastLine,
+            Id = csinquiry.Id,
+            Incoterm = csinquiry.Incoterm,
+            LoadingPlattform = csinquiry.LoadingPlattform,
+            Palletamount = csinquiry.Palletamount,
+            ReadyToLoad = csinquiry.ReadyToLoad.ToString("dd.MM.yyyy"),
+            Thctb = csinquiry.Thctb
+        };
     }
 
     public CsinquiryDto AddCsinquiry(AddCsinquiryDto addCsinquiryDto)
@@ -45,10 +83,29 @@ public class CsinquiryService
         _db.Csinquiries.Add(csinquiry);
         _db.SaveChanges();
 
-        return new CsinquiryDto().CopyFrom(csinquiry);
+        return new CsinquiryDto
+        {
+            DirectLine = csinquiry.DirectLine,
+            FreeDetention = csinquiry.FreeDetention,
+            Abnumber = csinquiry.Abnumber,
+            ArticleNumber = csinquiry.ArticleNumber,
+            BruttoWeightInKg = csinquiry.BruttoWeightInKg,
+            Container = csinquiry.Container,
+            ContainersizeA = csinquiry.ContainersizeA,
+            ContainersizeB = csinquiry.ContainersizeB,
+            ContainersizeHc = csinquiry.ContainersizeHc,
+            Customer = csinquiry.Customer,
+            FastLine = csinquiry.FastLine,
+            Id = csinquiry.Id,
+            Incoterm = csinquiry.Incoterm,
+            LoadingPlattform = csinquiry.LoadingPlattform,
+            Palletamount = csinquiry.Palletamount,
+            ReadyToLoad = csinquiry.ReadyToLoad.ToString("dd.MM.yyyy"),
+            Thctb = csinquiry.Thctb
+        };
     }
 
-    public CsinquiryDto EditCsinquiry(CsinquiryDto editCsinquiryDto)
+    public CsinquiryDto EditCsinquiry(EditCsinquiryDto editCsinquiryDto)
     {
         var csinquiry = _db.Csinquiries.Single(x => x.Id == editCsinquiryDto.Id);
         csinquiry.Thctb = editCsinquiryDto.Thctb;
@@ -66,10 +123,29 @@ public class CsinquiryService
         csinquiry.Incoterm = editCsinquiryDto.Incoterm;
         csinquiry.LoadingPlattform = editCsinquiryDto.LoadingPlattform;
         csinquiry.Palletamount = editCsinquiryDto.Palletamount;
-        csinquiry.ReadyToLoad = editCsinquiryDto.ReadyToLoad;
+        csinquiry.ReadyToLoad = DateTime.ParseExact(editCsinquiryDto.ReadyToLoad, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
         _db.SaveChanges();
 
-        return new CsinquiryDto().CopyFrom(csinquiry);
+        return new CsinquiryDto
+        {
+            DirectLine = csinquiry.DirectLine,
+            FreeDetention = csinquiry.FreeDetention,
+            Abnumber = csinquiry.Abnumber,
+            ArticleNumber = csinquiry.ArticleNumber,
+            BruttoWeightInKg = csinquiry.BruttoWeightInKg,
+            Container = csinquiry.Container,
+            ContainersizeA = csinquiry.ContainersizeA,
+            ContainersizeB = csinquiry.ContainersizeB,
+            ContainersizeHc = csinquiry.ContainersizeHc,
+            Customer = csinquiry.Customer,
+            FastLine = csinquiry.FastLine,
+            Id = csinquiry.Id,
+            Incoterm = csinquiry.Incoterm,
+            LoadingPlattform = csinquiry.LoadingPlattform,
+            Palletamount = csinquiry.Palletamount,
+            ReadyToLoad = csinquiry.ReadyToLoad.ToString("dd.MM.yyyy"),
+            Thctb = csinquiry.Thctb
+        };
     }
 
     public CsinquiryDto DeleteCsinquiry(int id)
@@ -79,6 +155,25 @@ public class CsinquiryService
         _db.Csinquiries.Remove(csinquiry);
         _db.SaveChanges();
 
-        return new CsinquiryDto().CopyFrom(csinquiry);
+        return new CsinquiryDto
+        {
+            DirectLine = csinquiry.DirectLine,
+            FreeDetention = csinquiry.FreeDetention,
+            Abnumber = csinquiry.Abnumber,
+            ArticleNumber = csinquiry.ArticleNumber,
+            BruttoWeightInKg = csinquiry.BruttoWeightInKg,
+            Container = csinquiry.Container,
+            ContainersizeA = csinquiry.ContainersizeA,
+            ContainersizeB = csinquiry.ContainersizeB,
+            ContainersizeHc = csinquiry.ContainersizeHc,
+            Customer = csinquiry.Customer,
+            FastLine = csinquiry.FastLine,
+            Id = csinquiry.Id,
+            Incoterm = csinquiry.Incoterm,
+            LoadingPlattform = csinquiry.LoadingPlattform,
+            Palletamount = csinquiry.Palletamount,
+            ReadyToLoad = csinquiry.ReadyToLoad.ToString("dd.MM.yyyy"),
+            Thctb = csinquiry.Thctb
+        };
     }
 }

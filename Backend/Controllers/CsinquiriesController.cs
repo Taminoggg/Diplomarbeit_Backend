@@ -28,7 +28,7 @@ public class CsinquiriesController : ControllerBase
     }
 
     [HttpPut("EditCsinquiry")]
-    public CsinquiryDto EditCsinquiry(CsinquiryDto editCsinquiry)
+    public CsinquiryDto EditCsinquiry(EditCsinquiryDto editCsinquiry)
     {
         return _csinquiryService.EditCsinquiry(editCsinquiry);
     }

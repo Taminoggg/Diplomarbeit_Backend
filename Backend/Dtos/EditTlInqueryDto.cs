@@ -1,6 +1,6 @@
-namespace ContainerToolDBDb;
+﻿namespace ContainerToolDBDb;
 
-public class TlinquiryDto
+public class EditTlInqueryDto
 {
     [Required] public int Id { get; set; }
     [Required] public int InquiryNumber { get; set; }

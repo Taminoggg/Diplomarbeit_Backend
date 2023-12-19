@@ -1,6 +1,6 @@
-namespace ContainerToolDBDb;
+﻿namespace ContainerToolDBDb;
 
-public class CsinquiryDto
+public class EditCsinquiryDto
 {
     [Required] public int Id { get; set; }
     [Required] public string Container { get; set; } = null!;

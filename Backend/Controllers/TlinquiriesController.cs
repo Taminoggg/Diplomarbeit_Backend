@@ -28,7 +28,7 @@ public class TlinquiriesController : ControllerBase
     }
 
     [HttpPut("EditTlinquiry")]
-    public TlinquiryDto EditTlinquiry(TlinquiryDto editTlinquiry)
+    public TlinquiryDto EditTlinquiry(EditTlInqueryDto editTlinquiry)
     {
         return _tlinquiryService.EditTlinquiry(editTlinquiry);
     }
