@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <PackageReference Include="GrueneisR.RestClientGenerator" Version="*" />
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="*" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="*" />
   </ItemGroup>

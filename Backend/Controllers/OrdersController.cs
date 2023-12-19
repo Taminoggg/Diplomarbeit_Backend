@@ -28,7 +28,7 @@ public class OrdersController : ControllerBase
     }
 
     [HttpPut("EditOrder")]
-    public OrderDto EditOrder(OrderDto editOrderDto)
+    public OrderDto EditOrder(EditOrderDto editOrderDto)
     {
         return _orderService.EditOrder(editOrderDto);
     }

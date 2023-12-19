@@ -23,7 +23,24 @@ public class OrderService
 
     public OrderDto AddOrder(AddOrderDto addOrderDto)
     {
-        var order = new Order().CopyFrom(addOrderDto);
+        var checklist = _db.Checklists.Single(x => x.Id == addOrderDto.ChecklistId);
+        var cs = _db.Csinquiries.Single(x => x.Id == addOrderDto.Csid);
+        var tl = _db.Tlinquiries.Single(x => x.Id == addOrderDto.Tlid);
+        var order = new Order
+        {
+            Amount = addOrderDto.Amount,
+            Approved = false,
+            Checklist = checklist,
+            ChecklistId = addOrderDto.ChecklistId,
+            CreatedBy = addOrderDto.CreatedBy,
+            Cs = cs,
+            Tl = tl,
+            Csid = addOrderDto.Csid,
+            CustomerName = addOrderDto.CustomerName,
+            LastUpdated = DateTime.Now,
+            Status = addOrderDto.Status,
+            Tlid = addOrderDto.Tlid,
+        };
 
         _db.Orders.Add(order);
         _db.SaveChanges();
@@ -31,25 +48,20 @@ public class OrderService
         return new OrderDto().CopyFrom(order);
     }
 
-    public OrderDto EditOrder(OrderDto editOrderDto)
+    public OrderDto EditOrder(EditOrderDto editOrderDto)
     {
         var checklist = _db.Checklists.Single(x => x.Id == editOrderDto.ChecklistId);
-        var cs = _db.Csinquiries.Single(x => x.Id == editOrderDto.Csid);
-        var tl = _db.Tlinquiries.Single(x => x.Id == editOrderDto.Tlid);
 
         var order = _db.Orders.Single(x => x.Id == editOrderDto.Id);
         order.Approved = editOrderDto.Approved;
         order.Checklist = checklist;
-        order.LastUpdated = editOrderDto.LastUpdated;
         order.ChecklistId = editOrderDto.ChecklistId;
-        order.Csid = editOrderDto.Csid;
         order.Amount = editOrderDto.Amount;
         order.CreatedBy = editOrderDto.CreatedBy;
         order.CustomerName = editOrderDto.CustomerName;
-        order.Cs = cs;
         order.Status = editOrderDto.Status;
-        order.Tl = tl;
-        order.Tlid = editOrderDto.Tlid;
+
+        order.LastUpdated = DateTime.Now;
         _db.SaveChanges();
 
         return new OrderDto().CopyFrom(order);

@@ -137,9 +137,7 @@ Content-type: application/json
    "status": 1,
    "customerName": "abc",
    "createdBy": "abc",
-   "approved": True,
    "amount": 1,
-   "lastUpdated": "abc",
    "checklistId": 1,
    "csid": 1,
    "tlid": 1
@@ -155,10 +153,7 @@ Content-type: application/json
    "createdBy": "abc",
    "approved": True,
    "amount": 1,
-   "lastUpdated": "abc",
-   "checklistId": 1,
-   "csid": 1,
-   "tlid": 1
+   "checklistId": 1
 }
 #####
 

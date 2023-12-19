@@ -46,7 +46,7 @@
           }
         }
       },
-      "GrueneisR.RestClientGenerator/1.2.0": {
+      "GrueneisR.RestClientGenerator/1.2.1": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
@@ -142,25 +142,6 @@
             "related": ".xml"
           }
         }
-      },
-      "Microsoft.AspNetCore.OpenApi/7.0.12": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.OpenApi": "1.4.3"
-        },
-        "compile": {
-          "lib/net7.0/Microsoft.AspNetCore.OpenApi.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net7.0/Microsoft.AspNetCore.OpenApi.dll": {
-            "related": ".xml"
-          }
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
       },
       "Microsoft.AspNetCore.Razor.Language/6.0.0": {
         "type": "package",
@@ -1573,7 +1554,7 @@
           "lib/netstandard1.0/_._": {}
         }
       },
-      "Microsoft.OpenApi/1.4.3": {
+      "Microsoft.OpenApi/1.2.3": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/Microsoft.OpenApi.dll": {
@@ -3895,15 +3876,15 @@
         "lib/netstandard2.0/Azure.Identity.xml"
       ]
     },
-    "GrueneisR.RestClientGenerator/1.2.0": {
-      "sha512": "d8ffpC+GPzTgzMLcdZ00ZEOMqBzMaTITZRjR8fYiMHQHiKXYMQ5KuTjWWh/B+564Cvbk58ZjhWdPl2GKWvp4xw==",
+    "GrueneisR.RestClientGenerator/1.2.1": {
+      "sha512": "7IO4ShTFcRDhIK4fGZXHHb3L5Cla2zQGzNIk0tVJwENzoE5RcGq+fvfngzcwp/WDcsswX3LyTPMw/BbUmTcRYg==",
       "type": "package",
-      "path": "grueneisr.restclientgenerator/1.2.0",
+      "path": "grueneisr.restclientgenerator/1.2.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "README.md",
-        "grueneisr.restclientgenerator.1.2.0.nupkg.sha512",
+        "grueneisr.restclientgenerator.1.2.1.nupkg.sha512",
         "grueneisr.restclientgenerator.nuspec",
         "lib/net6.0/RestClientGeneratorMiddlewareLib.dll"
       ]
@@ -3996,21 +3977,6 @@
         "lib/netstandard2.0/Microsoft.AspNetCore.Http.Features.xml",
         "microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
         "microsoft.aspnetcore.http.features.nuspec"
-      ]
-    },
-    "Microsoft.AspNetCore.OpenApi/7.0.12": {
-      "sha512": "KWfmBcvglieWin4srGSPiREh8/8+qCJpME9MPbsN2OVOwKkMXKta2K82Xk0BcZrZCk9tftMBO6qYfJgz0goQpg==",
-      "type": "package",
-      "path": "microsoft.aspnetcore.openapi/7.0.12",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "THIRD-PARTY-NOTICES.TXT",
-        "lib/net7.0/Microsoft.AspNetCore.OpenApi.dll",
-        "lib/net7.0/Microsoft.AspNetCore.OpenApi.xml",
-        "microsoft.aspnetcore.openapi.7.0.12.nupkg.sha512",
-        "microsoft.aspnetcore.openapi.nuspec"
       ]
     },
     "Microsoft.AspNetCore.Razor.Language/6.0.0": {
@@ -5857,17 +5823,20 @@
         "runtime.json"
       ]
     },
-    "Microsoft.OpenApi/1.4.3": {
-      "sha512": "rURwggB+QZYcSVbDr7HSdhw/FELvMlriW10OeOzjPT7pstefMo7IThhtNtDudxbXhW+lj0NfX72Ka5EDsG8x6w==",
+    "Microsoft.OpenApi/1.2.3": {
+      "sha512": "Nug3rO+7Kl5/SBAadzSMAVgqDlfGjJZ0GenQrLywJ84XGKO0uRqkunz5Wyl0SDwcR71bAATXvSdbdzPrYRYKGw==",
       "type": "package",
-      "path": "microsoft.openapi/1.4.3",
+      "path": "microsoft.openapi/1.2.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
+        "lib/net46/Microsoft.OpenApi.dll",
+        "lib/net46/Microsoft.OpenApi.pdb",
+        "lib/net46/Microsoft.OpenApi.xml",
         "lib/netstandard2.0/Microsoft.OpenApi.dll",
         "lib/netstandard2.0/Microsoft.OpenApi.pdb",
         "lib/netstandard2.0/Microsoft.OpenApi.xml",
-        "microsoft.openapi.1.4.3.nupkg.sha512",
+        "microsoft.openapi.1.2.3.nupkg.sha512",
         "microsoft.openapi.nuspec"
       ]
     },
@@ -11058,25 +11027,24 @@
     "net7.0": [
       "ContainerToolDBDb >= 1.0.0",
       "GrueneisR.RestClientGenerator >= *",
-      "Microsoft.AspNetCore.OpenApi >= *",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 7.0.0",
       "Swashbuckle.AspNetCore >= *"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\User\\.nuget\\packages\\": {}
+    "C:\\Users\\gutja\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\Documents\\GitHub\\DiplomBackend\\Backend\\Backend.csproj",
+      "projectUniqueName": "C:\\Users\\gutja\\Documents\\GitHub\\DiplomBackend\\Backend\\Backend.csproj",
       "projectName": "Backend",
-      "projectPath": "C:\\Users\\User\\Documents\\GitHub\\DiplomBackend\\Backend\\Backend.csproj",
-      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\Documents\\GitHub\\DiplomBackend\\Backend\\obj\\",
+      "projectPath": "C:\\Users\\gutja\\Documents\\GitHub\\DiplomBackend\\Backend\\Backend.csproj",
+      "packagesPath": "C:\\Users\\gutja\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\gutja\\Documents\\GitHub\\DiplomBackend\\Backend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\gutja\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -11084,15 +11052,14 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\sdk\\7.0.306\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\User\\Documents\\GitHub\\DiplomBackend\\ContainerToolDBDb\\ContainerToolDBDb.csproj": {
-              "projectPath": "C:\\Users\\User\\Documents\\GitHub\\DiplomBackend\\ContainerToolDBDb\\ContainerToolDBDb.csproj"
+            "C:\\Users\\gutja\\Documents\\GitHub\\DiplomBackend\\ContainerToolDBDb\\ContainerToolDBDb.csproj": {
+              "projectPath": "C:\\Users\\gutja\\Documents\\GitHub\\DiplomBackend\\ContainerToolDBDb\\ContainerToolDBDb.csproj"
             }
           }
         }
@@ -11108,10 +11075,6 @@
         "targetAlias": "net7.0",
         "dependencies": {
           "GrueneisR.RestClientGenerator": {
-            "target": "Package",
-            "version": "[*, )"
-          },
-          "Microsoft.AspNetCore.OpenApi": {
             "target": "Package",
             "version": "[*, )"
           },
@@ -11143,7 +11106,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

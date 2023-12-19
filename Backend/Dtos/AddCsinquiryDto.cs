@@ -19,6 +19,6 @@ public class AddCsinquiryDto
     [Required] public int ContainersizeHc { get; set; }
     [Required] public bool FreeDetention { get; set; }
     [Required] public bool Thctb { get; set; }
-    [Required] public DateTime ReadyToLoad { get; set; }
+    [Required] public string ReadyToLoad { get; set; } = null!;
     [Required] public string LoadingPlattform { get; set; } = null!;
 }

@@ -22,7 +22,25 @@ public class CsinquiryService
 
     public CsinquiryDto AddCsinquiry(AddCsinquiryDto addCsinquiryDto)
     {
-        var csinquiry = new Csinquiry().CopyFrom(addCsinquiryDto);
+        var csinquiry = new Csinquiry
+        {
+            DirectLine = addCsinquiryDto.DirectLine,
+            FreeDetention = addCsinquiryDto.FreeDetention,
+            FastLine = addCsinquiryDto.FastLine,
+            Abnumber = addCsinquiryDto.Abnumber,
+            ArticleNumber = addCsinquiryDto.ArticleNumber,
+            BruttoWeightInKg = addCsinquiryDto.BruttoWeightInKg,
+            Container = addCsinquiryDto.Container,
+            ContainersizeA = addCsinquiryDto.ContainersizeA,
+            ContainersizeB = addCsinquiryDto.ContainersizeB,
+            ContainersizeHc = addCsinquiryDto.ContainersizeHc,
+            Customer = addCsinquiryDto.Customer,
+            Incoterm = addCsinquiryDto.Incoterm,
+            LoadingPlattform = addCsinquiryDto.LoadingPlattform,
+            Palletamount = addCsinquiryDto.Palletamount,
+            ReadyToLoad = DateTime.ParseExact(addCsinquiryDto.ReadyToLoad, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture),
+            Thctb = addCsinquiryDto.Thctb
+        };
 
         _db.Csinquiries.Add(csinquiry);
         _db.SaveChanges();

@@ -8,9 +8,10 @@ public class StepService
 
     public List<StepDto> GetAllStepsForChecklist(int id)
     {
-        return _db.Steps
-            .Where(x => x.Id == id)
-            .Select(x => new StepDto().CopyFrom(x))
+        return _db.StepChecklists
+            .Include(x => x.Step)
+            .Where(x => x.ChecklistId == id)
+            .Select(x => new StepDto().CopyFrom(x.Step))
             .ToList();
     }
 
