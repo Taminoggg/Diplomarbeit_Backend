@@ -8,7 +8,7 @@
     ".NETCoreApp,Version=v7.0": {
       "Backend/1.0.0": {
         "dependencies": {
-          "ContainerToolDBDb": "1.0.0",
+          "ContainerToolDB": "1.0.0",
           "GrueneisR.RestClientGenerator": "1.2.1",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "7.0.0",
           "Swashbuckle.AspNetCore": "6.5.0"
@@ -2402,7 +2402,7 @@
           "System.Xml.ReaderWriter": "4.3.0"
         }
       },
-      "ContainerToolDBDb/1.0.0": {
+      "ContainerToolDB/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "7.0.0",
           "Microsoft.EntityFrameworkCore.Design": "7.0.0",
@@ -2410,7 +2410,7 @@
           "Microsoft.EntityFrameworkCore.Tools": "7.0.0"
         },
         "runtime": {
-          "ContainerToolDBDb.dll": {}
+          "ContainerToolDB.dll": {}
         }
       }
     }
@@ -3758,7 +3758,7 @@
       "path": "system.xml.xdocument/4.3.0",
       "hashPath": "system.xml.xdocument.4.3.0.nupkg.sha512"
     },
-    "ContainerToolDBDb/1.0.0": {
+    "ContainerToolDB/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

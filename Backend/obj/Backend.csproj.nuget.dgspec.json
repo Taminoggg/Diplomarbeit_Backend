@@ -28,8 +28,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\gutja\\Documents\\GitHub\\DiplomBackend\\ContainerToolDBDb\\ContainerToolDBDb.csproj": {
-                "projectPath": "C:\\Users\\gutja\\Documents\\GitHub\\DiplomBackend\\ContainerToolDBDb\\ContainerToolDBDb.csproj"
+              "C:\\Users\\gutja\\Documents\\GitHub\\DiplomBackend\\ContainerToolDBDb\\ContainerToolDB.csproj": {
+                "projectPath": "C:\\Users\\gutja\\Documents\\GitHub\\DiplomBackend\\ContainerToolDBDb\\ContainerToolDB.csproj"
               }
             }
           }
@@ -76,16 +76,16 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\gutja\\Documents\\GitHub\\DiplomBackend\\ContainerToolDBDb\\ContainerToolDBDb.csproj": {
+    "C:\\Users\\gutja\\Documents\\GitHub\\DiplomBackend\\ContainerToolDBDb\\ContainerToolDB.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\gutja\\Documents\\GitHub\\DiplomBackend\\ContainerToolDBDb\\ContainerToolDBDb.csproj",
-        "projectName": "ContainerToolDBDb",
-        "projectPath": "C:\\Users\\gutja\\Documents\\GitHub\\DiplomBackend\\ContainerToolDBDb\\ContainerToolDBDb.csproj",
+        "projectUniqueName": "C:\\Users\\gutja\\Documents\\GitHub\\DiplomBackend\\ContainerToolDBDb\\ContainerToolDB.csproj",
+        "projectName": "ContainerToolDB",
+        "projectPath": "C:\\Users\\gutja\\Documents\\GitHub\\DiplomBackend\\ContainerToolDBDb\\ContainerToolDB.csproj",
         "packagesPath": "C:\\Users\\gutja\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\gutja\\Documents\\GitHub\\DiplomBackend\\ContainerToolDBDb\\obj\\",
         "projectStyle": "PackageReference",
@@ -149,7 +149,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

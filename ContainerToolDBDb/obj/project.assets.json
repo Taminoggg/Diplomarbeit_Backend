@@ -3468,9 +3468,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\gutja\\Documents\\GitHub\\DiplomBackend\\ContainerToolDBDb\\ContainerToolDBDb.csproj",
-      "projectName": "ContainerToolDBDb",
-      "projectPath": "C:\\Users\\gutja\\Documents\\GitHub\\DiplomBackend\\ContainerToolDBDb\\ContainerToolDBDb.csproj",
+      "projectUniqueName": "C:\\Users\\gutja\\Documents\\GitHub\\DiplomBackend\\ContainerToolDBDb\\ContainerToolDB.csproj",
+      "projectName": "ContainerToolDB",
+      "projectPath": "C:\\Users\\gutja\\Documents\\GitHub\\DiplomBackend\\ContainerToolDBDb\\ContainerToolDB.csproj",
       "packagesPath": "C:\\Users\\gutja\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\gutja\\Documents\\GitHub\\DiplomBackend\\ContainerToolDBDb\\obj\\",
       "projectStyle": "PackageReference",
@@ -3534,7 +3534,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

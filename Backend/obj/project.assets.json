@@ -3819,7 +3819,7 @@
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
       },
-      "ContainerToolDBDb/1.0.0": {
+      "ContainerToolDB/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
@@ -3829,10 +3829,10 @@
           "Microsoft.EntityFrameworkCore.Tools": "7.0.0"
         },
         "compile": {
-          "bin/placeholder/ContainerToolDBDb.dll": {}
+          "bin/placeholder/ContainerToolDB.dll": {}
         },
         "runtime": {
-          "bin/placeholder/ContainerToolDBDb.dll": {}
+          "bin/placeholder/ContainerToolDB.dll": {}
         }
       }
     }
@@ -11017,15 +11017,15 @@
         "system.xml.xdocument.nuspec"
       ]
     },
-    "ContainerToolDBDb/1.0.0": {
+    "ContainerToolDB/1.0.0": {
       "type": "project",
-      "path": "../ContainerToolDBDb/ContainerToolDBDb.csproj",
-      "msbuildProject": "../ContainerToolDBDb/ContainerToolDBDb.csproj"
+      "path": "../ContainerToolDBDb/ContainerToolDB.csproj",
+      "msbuildProject": "../ContainerToolDBDb/ContainerToolDB.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
-      "ContainerToolDBDb >= 1.0.0",
+      "ContainerToolDB >= 1.0.0",
       "GrueneisR.RestClientGenerator >= *",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 7.0.0",
       "Swashbuckle.AspNetCore >= *"
@@ -11058,8 +11058,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\gutja\\Documents\\GitHub\\DiplomBackend\\ContainerToolDBDb\\ContainerToolDBDb.csproj": {
-              "projectPath": "C:\\Users\\gutja\\Documents\\GitHub\\DiplomBackend\\ContainerToolDBDb\\ContainerToolDBDb.csproj"
+            "C:\\Users\\gutja\\Documents\\GitHub\\DiplomBackend\\ContainerToolDBDb\\ContainerToolDB.csproj": {
+              "projectPath": "C:\\Users\\gutja\\Documents\\GitHub\\DiplomBackend\\ContainerToolDBDb\\ContainerToolDB.csproj"
             }
           }
         }
@@ -11106,7 +11106,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

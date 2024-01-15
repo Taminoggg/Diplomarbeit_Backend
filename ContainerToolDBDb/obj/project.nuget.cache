@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "laEgY86gQuCbd8547fMcXAb7hTzOlAONtA9Pjz11BKLP+DHDA6XRkI/3voZgXWZ67RvT30KUA36sc06yirzyBg==",
+  "dgSpecHash": "FU7tMVaLcfrcEmZkqz2KW7I82+8LBhk5a2F62tHERonIzUSCsbtzLk0eesaKP6uGw/jVph+2zcdyTStFonO9+A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\gutja\\Documents\\GitHub\\DiplomBackend\\ContainerToolDBDb\\ContainerToolDBDb.csproj",
+  "projectFilePath": "C:\\Users\\gutja\\Documents\\GitHub\\DiplomBackend\\ContainerToolDBDb\\ContainerToolDB.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\gutja\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\gutja\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

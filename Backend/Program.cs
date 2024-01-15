@@ -4,6 +4,7 @@
 //   (C)Robert Grueneis/HTL Grieskirchen 
 //----------------------------------------
 
+using Backend.Services;
 using GrueneisR.RestClientGenerator;
 using Microsoft.OpenApi.Models;
 using TippsBackend.Services;
@@ -43,6 +44,9 @@ builder.Services.AddScoped<TlinquiryService>();
 builder.Services.AddScoped<ChecklistService>();
 builder.Services.AddScoped<StepService>();
 builder.Services.AddScoped<StepChecklistService>();
+builder.Services.AddScoped<FileService>();
+builder.Services.AddScoped<MessageService>();
+builder.Services.AddScoped<MessageConversationService>();
 
 string? connectionString = builder.Configuration.GetConnectionString("ContainerToolDB");
 string location = System.Reflection.Assembly.GetEntryAssembly()!.Location;
