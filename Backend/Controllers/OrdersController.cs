@@ -15,6 +15,36 @@ public class OrdersController : ControllerBase
         return _orderService.GetAllOrders();
     }
 
+    [HttpGet("Customername")]
+    public List<OrderDto> OrdersWithCustomername([FromQuery]string customername)
+    {
+        return _orderService.GetOrdersWithCustomername(customername);
+    }
+
+    [HttpGet("Approved")]
+    public List<OrderDto> GetOrdersWithApproved([FromQuery] bool approved)
+    {
+        return _orderService.GetOrdersWithApproved(approved);
+    }
+
+    [HttpGet("Amount")]
+    public List<OrderDto> GetOrdersWithAmount([FromQuery] int amout)
+    {
+        return _orderService.GetOrdersWithAmount(amout);
+    }
+
+    [HttpGet("CreatedBy")]
+    public List<OrderDto> GetOrdersWithCreatedBy([FromQuery] string createdBy)
+    {
+        return _orderService.GetOrdersWithCreatedBy(createdBy);
+    }
+
+    [HttpGet("Status")]
+    public List<OrderDto> GetOrdersWithStatus([FromQuery] int status)
+    {
+        return _orderService.GetOrdersWithStatus(status);
+    }
+
     [HttpGet("{id}")]
     public OrderDto OrderWithId(int id)
     {

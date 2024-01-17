@@ -1,4 +1,6 @@
-﻿namespace TippsBackend.Services;
+﻿using ContainerToolDBDb;
+
+namespace TippsBackend.Services;
 
 public class OrderService
 {
@@ -9,6 +11,52 @@ public class OrderService
     public List<OrderDto> GetAllOrders()
     {
         return _db.Orders
+            .OrderBy(x => x.Id)
+            .Select(x => new OrderDto().CopyFrom(x))
+            .ToList();
+    }
+
+    public List<OrderDto> GetOrdersWithCustomername(string customerName)
+    {
+        return _db.Orders
+            .OrderBy(x => x.Id)
+            .Where(x => x.CustomerName.ToLower().Contains(customerName.ToLower()))
+            .Select(x => new OrderDto().CopyFrom(x))
+            .ToList();
+    }
+
+    public List<OrderDto> GetOrdersWithApproved(bool approved)
+    {
+        return _db.Orders
+            .OrderBy(x => x.Id)
+            .Where(x => x.Approved == approved)
+            .Select(x => new OrderDto().CopyFrom(x))
+            .ToList();
+    }
+
+    public List<OrderDto> GetOrdersWithAmount(int amount)
+    {
+        return _db.Orders
+            .OrderBy(x => x.Id)
+            .Where(x => x.Amount == amount)
+            .Select(x => new OrderDto().CopyFrom(x))
+            .ToList();
+    }
+
+    public List<OrderDto> GetOrdersWithCreatedBy(string createdBy)
+    {
+        return _db.Orders
+            .OrderBy(x => x.Id)
+            .Where(x => x.CreatedBy.ToLower() == createdBy.ToLower())
+            .Select(x => new OrderDto().CopyFrom(x))
+            .ToList();
+    }
+
+    public List<OrderDto> GetOrdersWithStatus(int status)
+    {
+        return _db.Orders
+            .OrderBy(x => x.Id)
+            .Where(x => x.Status == status)
             .Select(x => new OrderDto().CopyFrom(x))
             .ToList();
     }

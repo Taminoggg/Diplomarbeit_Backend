@@ -1,5 +1,6 @@
 ﻿using Backend.Dtos;
 using Backend.Services;
+using ContainerToolDBDb;
 using Microsoft.VisualStudio.TextTemplating;
 using TippsBackend.Services;
 
@@ -18,10 +19,10 @@ namespace Backend.Controllers
             return _messageConversationService.GetMessageConversations();
         }
 
-        [HttpGet("{id}")]
-        public List<MessageDto> MessageConversationForOrder(int id)
+        [HttpGet("{conversationId}")]
+        public List<MessageDto> MessageConversationForOrder(int conversationId)
         {
-            return _messageConversationService.GetMessagesForOrder(id);
+            return _messageConversationService.GetMessagesForConversation(conversationId);
         }
 
         [HttpPost]

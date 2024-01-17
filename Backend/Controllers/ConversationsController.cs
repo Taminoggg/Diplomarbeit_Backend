@@ -10,25 +10,25 @@ public class ConversationsController : ControllerBase
     public ConversationsController(ConversationService conversationService) => _conversationService = conversationService;
 
     [HttpGet]
-    public List<ConversationDto> AllConversations()
+    public List<ConversationDto> AllConversations(int id)
     {
-        return _conversationService.GetAllConversations();
+        return _conversationService.GetConversations(id);
     }
 
-    [HttpGet("{id}")]
-    public ConversationDto ConversationWithId(int id)
+    [HttpGet("{orderId}")]
+    public ConversationDto ConversationForOrder(int orderId)
     {
-        return _conversationService.GetConersationWithId(id);
+        return _conversationService.ConversatoinForOrder(orderId);
     }
 
     [HttpPost]
-    public ConversationDto Conversation(AddConversationDto addConversationDto)
+    public ConversationDto Conversation(int id)
     {
-        return _conversationService.AddConversation(addConversationDto);
+        return _conversationService.AddConversation(id);
     }
 
     [HttpDelete]
-    public ConversationDto Conversation(int id)
+    public ConversationDto ConversationDel(int id)
     {
         return _conversationService.DeleteConversaion(id);
     }

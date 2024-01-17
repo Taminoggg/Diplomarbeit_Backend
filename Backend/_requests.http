@@ -58,16 +58,11 @@ Content-type: application/json
 ################################################## Conversations
 DELETE {{baseUrl}}/Conversations?id=1
 #####
-GET {{baseUrl}}/Conversations
+GET {{baseUrl}}/Conversations?id=1
 #####
 GET {{baseUrl}}/Conversations/1
 #####
-POST {{baseUrl}}/Conversations
-Content-type: application/json
-
-{
-   "orderId": 1
-}
+POST {{baseUrl}}/Conversations?id=1
 #####
 
 ################################################## Csinquiries
@@ -156,8 +151,7 @@ Content-type: application/json
 
 {
    "content": "abc",
-   "attachmentId": 1,
-   "dateTime": "abc"
+   "attachmentId": 1
 }
 #####
 
@@ -167,6 +161,16 @@ DELETE {{baseUrl}}/Orders?id=1
 GET {{baseUrl}}/Orders
 #####
 GET {{baseUrl}}/Orders/1
+#####
+GET {{baseUrl}}/Orders/Amount?amout=1
+#####
+GET {{baseUrl}}/Orders/Approved?approved=True
+#####
+GET {{baseUrl}}/Orders/CreatedBy?createdBy=abc
+#####
+GET {{baseUrl}}/Orders/Customername?customername=abc
+#####
+GET {{baseUrl}}/Orders/Status?status=1
 #####
 POST {{baseUrl}}/Orders
 Content-type: application/json

@@ -13,26 +13,35 @@ public class MessageService
     {
         var getAll = false;
         if (id == 0) getAll = true;
-        return _db.Messages.Where(x => getAll || x.Id == id).Select(x => new MessageDto().CopyFrom(x)).ToList();
+        return _db.Messages
+            .Where(x => getAll || x.Id == id)
+            .Select(x => new MessageDto
+            {
+                Id = x.Id,
+                DateTime = x.DateTime.ToString("dd.MM.yyyy"),
+                AttachmentId = x.AttachmentId,
+                Content = x.Content
+            })
+            .ToList();
     }
 
     public MessageDto PostMessage(AddMessageDto addMessageDto)
     {
         var message = new Message
         {
-            DateTime = DateTime.ParseExact(addMessageDto.DateTime, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture),
+            DateTime = DateTime.Now,
             AttachmentId = addMessageDto.AttachmentId,
             Content = addMessageDto.Content
         };
 
         _db.Messages.Add(message);
         _db.SaveChanges();
-       
+
         return new MessageDto
         {
             DateTime = message.DateTime.ToString("dd.MM.yyyy"),
             AttachmentId = message.AttachmentId,
-            Content= message.Content,
+            Content = message.Content,
             Id = message.Id
         };
     }

@@ -10,30 +10,34 @@ public class MessageConversationService
 
     public MessageConversationService(ContainerToolDBContext db) => _db = db;
 
-    public List<MessageDto> GetMessagesForOrder(int id)
+    public List<MessageDto> GetMessagesForConversation(int id)
     {
-        var conversation = _db.Conversations.Where(x => x.OrderId == id).First();
-
-        
-
-        var messageIds = _db.MessageConversations.Where(x => x.ConversationId == conversation.Id).Select(x => x.MessageId).ToList();
-
-        var messages = new List<Message>();
-
-        Console.WriteLine("messageId length: | " + messageIds.Count);
-        foreach (var currId in messageIds)
+        try
         {
-            Console.WriteLine("messageIds: | " + currId);
-            messages.Add(_db.Messages.Single(x => x.Id == currId));
+            var conversation = _db.Conversations.Where(x => x.Id == id).First();
+
+            var messageIds = _db.MessageConversations.Where(x => x.ConversationId == conversation.Id).Select(x => x.MessageId).ToList();
+
+            var messages = new List<Message>();
+
+            foreach (var currId in messageIds)
+            {
+                messages.Add(_db.Messages.Single(x => x.Id == currId));
+            }
+
+            return messages.OrderBy(x => x.DateTime).Select(x => new MessageDto
+            {
+                Id = x.Id,
+                DateTime = x.DateTime.ToString("dd.MM.yyyy HH:mm"),
+                AttachmentId = x.AttachmentId,
+                Content = x.Content
+            }).ToList();
         }
-
-        return messages.Select(x => new MessageDto
+        catch (Exception ex)
         {
-            Id = x.Id,
-            DateTime = x.DateTime.ToString("dd.MM.yyyy"),
-            AttachmentId = x.AttachmentId,
-            Content = x.Content
-        }).ToList();
+            return new List<MessageDto>();
+        }
+       
     }
 
     public List<MessageConversationDto> GetMessageConversations()
