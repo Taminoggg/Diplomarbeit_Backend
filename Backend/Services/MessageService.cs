@@ -27,11 +27,14 @@ public class MessageService
 
     public MessageDto PostMessage(AddMessageDto addMessageDto)
     {
+        var attachment = _db.Files.Single(x => x.Id == addMessageDto.AttachmentId);
+
         var message = new Message
         {
             DateTime = DateTime.Now,
             AttachmentId = addMessageDto.AttachmentId,
-            Content = addMessageDto.Content
+            Content = addMessageDto.Content,
+            Attachment = attachment
         };
 
         _db.Messages.Add(message);

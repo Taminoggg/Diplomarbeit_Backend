@@ -2,5 +2,5 @@
 
 public class AddFileDto
 {
-    [Required] public string Path { get; set; } = null!;
+    [Required] public IFormFile File { get; set; } = null!;
 }

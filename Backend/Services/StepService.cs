@@ -15,6 +15,18 @@ public class StepService
             .ToList();
     }
 
+    public StepDto CheckStep(EditStepDto editStepDto) 
+    {
+        var step = _db.Steps.Single(x => x.Id == editStepDto.Id);
+
+        //step.Checked = editStepDto.Checked;
+
+        _db.SaveChanges();
+
+        return new StepDto().CopyFrom(step);
+    }
+
+
     public StepDto CreateNewStepForChecklist(AddStepDto addStepDto)
     {
         var step = new Step {

@@ -17,8 +17,14 @@ public class FilesController
         return _fileService.GetAllFiles();
     }
 
+    [HttpGet("{id}")]
+    public FileByteDto File(int id)
+    {
+        return _fileService.GetFile(id);
+    }
+
     [HttpPost]
-    public FileDto Files(AddFileDto addFileDto)
+    public FileDto Files(IFormFile addFileDto)
     {
         return _fileService.PostFile(addFileDto);
     }

@@ -1,4 +1,7 @@
 ﻿using Backend.Dtos;
+using Microsoft.CodeAnalysis;
+using Newtonsoft.Json;
+using System.Web;
 
 namespace Backend.Services;
 
@@ -13,16 +16,44 @@ public class FileService
         return _db.Files.Select(x => new FileDto().CopyFrom(x)).ToList();
     }
 
-    public FileDto PostFile(AddFileDto addFileDto)
+    public FileByteDto GetFile(int id)
     {
-        var file = new ContainerToolDBDb.File
+        var file = _db.Files.Single(x => x.Id == id);
+
+        byte[] fileBytes = System.IO.File.ReadAllBytes(file.Path);
+
+        Console.WriteLine("------------------------------" + Path.GetExtension(file.Path));
+
+        return new FileByteDto
         {
-            Path = addFileDto.Path,
+            FileName = Path.GetFileName(file.Path),
+            FileContent = fileBytes,
+            FileType = Path.GetExtension(file.Path)
+        };
+    }
+
+    public FileDto PostFile([FromForm] IFormFile file)
+    {
+        var filePath = Path.Combine("C:\\Users\\gutja\\Tamino\\Diplomarbeit\\", file.FileName);
+
+        using (var fileStream = new FileStream(filePath, FileMode.Create))
+        {
+            file.CopyTo(fileStream);
+        }
+
+        var addedFile = new ContainerToolDBDb.File
+        {
+            Path = filePath,
         };
 
-        _db.Files.Add(file);
+        _db.Files.Add(addedFile);
         _db.SaveChanges();
 
-        return new FileDto().CopyFrom(file);
+        return new FileDto() 
+        {
+            Id = addedFile.Id,
+            Path = addedFile.Path,
+        };
     }
+
 }
