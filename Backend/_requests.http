@@ -163,23 +163,17 @@ GET {{baseUrl}}/Orders/Amount?amout=1
 #####
 GET {{baseUrl}}/Orders/Approved?approved=True
 #####
-GET {{baseUrl}}/Orders/AscSped?orderIds=abc
-#####
 GET {{baseUrl}}/Orders/Country?country=abc
 #####
 GET {{baseUrl}}/Orders/CreatedBy?createdBy=abc
 #####
 GET {{baseUrl}}/Orders/Customername?customername=abc
 #####
-GET {{baseUrl}}/Orders/DecSped?orderIds=abc
-#####
 GET {{baseUrl}}/Orders/LastUpdated?lastUpdated=abc
 #####
 GET {{baseUrl}}/Orders/Sped?sped=abc
 #####
 GET {{baseUrl}}/Orders/Status?status=1
-#####
-GET {{baseUrl}}/Orders/TEST?orderIds=abc
 #####
 POST {{baseUrl}}/Orders
 Content-type: application/json

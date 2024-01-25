@@ -8,6 +8,11 @@ public class OrderDto
     [Required] public int Amount { get; set; }
     [Required] public DateTime LastUpdated { get; set; }
     [Required] public int ChecklistId { get; set; }
+    [Required] public string ArticleNumber { get; set; } = null!;
+    [Required] public string Sped { get; set; } = null!;
+    [Required] public string Country { get; set; } = null!;
+    [Required] public string ReadyToLoad { get; set; } = null!;
+    [Required] public int AbNumber { get; set; }
     [Required] public int Csid { get; set; }
     [Required] public int Tlid { get; set; }
 }

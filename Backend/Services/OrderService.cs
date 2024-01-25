@@ -16,91 +16,100 @@ public class OrderService
         this._db = db;
     }
 
-    public List<OrderDto> GetAllOrders()
+    public List<Order> GetAllOrders()
     {
         return _db.Orders
+            .Include(x => x.Tl)
+            .Include(x => x.Cs)
             .OrderBy(x => x.Id)
-            .Select(x => new OrderDto().CopyFrom(x))
             .ToList();
     }
 
-    public List<OrderDto> GetOrdersWithCustomername(string customerName)
+    public List<Order> GetOrdersWithCustomername(string customerName)
     {
         return _db.Orders
+            .Include(x => x.Tl)
+            .Include(x => x.Cs)
             .OrderBy(x => x.Id)
             .Where(x => x.CustomerName.ToLower().Contains(customerName.ToLower()))
-            .Select(x => new OrderDto().CopyFrom(x))
             .ToList();
     }
 
-    public List<OrderDto> GetOrdersWithApproved(bool approved)
+    public List<Order> GetOrdersWithApproved(bool approved)
     {
         return _db.Orders
+            .Include(x => x.Tl)
+            .Include(x => x.Cs)
             .OrderBy(x => x.Id)
             .Where(x => x.Approved == approved)
-            .Select(x => new OrderDto().CopyFrom(x))
             .ToList();
     }
 
-    public List<OrderDto> GetOrdersWithAmount(int amount)
+    public List<Order> GetOrdersWithAmount(int amount)
     {
         return _db.Orders
+            .Include(x => x.Tl)
+            .Include(x => x.Cs)
             .OrderBy(x => x.Id)
             .Where(x => x.Amount == amount)
-            .Select(x => new OrderDto().CopyFrom(x))
             .ToList();
     }
 
-    public List<OrderDto> GetOrdersWithCreatedBy(string createdBy)
+    public List<Order> GetOrdersWithCreatedBy(string createdBy)
     {
         return _db.Orders
+            .Include(x => x.Tl)
+            .Include(x => x.Cs)
             .OrderBy(x => x.Id)
             .Where(x => x.CreatedBy.ToLower().Contains(createdBy.ToLower()))
-            .Select(x => new OrderDto().CopyFrom(x))
             .ToList();
     }
 
-    public List<OrderDto> GetOrdersWithCountry(string country)
+    public List<Order> GetOrdersWithCountry(string country)
     {
         return _db.Orders
+            .Include(x => x.Tl)
+            .Include(x => x.Cs)
             .OrderBy(x => x.Id)
             .Where(y => _db.Tlinquiries.Single(x => x.Id == y.Tlid).Country.ToLower().Contains(country.ToLower()))
-            .Select(x => new OrderDto().CopyFrom(x))
             .ToList();
     }
 
-    public List<OrderDto> GetOrdersWithSped(string sped)
+    public List<Order> GetOrdersWithSped(string sped)
     {
         return _db.Orders
+            .Include(x => x.Tl)
+            .Include(x => x.Cs)
             .OrderBy(x => x.Id)
             .Where(y => _db.Tlinquiries.Single(x => x.Id == y.Tlid).Sped.ToLower().Contains(sped.ToLower()))
-            .Select(x => new OrderDto().CopyFrom(x))
             .ToList();
     }
 
-    public List<OrderDto> GetOrdersWithLastUpdated(string date)
+    public List<Order> GetOrdersWithLastUpdated(string date)
     {
         try
         {
             return _db.Orders
+                .Include(x => x.Tl)
+            .Include(x => x.Cs)
             .OrderBy(x => x.Id)
             .Where(x => EF.Functions.DateDiffDay(x.LastUpdated, DateTime.ParseExact(date, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture)) == 0)
-            .Select(x => new OrderDto().CopyFrom(x))
             .ToList();
         }
         catch (Exception ex)
         {
             Console.WriteLine(ex.ToString());
-            return new List<OrderDto>();
+            return new List<Order>();
         }
     }
 
-    public List<OrderDto> GetOrdersWithStatus(int status)
+    public List<Order> GetOrdersWithStatus(int status)
     {
         return _db.Orders
+            .Include(x => x.Tl)
+            .Include(x => x.Cs)
             .OrderBy(x => x.Id)
             .Where(x => x.Status == status)
-            .Select(x => new OrderDto().CopyFrom(x))
             .ToList();
     }
 
@@ -148,13 +157,6 @@ public class OrderService
         return allOrders
         .OrderByDescending(x => x.Tl.Sped)
             .ToList();
-    }
-
-    public string GetDispatchDateForOrder(int id)
-    {
-        var order = _db.Orders.Single(x => x.Id == id);
-
-        return order.Tl.ExpectedRetrieveWeek.ToString("dd.MM.yyyy");
     }
 
     public Order GetOrderWithId(int id)
