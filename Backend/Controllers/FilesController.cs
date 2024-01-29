@@ -6,7 +6,7 @@ namespace Backend.Controllers;
 
 [Route("[controller]")]
 [ApiController]
-public class FilesController
+public class FilesController : ControllerBase
 {
     private readonly FileService _fileService;
     public FilesController(FileService fileService) => _fileService = fileService;

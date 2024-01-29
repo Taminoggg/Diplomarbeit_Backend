@@ -5,7 +5,7 @@ namespace Backend.Controllers;
 
 [Route("[controller]")]
 [ApiController]
-public class MessagesController
+public class MessagesController : ControllerBase
 {
     private readonly MessageService _messageService;
     public MessagesController(MessageService messageService) => _messageService = messageService;

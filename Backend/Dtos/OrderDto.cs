@@ -6,7 +6,7 @@ public class OrderDto
     [Required] public string CreatedBy { get; set; } = null!;
     [Required] public bool Approved { get; set; }
     [Required] public int Amount { get; set; }
-    [Required] public DateTime LastUpdated { get; set; }
+    [Required] public string LastUpdated { get; set; } = null!;
     [Required] public int ChecklistId { get; set; }
     [Required] public string ArticleNumber { get; set; } = null!;
     [Required] public string Sped { get; set; } = null!;

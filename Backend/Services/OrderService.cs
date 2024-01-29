@@ -21,6 +21,7 @@ public class OrderService
         return _db.Orders
             .Include(x => x.Tl)
             .Include(x => x.Cs)
+            .Include(x => x.Checklist)
             .OrderBy(x => x.Id)
             .ToList();
     }
@@ -30,6 +31,7 @@ public class OrderService
         return _db.Orders
             .Include(x => x.Tl)
             .Include(x => x.Cs)
+            .Include(x => x.Checklist)
             .OrderBy(x => x.Id)
             .Where(x => x.CustomerName.ToLower().Contains(customerName.ToLower()))
             .ToList();
@@ -40,6 +42,7 @@ public class OrderService
         return _db.Orders
             .Include(x => x.Tl)
             .Include(x => x.Cs)
+            .Include(x => x.Checklist)
             .OrderBy(x => x.Id)
             .Where(x => x.Approved == approved)
             .ToList();
@@ -50,6 +53,7 @@ public class OrderService
         return _db.Orders
             .Include(x => x.Tl)
             .Include(x => x.Cs)
+            .Include(x => x.Checklist)
             .OrderBy(x => x.Id)
             .Where(x => x.Amount == amount)
             .ToList();
@@ -60,6 +64,7 @@ public class OrderService
         return _db.Orders
             .Include(x => x.Tl)
             .Include(x => x.Cs)
+            .Include(x => x.Checklist)
             .OrderBy(x => x.Id)
             .Where(x => x.CreatedBy.ToLower().Contains(createdBy.ToLower()))
             .ToList();
@@ -70,6 +75,7 @@ public class OrderService
         return _db.Orders
             .Include(x => x.Tl)
             .Include(x => x.Cs)
+            .Include(x => x.Checklist)
             .OrderBy(x => x.Id)
             .Where(y => _db.Tlinquiries.Single(x => x.Id == y.Tlid).Country.ToLower().Contains(country.ToLower()))
             .ToList();
@@ -80,6 +86,7 @@ public class OrderService
         return _db.Orders
             .Include(x => x.Tl)
             .Include(x => x.Cs)
+            .Include(x => x.Checklist)
             .OrderBy(x => x.Id)
             .Where(y => _db.Tlinquiries.Single(x => x.Id == y.Tlid).Sped.ToLower().Contains(sped.ToLower()))
             .ToList();
@@ -90,8 +97,9 @@ public class OrderService
         try
         {
             return _db.Orders
-                .Include(x => x.Tl)
+             .Include(x => x.Tl)
             .Include(x => x.Cs)
+            .Include(x => x.Checklist)
             .OrderBy(x => x.Id)
             .Where(x => EF.Functions.DateDiffDay(x.LastUpdated, DateTime.ParseExact(date, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture)) == 0)
             .ToList();
@@ -108,60 +116,18 @@ public class OrderService
         return _db.Orders
             .Include(x => x.Tl)
             .Include(x => x.Cs)
+            .Include(x => x.Checklist)
             .OrderBy(x => x.Id)
             .Where(x => x.Status == status)
-            .ToList();
-    }
-
-    public List<Order> GetOrdersSortedBySpedAsc(string orderIdString)
-    {
-        string[] idStrings = orderIdString.Split(',');
-        int[] orderIds = idStrings.Select(int.Parse).ToArray();
-        var allOrders = new List<Order>();
-
-        foreach (int id in orderIds)
-        {
-            var order = _db.Orders
-            .Include(x => x.Tl)
-            .SingleOrDefault(x => x.Id == id);
-
-            if (order != null)
-            {
-                allOrders.Add(order);
-            }
-        }
-
-        return allOrders
-        .OrderBy(x => x.Tl.Sped)
-            .ToList();
-    }
-
-    public List<Order> GetOrdersSortedBySpedDec(string orderIdString)
-    {
-        string[] idStrings = orderIdString.Split(',');
-        int[] orderIds = idStrings.Select(int.Parse).ToArray();
-        var allOrders = new List<Order>();
-
-        foreach (int id in orderIds)
-        {
-            var order = _db.Orders
-            .Include(x => x.Tl)
-            .SingleOrDefault(x => x.Id == id);
-
-            if (order != null)
-            {
-                allOrders.Add(order);
-            }
-        }
-
-        return allOrders
-        .OrderByDescending(x => x.Tl.Sped)
             .ToList();
     }
 
     public Order GetOrderWithId(int id)
     {
         Order order = _db.Orders
+            .Include(x => x.Tl)
+            .Include(x => x.Cs)
+            .Include(x => x.Checklist)
             .Single(x => x.Id == id);
 
         return order;
@@ -188,6 +154,10 @@ public class OrderService
             Tlid = addOrderDto.Tlid,
         };
 
+        _db.Entry(order).Reference(o => o.Checklist).Load();
+        _db.Entry(order).Reference(o => o.Cs).Load();
+        _db.Entry(order).Reference(o => o.Tl).Load();
+
         _db.Orders.Add(order);
         _db.SaveChanges();
 
@@ -198,7 +168,7 @@ public class OrderService
     {
         var checklist = _db.Checklists.Single(x => x.Id == editOrderDto.ChecklistId);
 
-        var order = _db.Orders.Single(x => x.Id == editOrderDto.Id);
+        var order = _db.Orders.Include(x => x.Tl).Include(x => x.Cs).Include(x => x.Checklist).Single(x => x.Id == editOrderDto.Id);
         order.Approved = editOrderDto.Approved;
         order.Checklist = checklist;
         order.ChecklistId = editOrderDto.ChecklistId;
@@ -215,7 +185,7 @@ public class OrderService
 
     public Order DeleteOrder(int id)
     {
-        var order = _db.Orders.Single(x => x.Id == id);
+        var order = _db.Orders.Include(x => x.Tl).Include(x => x.Cs).Include(x => x.Checklist).Single(x => x.Id == id);
 
         _db.Orders.Remove(order);
         _db.SaveChanges();
