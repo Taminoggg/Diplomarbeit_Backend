@@ -7,6 +7,7 @@
 using Backend.Services;
 using GrueneisR.RestClientGenerator;
 using Microsoft.OpenApi.Models;
+using System;
 using TippsBackend.Services;
 
 string corsKey = "_myCorsKey";
@@ -56,7 +57,10 @@ Console.WriteLine($"******** ConnectionString: {connectionString}");
 Console.ForegroundColor = ConsoleColor.Yellow;
 Console.WriteLine($"******** Don't forget to comment out ContainerToolDBContext.OnConfiguring !");
 Console.ResetColor();
-builder.Services.AddDbContext<ContainerToolDBContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddDbContext<ContainerToolDBContext>(options =>
+{
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+});
 #endregion
 
 var app = builder.Build();

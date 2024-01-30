@@ -1,7 +1,4 @@
-﻿using ContainerToolDBDb;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.EntityFrameworkCore;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿using System.Globalization;
 
 namespace TippsBackend.Services;
 
@@ -96,13 +93,16 @@ public class OrderService
     {
         try
         {
+            DateTime parsedDate = DateTime.ParseExact(date, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+
             return _db.Orders
-             .Include(x => x.Tl)
-            .Include(x => x.Cs)
-            .Include(x => x.Checklist)
-            .OrderBy(x => x.Id)
-            .Where(x => EF.Functions.DateDiffDay(x.LastUpdated, DateTime.ParseExact(date, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture)) == 0)
-            .ToList();
+                .Include(x => x.Tl)
+                .Include(x => x.Cs)
+                .Include(x => x.Checklist)
+                .OrderBy(x => x.Id)
+                .AsEnumerable()
+                .Where(x => (x.LastUpdated.Date - parsedDate.Date).Days == 0)
+                .ToList();
         }
         catch (Exception ex)
         {
@@ -110,6 +110,7 @@ public class OrderService
             return new List<Order>();
         }
     }
+
 
     public List<Order> GetOrdersWithStatus(int status)
     {
