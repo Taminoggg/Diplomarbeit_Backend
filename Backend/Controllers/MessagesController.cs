@@ -13,12 +13,24 @@ public class MessagesController : ControllerBase
     [HttpGet]
     public List<MessageDto> AllMessages(int id)
     {
-        return _messageService.GetMessages(id);
+        return _messageService.GetMessages(id).Select(x => ToMessageDto(x)).ToList();
+        
     }
 
     [HttpPost]
-    public MessageDto Message(AddMessageDto message)
+    public MessageDto Message(AddMessageDto addMessageDto)
     {
-        return _messageService.PostMessage(message);
+        return ToMessageDto(_messageService.PostMessage(addMessageDto));
+    }
+
+    private static MessageDto ToMessageDto(Message message)
+    {
+        return new MessageDto
+        {
+            Id = message.Id,
+            DateTime = message.DateTime.ToString("dd.MM.yyyy"),
+            AttachmentId = message.AttachmentId ?? 0,
+            Content = message.Content
+        };
     }
 }

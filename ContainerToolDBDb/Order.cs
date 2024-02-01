@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ContainerToolDB;
+using System;
 using System.Collections.Generic;
 
 namespace ContainerToolDBDb;
@@ -25,9 +26,13 @@ public partial class Order
 
     public int Tlid { get; set; }
 
+    public string? AdditionalInformation { get; set; }
+
     public virtual Checklist Checklist { get; set; } = null!;
 
-    public virtual ICollection<Conversation> Conversations { get; } = new List<Conversation>();
+
+
+    public virtual ICollection<MessageConversation> MessageConversations { get; } = new List<MessageConversation>();
 
     public virtual Csinquiry Cs { get; set; } = null!;
 

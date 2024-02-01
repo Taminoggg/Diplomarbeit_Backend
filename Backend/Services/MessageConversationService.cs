@@ -10,13 +10,13 @@ public class MessageConversationService
 
     public MessageConversationService(ContainerToolDBContext db) => _db = db;
 
-    public List<MessageDto> GetMessagesForConversation(int id)
+    public List<Message> GetMessagesForOrder(int id)
     {
         try
         {
-            var conversation = _db.Conversations.Where(x => x.Id == id).First();
+            var conversation = _db.Orders.Where(x => x.Id == id).First();
 
-            var messageIds = _db.MessageConversations.Where(x => x.ConversationId == conversation.Id).Select(x => x.MessageId).ToList();
+            var messageIds = _db.MessageConversations.Where(x => x.OrderId == conversation.Id).Select(x => x.MessageId).ToList();
 
             var messages = new List<Message>();
 
@@ -25,42 +25,32 @@ public class MessageConversationService
                 messages.Add(_db.Messages.Single(x => x.Id == currId));
             }
 
-            return messages.OrderBy(x => x.DateTime).Select(x => new MessageDto
-            {
-                Id = x.Id,
-                DateTime = x.DateTime.ToString("dd.MM.yyyy HH:mm"),
-                AttachmentId = x.AttachmentId,
-                Content = x.Content
-            }).ToList();
+            return messages.OrderBy(x => x.DateTime).ToList();
+
         }
         catch (Exception ex)
         {
-            return new List<MessageDto>();
+            return new List<Message>();
         }
        
     }
 
-    public List<MessageConversationDto> GetMessageConversations()
+    public List<MessageConversation> GetMessageConversations()
     {
-        return _db.MessageConversations.Select(x => new MessageConversationDto().CopyFrom(x)).ToList();
+        return _db.MessageConversations.ToList();
     }
 
-    public MessageConversationDto PostMessageForOrder(AddMessageConversationDto addMessageConversationDto)
+    public MessageConversation PostMessageForOrder(AddMessageConversationDto addMessageConversationDto)
     {
         var messageConversaion = new MessageConversation
         {
             MessageId = addMessageConversationDto.MessageId,
-            ConversationId = addMessageConversationDto.ConversationId
+            OrderId = addMessageConversationDto.OrderId
         };
 
         _db.MessageConversations.Add(messageConversaion);
         _db.SaveChanges();
 
-        return new MessageConversationDto
-        {
-            MessageId= addMessageConversationDto.MessageId,
-            ConversationId= addMessageConversationDto.ConversationId,
-            Id = messageConversaion.Id
-        };
+        return messageConversaion;
     }
 }

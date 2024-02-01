@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ContainerToolDB;
+using System;
 using System.Collections.Generic;
 
 namespace ContainerToolDBDb;
@@ -8,16 +9,6 @@ public partial class Csinquiry
     public int Id { get; set; }
 
     public string Container { get; set; } = null!;
-
-    public string FastLine { get; set; } = null!;
-
-    public string DirectLine { get; set; } = null!;
-
-    public string ArticleNumber { get; set; } = null!;
-
-    public int Palletamount { get; set; }
-
-    public string Customer { get; set; } = null!;
 
     public int Abnumber { get; set; }
 
@@ -39,5 +30,6 @@ public partial class Csinquiry
 
     public string LoadingPlattform { get; set; } = null!;
 
+    public virtual ICollection<Article> Articles { get; } = new List<Article>();
     public virtual ICollection<Order> Orders { get; } = new List<Order>();
 }

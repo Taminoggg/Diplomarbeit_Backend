@@ -1,6 +1,37 @@
 @baseUrl = http://localhost:5000
 
 
+################################################## Articles
+DELETE {{baseUrl}}/Articles?id=1
+#####
+GET {{baseUrl}}/Articles
+#####
+GET {{baseUrl}}/Articles/CsInquiry/1
+#####
+POST {{baseUrl}}/Articles
+Content-type: application/json
+
+{
+   "articleNumber": 1,
+   "isDirectLine": True,
+   "isFastLine": True,
+   "pallets": 1,
+   "csInquiryId": 1
+}
+#####
+PUT {{baseUrl}}/Articles
+Content-type: application/json
+
+{
+   "id": 1,
+   "articleNumber": 1,
+   "isDirectLine": True,
+   "isFastLine": True,
+   "pallets": 1,
+   "csInquiryId": 1
+}
+#####
+
 ################################################## Checklists
 DELETE {{baseUrl}}/Checklists?id=1
 #####
@@ -27,6 +58,7 @@ Content-type: application/json
       "stepNumber": 1,
       "stepDescription": "abc",
       "stepName": "abc",
+      "isCompleted": True,
       "stepChecklists": 
       [{
          "id": 1,
@@ -47,22 +79,13 @@ Content-type: application/json
             "stepNumber": 1,
             "stepDescription": "abc",
             "stepName": "abc",
+            "isCompleted": True,
             "stepChecklists": 
             []
          }
       }]
    }]
 }
-#####
-
-################################################## Conversations
-DELETE {{baseUrl}}/Conversations?id=1
-#####
-GET {{baseUrl}}/Conversations?id=1
-#####
-GET {{baseUrl}}/Conversations/1
-#####
-POST {{baseUrl}}/Conversations?id=1
 #####
 
 ################################################## Csinquiries
@@ -77,11 +100,6 @@ Content-type: application/json
 
 {
    "container": "abc",
-   "fastLine": "abc",
-   "directLine": "abc",
-   "articleNumber": "abc",
-   "palletamount": 1,
-   "customer": "abc",
    "abnumber": 1,
    "bruttoWeightInKg": 1,
    "incoterm": "abc",
@@ -100,11 +118,6 @@ Content-type: application/json
 {
    "id": 1,
    "container": "abc",
-   "fastLine": "abc",
-   "directLine": "abc",
-   "articleNumber": "abc",
-   "palletamount": 1,
-   "customer": "abc",
    "abnumber": 1,
    "bruttoWeightInKg": 1,
    "incoterm": "abc",
@@ -135,7 +148,7 @@ POST {{baseUrl}}/MessageConversations
 Content-type: application/json
 
 {
-   "conversationId": 1,
+   "orderId": 1,
    "messageId": 1
 }
 #####

@@ -8,7 +8,6 @@ public class OrderDto
     [Required] public int Amount { get; set; }
     [Required] public string LastUpdated { get; set; } = null!;
     [Required] public int ChecklistId { get; set; }
-    [Required] public string ArticleNumber { get; set; } = null!;
     [Required] public string Sped { get; set; } = null!;
     [Required] public string Country { get; set; } = null!;
     [Required] public string ReadyToLoad { get; set; } = null!;

@@ -8,61 +8,19 @@ public class TlinquiryService
 
     public TlinquiryService(ContainerToolDBContext db) => _db = db;
 
-    public List<TlinquiryDto> GetAllTlinquirys()
+    public List<Tlinquiry> GetAllTlinquirys()
     {
-        return _db.Tlinquiries.Select(x=> new TlinquiryDto
-        {
-            DebtCapitalGeneralForerunEur = x.DebtCapitalGeneralForerunEur,
-            DebtCapitalMainDol = x.DebtCapitalMainDol,
-            DebtCapitalTrailingDol = x.DebtCapitalTrailingDol,
-            PortOfDeparture = x.PortOfDeparture,
-            RetrieveDate = x.RetrieveDate.ToString("dd.MM.yyyy"),
-            AcceptingPort = x.AcceptingPort,
-            Boat = x.Boat,
-            Country = x.Country,
-            Eta = x.Eta.ToString("dd.MM.yyyy"),
-            Ets = x.Ets.ToString("dd.MM.yyyy"),
-            ExpectedRetrieveWeek = x.ExpectedRetrieveWeek.ToString("dd.MM.yyyy"),
-            InquiryNumber = x.InquiryNumber,
-            InvoiceOn = x.InvoiceOn.ToString("dd.MM.yyyy"),
-            Id = x.Id,
-            IsContainer40 = x.IsContainer40,
-            IsContainerHc = x.IsContainerHc,
-            RetrieveLocation = x.RetrieveLocation,
-            Sped = x.Sped,
-            WeightInKg = x.WeightInKg
-        }).ToList();
+        return _db.Tlinquiries.ToList();
     }
 
-    public TlinquiryDto GetTlinquiryWithId(int id)
+    public Tlinquiry GetTlinquiryWithId(int id)
     {
         var tlinquiry = _db.Tlinquiries.Single(x => x.Id == id);
 
-        return new TlinquiryDto
-        {
-            DebtCapitalGeneralForerunEur = tlinquiry.DebtCapitalGeneralForerunEur,
-            DebtCapitalMainDol = tlinquiry.DebtCapitalMainDol,
-            DebtCapitalTrailingDol = tlinquiry.DebtCapitalTrailingDol,
-            PortOfDeparture = tlinquiry.PortOfDeparture,
-            RetrieveDate = tlinquiry.RetrieveDate.ToString("dd.MM.yyyy"),
-            AcceptingPort = tlinquiry.AcceptingPort,
-            Boat = tlinquiry.Boat,
-            Country = tlinquiry.Country,
-            Eta = tlinquiry.Eta.ToString("dd.MM.yyyy"),
-            Ets = tlinquiry.Ets.ToString("dd.MM.yyyy"),
-            ExpectedRetrieveWeek = tlinquiry.ExpectedRetrieveWeek.ToString("dd.MM.yyyy"),
-            InquiryNumber = tlinquiry.InquiryNumber,
-            InvoiceOn = tlinquiry.InvoiceOn.ToString("dd.MM.yyyy"),
-            Id = tlinquiry.Id,
-            IsContainer40 = tlinquiry.IsContainer40,
-            IsContainerHc = tlinquiry.IsContainerHc,
-            RetrieveLocation = tlinquiry.RetrieveLocation,
-            Sped = tlinquiry.Sped,
-            WeightInKg = tlinquiry.WeightInKg
-        };
+        return tlinquiry;
     }
 
-    public TlinquiryDto AddTlinquiry(AddTlinquiryDto addTlinquiryDto)
+    public Tlinquiry AddTlinquiry(AddTlinquiryDto addTlinquiryDto)
     {
         var tlinquiry = new Tlinquiry 
         {
@@ -89,31 +47,10 @@ public class TlinquiryService
         _db.Tlinquiries.Add(tlinquiry);
         _db.SaveChanges();
 
-        return new TlinquiryDto
-        {
-            DebtCapitalGeneralForerunEur = tlinquiry.DebtCapitalGeneralForerunEur,
-            DebtCapitalMainDol = tlinquiry.DebtCapitalMainDol,
-            DebtCapitalTrailingDol = tlinquiry.DebtCapitalTrailingDol,
-            PortOfDeparture = tlinquiry.PortOfDeparture,
-            RetrieveDate = tlinquiry.RetrieveDate.ToString("dd.MM.yyyy"),
-            AcceptingPort = tlinquiry.AcceptingPort,
-            Boat = tlinquiry.Boat,
-            Country = tlinquiry.Country,
-            Eta = tlinquiry.Eta.ToString("dd.MM.yyyy"),
-            Ets = tlinquiry.Ets.ToString("dd.MM.yyyy"),
-            ExpectedRetrieveWeek = tlinquiry.ExpectedRetrieveWeek.ToString("dd.MM.yyyy"),
-            InquiryNumber = tlinquiry.InquiryNumber,
-            InvoiceOn = tlinquiry.InvoiceOn.ToString("dd.MM.yyyy"),
-            Id = tlinquiry.Id,
-            IsContainer40 = tlinquiry.IsContainer40,
-            IsContainerHc = tlinquiry.IsContainerHc,
-            RetrieveLocation = tlinquiry.RetrieveLocation,
-            Sped = tlinquiry.Sped,
-            WeightInKg = tlinquiry.WeightInKg
-        };
+        return tlinquiry;
     }
 
-    public TlinquiryDto EditTlinquiry(EditTlInqueryDto editTlinquiryDto)
+    public Tlinquiry EditTlinquiry(EditTlInqueryDto editTlinquiryDto)
     {
         var tlinquiry = _db.Tlinquiries.Single(x => x.Id == editTlinquiryDto.Id);
         tlinquiry.InquiryNumber = editTlinquiryDto.InquiryNumber;
@@ -136,58 +73,16 @@ public class TlinquiryService
         tlinquiry.WeightInKg = editTlinquiryDto.WeightInKg;
         _db.SaveChanges();
 
-        return new TlinquiryDto 
-        {
-            DebtCapitalGeneralForerunEur = tlinquiry.DebtCapitalGeneralForerunEur,
-            DebtCapitalMainDol = tlinquiry.DebtCapitalMainDol,
-            DebtCapitalTrailingDol = tlinquiry.DebtCapitalTrailingDol,
-            PortOfDeparture = tlinquiry.PortOfDeparture,
-            RetrieveDate = tlinquiry.RetrieveDate.ToString("dd.MM.yyyy"),
-            AcceptingPort = tlinquiry.AcceptingPort,
-            Boat = tlinquiry.Boat,
-            Country = tlinquiry.Country,
-            Eta = tlinquiry.Eta.ToString("dd.MM.yyyy"),
-            Ets = tlinquiry.Ets.ToString("dd.MM.yyyy"),
-            ExpectedRetrieveWeek = tlinquiry.ExpectedRetrieveWeek.ToString("dd.MM.yyyy"),
-            InquiryNumber = tlinquiry.InquiryNumber,
-            InvoiceOn = tlinquiry.InvoiceOn.ToString("dd.MM.yyyy"),
-            Id = tlinquiry.Id,
-            IsContainer40 = tlinquiry.IsContainer40,
-            IsContainerHc = tlinquiry.IsContainerHc,
-            RetrieveLocation = tlinquiry.RetrieveLocation,
-            Sped = tlinquiry.Sped,
-            WeightInKg = tlinquiry.WeightInKg
-        };
+        return tlinquiry;
     }
 
-    public TlinquiryDto DeleteTlinquiry(int id)
+    public Tlinquiry DeleteTlinquiry(int id)
     {
         var tlinquiry = _db.Tlinquiries.Single(x => x.Id == id);
 
         _db.Tlinquiries.Remove(tlinquiry);
         _db.SaveChanges();
 
-        return new TlinquiryDto
-        {
-            DebtCapitalGeneralForerunEur = tlinquiry.DebtCapitalGeneralForerunEur,
-            DebtCapitalMainDol = tlinquiry.DebtCapitalMainDol,
-            DebtCapitalTrailingDol = tlinquiry.DebtCapitalTrailingDol,
-            PortOfDeparture = tlinquiry.PortOfDeparture,
-            RetrieveDate = tlinquiry.RetrieveDate.ToString("dd.MM.yyyy"),
-            AcceptingPort = tlinquiry.AcceptingPort,
-            Boat = tlinquiry.Boat,
-            Country = tlinquiry.Country,
-            Eta = tlinquiry.Eta.ToString("dd.MM.yyyy"),
-            Ets = tlinquiry.Ets.ToString("dd.MM.yyyy"),
-            ExpectedRetrieveWeek = tlinquiry.ExpectedRetrieveWeek.ToString("dd.MM.yyyy"),
-            InquiryNumber = tlinquiry.InquiryNumber,
-            InvoiceOn = tlinquiry.InvoiceOn.ToString("dd.MM.yyyy"),
-            Id = tlinquiry.Id,
-            IsContainer40 = tlinquiry.IsContainer40,
-            IsContainerHc = tlinquiry.IsContainerHc,
-            RetrieveLocation = tlinquiry.RetrieveLocation,
-            Sped = tlinquiry.Sped,
-            WeightInKg = tlinquiry.WeightInKg
-        };
+        return tlinquiry;
     }
 }

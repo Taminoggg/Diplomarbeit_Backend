@@ -19,6 +19,34 @@ namespace ContainerToolDB.Migrations
                 .HasAnnotation("ProductVersion", "7.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
+            modelBuilder.Entity("ContainerToolDB.Article", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("ArticleNumber")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CsinquiryId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDirectLine")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("IsFastLine")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int>("Pallets")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex(new[] { "CsinquiryId" }, "IX_Conversations_OrderId");
+
+                    b.ToTable("Articles");
+                });
+
             modelBuilder.Entity("ContainerToolDBDb.ArticlesInDispatchRequest", b =>
                 {
                     b.Property<int>("Id")
@@ -72,22 +100,6 @@ namespace ContainerToolDB.Migrations
                     b.ToTable("Checklists");
                 });
 
-            modelBuilder.Entity("ContainerToolDBDb.Conversation", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex(new[] { "OrderId" }, "IX_Conversations_OrderId");
-
-                    b.ToTable("Conversations");
-                });
-
             modelBuilder.Entity("ContainerToolDBDb.Csinquiry", b =>
                 {
                     b.Property<int>("Id")
@@ -97,10 +109,6 @@ namespace ContainerToolDB.Migrations
                     b.Property<int>("Abnumber")
                         .HasColumnType("int")
                         .HasColumnName("ABNumber");
-
-                    b.Property<string>("ArticleNumber")
-                        .IsRequired()
-                        .HasColumnType("longtext");
 
                     b.Property<int>("BruttoWeightInKg")
                         .HasColumnType("int")
@@ -120,18 +128,6 @@ namespace ContainerToolDB.Migrations
                         .HasColumnType("int")
                         .HasColumnName("ContainersizeHC");
 
-                    b.Property<string>("Customer")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("DirectLine")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("FastLine")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
                     b.Property<bool>("FreeDetention")
                         .HasColumnType("tinyint(1)");
 
@@ -143,9 +139,6 @@ namespace ContainerToolDB.Migrations
                     b.Property<string>("LoadingPlattform")
                         .IsRequired()
                         .HasColumnType("longtext");
-
-                    b.Property<int>("Palletamount")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("ReadyToLoad")
                         .HasColumnType("datetime(6)");
@@ -206,7 +199,7 @@ namespace ContainerToolDB.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("AttachmentId")
+                    b.Property<int?>("AttachmentId")
                         .HasColumnType("int");
 
                     b.Property<string>("Content")
@@ -229,15 +222,15 @@ namespace ContainerToolDB.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("ConversationId")
+                    b.Property<int>("MessageId")
                         .HasColumnType("int");
 
-                    b.Property<int>("MessageId")
+                    b.Property<int>("OrderId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex(new[] { "ConversationId" }, "IX_MessageConversations_ConversationId");
+                    b.HasIndex(new[] { "OrderId" }, "IX_MessageConversations_ConversationId");
 
                     b.HasIndex(new[] { "MessageId" }, "IX_MessageConversations_MessageId");
 
@@ -249,6 +242,9 @@ namespace ContainerToolDB.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    b.Property<string>("AdditionalInformation")
+                        .HasColumnType("longtext");
 
                     b.Property<int>("Amount")
                         .HasColumnType("int");
@@ -338,6 +334,9 @@ namespace ContainerToolDB.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsCompleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("StepDescription")
                         .IsRequired()
@@ -487,6 +486,17 @@ namespace ContainerToolDB.Migrations
                     b.ToTable("TLInquiries", (string)null);
                 });
 
+            modelBuilder.Entity("ContainerToolDB.Article", b =>
+                {
+                    b.HasOne("ContainerToolDBDb.Csinquiry", "Csinquiry")
+                        .WithMany("Articles")
+                        .HasForeignKey("CsinquiryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Csinquiry");
+                });
+
             modelBuilder.Entity("ContainerToolDBDb.ArticlesInDispatchRequest", b =>
                 {
                     b.HasOne("ContainerToolDBDb.DispachDateRequest", "DispachDateRequest")
@@ -498,45 +508,32 @@ namespace ContainerToolDB.Migrations
                     b.Navigation("DispachDateRequest");
                 });
 
-            modelBuilder.Entity("ContainerToolDBDb.Conversation", b =>
-                {
-                    b.HasOne("ContainerToolDBDb.Order", "Order")
-                        .WithMany("Conversations")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-                });
-
             modelBuilder.Entity("ContainerToolDBDb.Message", b =>
                 {
                     b.HasOne("ContainerToolDBDb.File", "Attachment")
                         .WithMany("Messages")
-                        .HasForeignKey("AttachmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AttachmentId");
 
                     b.Navigation("Attachment");
                 });
 
             modelBuilder.Entity("ContainerToolDBDb.MessageConversation", b =>
                 {
-                    b.HasOne("ContainerToolDBDb.Conversation", "Conversation")
-                        .WithMany("MessageConversations")
-                        .HasForeignKey("ConversationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("ContainerToolDBDb.Message", "Message")
                         .WithMany("MessageConversations")
                         .HasForeignKey("MessageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Conversation");
+                    b.HasOne("ContainerToolDBDb.Order", "Order")
+                        .WithMany("MessageConversations")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Message");
+
+                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("ContainerToolDBDb.Order", b =>
@@ -603,13 +600,10 @@ namespace ContainerToolDB.Migrations
                     b.Navigation("StepChecklists");
                 });
 
-            modelBuilder.Entity("ContainerToolDBDb.Conversation", b =>
-                {
-                    b.Navigation("MessageConversations");
-                });
-
             modelBuilder.Entity("ContainerToolDBDb.Csinquiry", b =>
                 {
+                    b.Navigation("Articles");
+
                     b.Navigation("Orders");
                 });
 
@@ -630,7 +624,7 @@ namespace ContainerToolDB.Migrations
 
             modelBuilder.Entity("ContainerToolDBDb.Order", b =>
                 {
-                    b.Navigation("Conversations");
+                    b.Navigation("MessageConversations");
                 });
 
             modelBuilder.Entity("ContainerToolDBDb.Plant", b =>

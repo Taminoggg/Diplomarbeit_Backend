@@ -7,7 +7,6 @@
 using Backend.Services;
 using GrueneisR.RestClientGenerator;
 using Microsoft.OpenApi.Models;
-using System;
 using TippsBackend.Services;
 
 string corsKey = "_myCorsKey";
@@ -38,8 +37,8 @@ builder.Services
 	  //.EnableLogging()
   );
 builder.Services.AddLogging(x => x.AddCustomFormatter());
-builder.Services.AddScoped<ConversationService>();
 builder.Services.AddScoped<CsinquiryService>();
+builder.Services.AddScoped<ArticleService>();
 builder.Services.AddScoped<OrderService>();
 builder.Services.AddScoped<TlinquiryService>();
 builder.Services.AddScoped<ChecklistService>();

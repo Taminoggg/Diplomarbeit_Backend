@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ContainerToolDB;
+using System;
 using System.Collections.Generic;
 
 namespace ContainerToolDBDb;
@@ -42,6 +43,8 @@ public partial class Tlinquiry
     public DateTime Eta { get; set; }
 
     public string Boat { get; set; } = null!;
+
+
 
     public virtual ICollection<Order> Orders { get; } = new List<Order>();
 }

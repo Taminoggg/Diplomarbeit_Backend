@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ContainerToolDB;
 using Microsoft.EntityFrameworkCore;
 
 namespace ContainerToolDBDb;
@@ -19,8 +20,6 @@ public partial class ContainerToolDBContext : DbContext
 
     public virtual DbSet<Checklist> Checklists { get; set; }
 
-    public virtual DbSet<Conversation> Conversations { get; set; }
-
     public virtual DbSet<Csinquiry> Csinquiries { get; set; }
 
     public virtual DbSet<DispachDateRequest> DispachDateRequests { get; set; }
@@ -32,6 +31,8 @@ public partial class ContainerToolDBContext : DbContext
     public virtual DbSet<MessageConversation> MessageConversations { get; set; }
 
     public virtual DbSet<Order> Orders { get; set; }
+
+    public virtual DbSet<Article> Articles { get; set; }
 
     public virtual DbSet<PlanningSt> PlanningSts { get; set; }
 
@@ -54,11 +55,11 @@ public partial class ContainerToolDBContext : DbContext
             entity.HasOne(d => d.DispachDateRequest).WithMany(p => p.ArticlesInDispatchRequests).HasForeignKey(d => d.DispachDateRequestId);
         });
 
-        modelBuilder.Entity<Conversation>(entity =>
+        modelBuilder.Entity<Article>(entity =>
         {
-            entity.HasIndex(e => e.OrderId, "IX_Conversations_OrderId");
+            entity.HasIndex(e => e.CsinquiryId, "IX_Conversations_OrderId");
 
-            entity.HasOne(d => d.Order).WithMany(p => p.Conversations).HasForeignKey(d => d.OrderId);
+            entity.HasOne(d => d.Csinquiry).WithMany(p => p.Articles).HasForeignKey(d => d.CsinquiryId);
         });
 
         modelBuilder.Entity<Csinquiry>(entity =>
@@ -81,11 +82,11 @@ public partial class ContainerToolDBContext : DbContext
 
         modelBuilder.Entity<MessageConversation>(entity =>
         {
-            entity.HasIndex(e => e.ConversationId, "IX_MessageConversations_ConversationId");
+            entity.HasIndex(e => e.OrderId, "IX_MessageConversations_ConversationId");
 
             entity.HasIndex(e => e.MessageId, "IX_MessageConversations_MessageId");
 
-            entity.HasOne(d => d.Conversation).WithMany(p => p.MessageConversations).HasForeignKey(d => d.ConversationId);
+            entity.HasOne(d => d.Order).WithMany(p => p.MessageConversations).HasForeignKey(d => d.OrderId);
 
             entity.HasOne(d => d.Message).WithMany(p => p.MessageConversations).HasForeignKey(d => d.MessageId);
         });

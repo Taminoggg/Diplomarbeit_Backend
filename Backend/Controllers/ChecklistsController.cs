@@ -1,3 +1,5 @@
+using Backend;
+using ContainerToolDBDb;
 using TippsBackend.Services;
 
 namespace TippsBackend.Controllers;
@@ -18,21 +20,24 @@ public class ChecklistsController : ControllerBase
     [HttpGet("{id}")]
     public ChecklistDto ChecklistWithId(int id)
     {
-        return _checklistService.GetChecklistWithId(id);
+        return new ChecklistDto().CopyFrom(_checklistService.GetChecklistWithId(id));
     }
 
     [HttpPost]
     public ChecklistDto Checklist(AddChecklistDto addChecklistDto)
     {
-        return _checklistService.AddNewChecklist(addChecklistDto);
+        return new ChecklistDto().CopyFrom(_checklistService.AddNewChecklist(addChecklistDto));
     }
 
     [HttpPut]
     public ChecklistDto Checklist(ChecklistDto checklistDto)
     {
-        return _checklistService.EditChecklist(checklistDto);
+        return new ChecklistDto().CopyFrom(_checklistService.EditChecklist(checklistDto));
     }
 
     [HttpDelete]
-    public ChecklistDto Checklist(int id) => _checklistService.DeleteChecklist(id);
+    public ChecklistDto Checklist(int id)
+    {
+        return new ChecklistDto().CopyFrom(_checklistService.DeleteChecklist(id));
+    }
 }

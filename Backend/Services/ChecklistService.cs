@@ -18,15 +18,15 @@ public class ChecklistService
         .ToList();
     }
 
-    public ChecklistDto GetChecklistWithId(int id)
+    public Checklist GetChecklistWithId(int id)
     {
         Checklist checklist = _db.Checklists
             .Single(x => x.Id == id);
 
-        return new ChecklistDto().CopyFrom(checklist);
+        return checklist;
     }
 
-    public ChecklistDto AddNewChecklist(AddChecklistDto addChecklistDto)
+    public Checklist AddNewChecklist(AddChecklistDto addChecklistDto)
     {
         try
         {
@@ -34,31 +34,31 @@ public class ChecklistService
             _db.Checklists.Add(checklist);
             _db.SaveChanges();
 
-            return new ChecklistDto().CopyFrom(checklist);
+            return checklist;
         }
         catch (Exception ex)
         {
             Console.WriteLine(ex.ToString());
-            return new ChecklistDto();
+            return new Checklist();
         }
     }
 
-    public ChecklistDto EditChecklist(ChecklistDto editChecklist)
+    public Checklist EditChecklist(ChecklistDto editChecklist)
     {
         var checklist = _db.Checklists.Single(x => x.Id == editChecklist.Id);
         checklist.CustomerName = editChecklist.CustomerName;
         _db.SaveChanges();
 
-        return new ChecklistDto().CopyFrom(checklist);
+        return checklist;
     }
 
-    public ChecklistDto DeleteChecklist(int id)
+    public Checklist DeleteChecklist(int id)
     {
         var checklist = _db.Checklists.Single(x => x.Id == id);
 
         _db.Checklists.Remove(checklist);
         _db.SaveChanges();
 
-        return new ChecklistDto().CopyFrom(checklist);
+        return checklist;
     }
 }

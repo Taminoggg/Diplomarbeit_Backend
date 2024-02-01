@@ -1,3 +1,4 @@
+using ContainerToolDBDb;
 using TippsBackend.Services;
 
 namespace TippsBackend.Controllers;
@@ -12,12 +13,18 @@ public class StepsController : ControllerBase
     [HttpGet("{id}")]
     public List<StepDto> ChecklistWithId(int id)
     {
-        return _stepsService.GetAllStepsForChecklist(id);
+        return _stepsService.GetAllStepsForChecklist(id).Select(x => new StepDto().CopyFrom(x.Step)).ToList();
+    }
+
+    [HttpPut]
+    public StepDto CheckStep(EditStepDto editStepDto)
+    {
+        return new StepDto().CopyFrom(_stepsService.CheckStep(editStepDto));
     }
 
     [HttpPost]
     public StepDto Checklist(AddStepDto addStepDto)
     {
-        return _stepsService.CreateNewStepForChecklist(addStepDto);
+        return new StepDto().CopyFrom(_stepsService.CreateNewStepForChecklist(addStepDto));
     }
 }

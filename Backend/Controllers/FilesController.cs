@@ -14,7 +14,7 @@ public class FilesController : ControllerBase
     [HttpGet]
     public List<FileDto> Files()
     {
-        return _fileService.GetAllFiles();
+        return _fileService.GetAllFiles().Select(x => new FileDto().CopyFrom(x)).ToList();
     }
 
     [HttpGet("{id}")]
@@ -26,6 +26,11 @@ public class FilesController : ControllerBase
     [HttpPost]
     public FileDto Files(IFormFile addFileDto)
     {
-        return _fileService.PostFile(addFileDto);
+        var addedFile = _fileService.PostFile(addFileDto);
+        return new FileDto()
+        {
+            Id = addedFile.Id,
+            Path = addedFile.Path,
+        };
     }
 }

@@ -13,5 +13,7 @@ public partial class Step
 
     public string StepName { get; set; } = null!;
 
+    public bool IsCompleted { get; set; }
+
     public virtual ICollection<StepChecklist> StepChecklists { get; } = new List<StepChecklist>();
 }

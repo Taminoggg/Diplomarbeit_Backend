@@ -11,9 +11,9 @@ public class FileService
 
     public FileService(ContainerToolDBContext db) => _db = db;
 
-    public List<FileDto> GetAllFiles()
+    public List<ContainerToolDBDb.File> GetAllFiles()
     {
-        return _db.Files.Select(x => new FileDto().CopyFrom(x)).ToList();
+        return _db.Files.ToList();
     }
 
     public FileByteDto GetFile(int id)
@@ -21,8 +21,6 @@ public class FileService
         var file = _db.Files.Single(x => x.Id == id);
 
         byte[] fileBytes = System.IO.File.ReadAllBytes(file.Path);
-
-        Console.WriteLine("------------------------------" + Path.GetExtension(file.Path));
 
         return new FileByteDto
         {
@@ -32,7 +30,7 @@ public class FileService
         };
     }
 
-    public FileDto PostFile([FromForm] IFormFile file)
+    public ContainerToolDBDb.File PostFile([FromForm] IFormFile file)
     {
         var filePath = Path.Combine("C:\\Users\\gutja\\Tamino\\Diplomarbeit\\", file.FileName);
 
@@ -49,11 +47,6 @@ public class FileService
         _db.Files.Add(addedFile);
         _db.SaveChanges();
 
-        return new FileDto() 
-        {
-            Id = addedFile.Id,
-            Path = addedFile.Path,
-        };
+        return addedFile;
     }
-
 }

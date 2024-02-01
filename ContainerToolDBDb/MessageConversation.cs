@@ -9,9 +9,9 @@ public partial class MessageConversation
 
     public int MessageId { get; set; }
 
-    public int ConversationId { get; set; }
+    public int OrderId { get; set; }
 
-    public virtual Conversation Conversation { get; set; } = null!;
+    public virtual Order Order { get; set; } = null!;
 
     public virtual Message Message { get; set; } = null!;
 }

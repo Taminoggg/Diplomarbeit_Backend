@@ -1,3 +1,5 @@
+using ContainerToolDBDb;
+
 namespace TippsBackend.Services;
 
 public class StepService
@@ -6,28 +8,26 @@ public class StepService
 
     public StepService(ContainerToolDBContext db) => _db = db;
 
-    public List<StepDto> GetAllStepsForChecklist(int id)
+    public List<StepChecklist> GetAllStepsForChecklist(int id)
     {
         return _db.StepChecklists
             .Include(x => x.Step)
             .Where(x => x.ChecklistId == id)
-            .Select(x => new StepDto().CopyFrom(x.Step))
             .ToList();
     }
 
-    public StepDto CheckStep(EditStepDto editStepDto) 
+    public Step CheckStep(EditStepDto editStepDto) 
     {
         var step = _db.Steps.Single(x => x.Id == editStepDto.Id);
-
-        //step.Checked = editStepDto.Checked;
+        step.IsCompleted = editStepDto.Checked;
 
         _db.SaveChanges();
 
-        return new StepDto().CopyFrom(step);
+        return step;
     }
 
 
-    public StepDto CreateNewStepForChecklist(AddStepDto addStepDto)
+    public Step CreateNewStepForChecklist(AddStepDto addStepDto)
     {
         var step = new Step {
             StepDescription = addStepDto.StepDescription, 
@@ -43,6 +43,6 @@ public class StepService
         _db.StepChecklists.Add(stepChecklist);
         _db.SaveChanges();
 
-        return new StepDto().CopyFrom(step);
+        return step;
     }
 }

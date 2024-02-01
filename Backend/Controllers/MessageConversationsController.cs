@@ -14,21 +14,30 @@ namespace Backend.Controllers
         public MessageConversationsController(MessageConversationService messageConversationService) => _messageConversationService = messageConversationService;
 
         [HttpGet]
-        public List<MessageConversationDto> MessageConversations()
+        public List<MessageConversation> MessageConversations()
         {
-            return _messageConversationService.GetMessageConversations();
+            return _messageConversationService.GetMessageConversations()
+                .ToList();
         }
 
         [HttpGet("{conversationId}")]
         public List<MessageDto> MessageConversationForOrder(int conversationId)
         {
-            return _messageConversationService.GetMessagesForConversation(conversationId);
+            return _messageConversationService.GetMessagesForOrder(conversationId)
+                .Select(x => new MessageDto
+                {
+                    Id = x.Id,
+                    DateTime = x.DateTime.ToString("dd.MM.yyyy HH:mm"),
+                    AttachmentId = x.AttachmentId ?? 0,
+                    Content = x.Content
+                })
+                .ToList();
         }
 
         [HttpPost]
         public MessageConversationDto MessageConversation(AddMessageConversationDto message)
         {
-            return _messageConversationService.PostMessageForOrder(message);
+            return new MessageConversationDto().CopyFrom(_messageConversationService.PostMessageForOrder(message));
         }
     }
 }

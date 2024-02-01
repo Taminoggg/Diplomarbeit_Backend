@@ -12,6 +12,6 @@ public class StepChecklistsController : ControllerBase
     [HttpGet]
     public List<StepChecklistDto> ChecklistWithId()
     {
-        return _stepChecklistService.GetAllStepChecklists();
+        return _stepChecklistService.GetAllStepChecklists().Select(x => new StepChecklistDto().CopyFrom(x)).ToList();
     }
 }

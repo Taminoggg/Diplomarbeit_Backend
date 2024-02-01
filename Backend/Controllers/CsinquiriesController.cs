@@ -1,3 +1,4 @@
+using ContainerToolDBDb;
 using TippsBackend.Services;
 
 namespace TippsBackend.Controllers;
@@ -12,30 +13,49 @@ public class CsinquiriesController : ControllerBase
     [HttpGet]
     public List<CsinquiryDto> AllCsinquiries()
     {
-        return _csinquiryService.GetAllCsinquiries();
+        return _csinquiryService.GetAllCsinquiries().Select(x => ToCsinquiryDto(x)).ToList();
     }
 
     [HttpGet("{id}")]
     public CsinquiryDto CsinquiryWithId(int id)
     {
-        return _csinquiryService.GetCsinquiryWithId(id);
+        return ToCsinquiryDto(_csinquiryService.GetCsinquiryWithId(id));
     }
 
     [HttpPost]
     public CsinquiryDto Csinquiry(AddCsinquiryDto addCsinquiryDto)
     {
-        return _csinquiryService.AddCsinquiry(addCsinquiryDto);
+        return ToCsinquiryDto(_csinquiryService.AddCsinquiry(addCsinquiryDto));
     }
 
     [HttpPut]
     public CsinquiryDto Csinquiry(EditCsinquiryDto editCsinquiry)
     {
-        return _csinquiryService.EditCsinquiry(editCsinquiry);
+        return ToCsinquiryDto(_csinquiryService.EditCsinquiry(editCsinquiry));
     }
 
     [HttpDelete]
     public CsinquiryDto Csinquiry(int id)
     {
-        return _csinquiryService.DeleteCsinquiry(id);
+        return ToCsinquiryDto(_csinquiryService.DeleteCsinquiry(id));
+    }
+
+    private static CsinquiryDto ToCsinquiryDto(Csinquiry csinquiry)
+    {
+        return new CsinquiryDto
+        {
+            FreeDetention = csinquiry.FreeDetention,
+            Abnumber = csinquiry.Abnumber,
+            BruttoWeightInKg = csinquiry.BruttoWeightInKg,
+            Container = csinquiry.Container,
+            ContainersizeA = csinquiry.ContainersizeA,
+            ContainersizeB = csinquiry.ContainersizeB,
+            ContainersizeHc = csinquiry.ContainersizeHc,
+            Id = csinquiry.Id,
+            Incoterm = csinquiry.Incoterm,
+            LoadingPlattform = csinquiry.LoadingPlattform,
+            ReadyToLoad = csinquiry.ReadyToLoad.ToString("dd.MM.yyyy"),
+            Thctb = csinquiry.Thctb
+        };
     }
 }

@@ -134,7 +134,7 @@ public class OrderService
         return order;
     }
 
-    public Order AddOrder(AddOrderDto addOrderDto)
+    public OrderDto AddOrder(AddOrderDto addOrderDto)
     {
         var checklist = _db.Checklists.Single(x => x.Id == addOrderDto.ChecklistId);
         var cs = _db.Csinquiries.Single(x => x.Id == addOrderDto.Csid);
@@ -155,14 +155,26 @@ public class OrderService
             Tlid = addOrderDto.Tlid,
         };
 
-        _db.Entry(order).Reference(o => o.Checklist).Load();
-        _db.Entry(order).Reference(o => o.Cs).Load();
-        _db.Entry(order).Reference(o => o.Tl).Load();
-
         _db.Orders.Add(order);
         _db.SaveChanges();
 
-        return order;
+        return new OrderDto
+        {
+            Id = order.Id,
+            AbNumber = order.Cs.Abnumber,
+            Amount = order.Amount,
+            Approved = order.Approved,
+            ChecklistId = order.ChecklistId,
+            Country = order.Tl.Country,
+            CreatedBy = order.CreatedBy,
+            Csid = order.Csid,
+            CustomerName = order.CustomerName,
+            LastUpdated = order.LastUpdated.ToString("dd.MM.yyyy"),
+            ReadyToLoad = order.Cs.ReadyToLoad.ToString("dd.MM.yyyy"),
+            Sped = order.Tl.Sped,
+            Status = order.Status,
+            Tlid = order.Tlid
+        };
     }
 
     public Order EditOrder(EditOrderDto editOrderDto)
