@@ -46,7 +46,7 @@ public class CsinquiriesController : ControllerBase
         {
             FreeDetention = csinquiry.FreeDetention,
             Abnumber = csinquiry.Abnumber,
-            BruttoWeightInKg = csinquiry.BruttoWeightInKg,
+            GrossWeightInKg = csinquiry.BruttoWeightInKg,
             Container = csinquiry.Container,
             ContainersizeA = csinquiry.ContainersizeA,
             ContainersizeB = csinquiry.ContainersizeB,

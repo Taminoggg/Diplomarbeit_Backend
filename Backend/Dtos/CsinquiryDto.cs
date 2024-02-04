@@ -5,7 +5,7 @@ public class CsinquiryDto
     [Required] public int Id { get; set; }
     [Required] public string Container { get; set; } = null!;
     [Required] public int Abnumber { get; set; }
-    [Required] public int BruttoWeightInKg { get; set; }
+    [Required] public int GrossWeightInKg { get; set; }
     [Required] public string Incoterm { get; set; } = null!;
     [Required] public int ContainersizeA { get; set; }
     [Required] public int ContainersizeB { get; set; }

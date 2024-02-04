@@ -30,6 +30,7 @@ public class MessageConversationService
         }
         catch (Exception ex)
         {
+            Console.WriteLine(ex.Message);
             return new List<Message>();
         }
        

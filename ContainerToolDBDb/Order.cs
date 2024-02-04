@@ -8,13 +8,14 @@ public partial class Order
 {
     public int Id { get; set; }
 
-    public int Status { get; set; }
+    public string Status { get; set; } = null!;
 
     public string CustomerName { get; set; } = null!;
 
     public string CreatedBy { get; set; } = null!;
 
-    public bool Approved { get; set; }
+    public bool ApprovedByCs { get; set; }
+    public bool ApprovedByTs { get; set; }
 
     public int Amount { get; set; }
 
@@ -29,8 +30,6 @@ public partial class Order
     public string? AdditionalInformation { get; set; }
 
     public virtual Checklist Checklist { get; set; } = null!;
-
-
 
     public virtual ICollection<MessageConversation> MessageConversations { get; } = new List<MessageConversation>();
 

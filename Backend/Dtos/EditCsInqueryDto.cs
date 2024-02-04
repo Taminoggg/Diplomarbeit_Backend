@@ -8,7 +8,7 @@ public class EditCsinquiryDto
     [RegularExpression(@"^[1-9]\d*$", ErrorMessage = "Only numbers greater than 0 allowed!")]
     [Required] public int Abnumber { get; set; }
     [RegularExpression(@"^[1-9]\d*$", ErrorMessage = "Only numbers greater than 0 allowed!")]
-    [Required] public int BruttoWeightInKg { get; set; }
+    [Required] public int GrossWeightInKg { get; set; }
     [Required] public string Incoterm { get; set; } = null!;
     [RegularExpression(@"^[1-9]\d*$", ErrorMessage = "Only numbers greater than 0 allowed!")]
     [Required] public int ContainersizeA { get; set; }

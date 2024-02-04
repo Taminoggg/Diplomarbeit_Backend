@@ -50,7 +50,7 @@ public class CsinquiryService
         csinquiry.ContainersizeB = editCsinquiryDto.ContainersizeB;
         csinquiry.Container = editCsinquiryDto.Container;
         csinquiry.Abnumber = editCsinquiryDto.Abnumber;
-        csinquiry.BruttoWeightInKg = editCsinquiryDto.BruttoWeightInKg;
+        csinquiry.BruttoWeightInKg = editCsinquiryDto.GrossWeightInKg;
         csinquiry.ContainersizeA = editCsinquiryDto.ContainersizeA;
         csinquiry.ContainersizeHc = editCsinquiryDto.ContainersizeHc;
         csinquiry.FreeDetention = editCsinquiryDto.FreeDetention;

@@ -12,8 +12,7 @@ public class ChecklistService
         .Select(x => new ChecklistDto
         {
             CustomerName = x.CustomerName,
-            Id = x.Id,
-            Steps = _db.StepChecklists.Where(sc => sc.ChecklistId == x.Id).Select(sc => sc.Step).ToList()
+            Id = x.Id
         })
         .ToList();
     }

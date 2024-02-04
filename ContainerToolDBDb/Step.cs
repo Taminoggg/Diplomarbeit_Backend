@@ -15,5 +15,7 @@ public partial class Step
 
     public bool IsCompleted { get; set; }
 
+    public DateTime LastUpdated { get; set; }
+
     public virtual ICollection<StepChecklist> StepChecklists { get; } = new List<StepChecklist>();
 }

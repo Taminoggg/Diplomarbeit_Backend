@@ -20,6 +20,7 @@ public class StepService
     {
         var step = _db.Steps.Single(x => x.Id == editStepDto.Id);
         step.IsCompleted = editStepDto.Checked;
+        step.LastUpdated = DateTime.Now;
 
         _db.SaveChanges();
 

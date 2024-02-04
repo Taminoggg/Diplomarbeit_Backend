@@ -1,5 +1,6 @@
 ﻿using Backend.Dtos;
 using ContainerToolDBDb;
+using System.Net.Mail;
 
 namespace Backend.Services;
 
@@ -20,15 +21,41 @@ public class MessageService
 
     public Message PostMessage(AddMessageDto addMessageDto)
     {
-        var attachment = _db.Files.Single(x => x.Id == addMessageDto.AttachmentId);
+        var message = new Message();
 
-        var message = new Message
+        if (addMessageDto.AttachmentId != null)
         {
-            DateTime = DateTime.Now,
-            AttachmentId = addMessageDto.AttachmentId,
-            Content = addMessageDto.Content,
-            Attachment = attachment
-        };
+            var attachment = _db.Files.Single(x => x.Id == addMessageDto.AttachmentId);
+
+            if (addMessageDto.Content != null)
+            {
+                message = new Message
+                {
+                    DateTime = DateTime.Now,
+                    AttachmentId = addMessageDto.AttachmentId,
+                    Content = addMessageDto.Content,
+                    Attachment = attachment
+                };
+            }
+            else
+            {
+                message = new Message
+                {
+                    DateTime = DateTime.Now,
+                    AttachmentId = addMessageDto.AttachmentId,
+                    Attachment = attachment,
+                    Content = ""
+                };
+            }
+        }
+        else
+        {
+            message = new Message
+            {
+                DateTime = DateTime.Now,
+                Content = addMessageDto.Content!
+            };
+        }  
 
         _db.Messages.Add(message);
         _db.SaveChanges();

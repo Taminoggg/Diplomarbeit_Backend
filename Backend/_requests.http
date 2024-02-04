@@ -12,23 +12,23 @@ POST {{baseUrl}}/Articles
 Content-type: application/json
 
 {
-   "articleNumber": 1,
-   "isDirectLine": True,
-   "isFastLine": True,
-   "pallets": 1,
-   "csInquiryId": 1
-}
+      "articleNumber": 1,
+      "isDirectLine": True,
+      "isFastLine": True,
+      "pallets": 1,
+      "csInquiryId": 1
+   }
 #####
 PUT {{baseUrl}}/Articles
 Content-type: application/json
 
 {
-   "id": 1,
-   "articleNumber": 1,
-   "isDirectLine": True,
-   "isFastLine": True,
-   "pallets": 1,
-   "csInquiryId": 1
+      "id": 1,
+      "articleNumber": 1,
+      "isDirectLine": True,
+      "isFastLine": True,
+      "pallets": 1,
+   "csinquiryId": 1
 }
 #####
 
@@ -44,47 +44,14 @@ Content-type: application/json
 
 {
    "customerName": "abc"
-}
+   }
 #####
 PUT {{baseUrl}}/Checklists
 Content-type: application/json
 
 {
-   "id": 1,
-   "customerName": "abc",
-   "steps": 
-   [{
       "id": 1,
-      "stepNumber": 1,
-      "stepDescription": "abc",
-      "stepName": "abc",
-      "isCompleted": True,
-      "stepChecklists": 
-      [{
-         "id": 1,
-         "checklistId": 1,
-         "stepId": 1,
-         "checklist": 
-         {
-            "id": 1,
-            "customerName": "abc",
-            "orders": 
-            [],
-            "stepChecklists": 
-            []
-         },
-         "step": 
-         {
-            "id": 1,
-            "stepNumber": 1,
-            "stepDescription": "abc",
-            "stepName": "abc",
-            "isCompleted": True,
-            "stepChecklists": 
-            []
-         }
-      }]
-   }]
+   "customerName": "abc"
 }
 #####
 
@@ -99,11 +66,11 @@ POST {{baseUrl}}/Csinquiries
 Content-type: application/json
 
 {
-   "container": "abc",
-   "abnumber": 1,
-   "bruttoWeightInKg": 1,
-   "incoterm": "abc",
-   "containersizeA": 1,
+      "container": "abc",
+      "abnumber": 1,
+      "bruttoWeightInKg": 1,
+      "incoterm": "abc",
+      "containersizeA": 1,
    "containersizeB": 1,
    "containersizeHc": 1,
    "freeDetention": True,
@@ -116,10 +83,10 @@ PUT {{baseUrl}}/Csinquiries
 Content-type: application/json
 
 {
-   "id": 1,
-   "container": "abc",
+      "id": 1,
+      "container": "abc",
    "abnumber": 1,
-   "bruttoWeightInKg": 1,
+   "grossWeightInKg": 1,
    "incoterm": "abc",
    "containersizeA": 1,
    "containersizeB": 1,
@@ -186,32 +153,41 @@ GET {{baseUrl}}/Orders/LastUpdated?lastUpdated=abc
 #####
 GET {{baseUrl}}/Orders/Sped?sped=abc
 #####
-GET {{baseUrl}}/Orders/Status?status=1
+GET {{baseUrl}}/Orders/Status?status=abc
 #####
 POST {{baseUrl}}/Orders
 Content-type: application/json
 
 {
-   "status": 1,
-   "customerName": "abc",
-   "createdBy": "abc",
-   "amount": 1,
-   "checklistId": 1,
-   "csid": 1,
-   "tlid": 1
-}
+   "status": "abc",
+      "customerName": "abc",
+      "createdBy": "abc",
+      "amount": 1,
+      "checklistId": 1,
+      "csid": 1,
+      "tlid": 1
+   }
 #####
 PUT {{baseUrl}}/Orders
 Content-type: application/json
 
 {
    "id": 1,
-   "status": 1,
+   "status": "abc",
    "customerName": "abc",
    "createdBy": "abc",
-   "approved": True,
-   "amount": 1,
-   "checklistId": 1
+   "approvedByCs": True,
+   "approvedByTs": True,
+      "amount": 1,
+      "checklistId": 1
+   }
+#####
+PUT {{baseUrl}}/Orders/ApprovedByCs
+Content-type: application/json
+
+{
+   "id": 1,
+   "approve": True
 }
 #####
 
@@ -229,7 +205,18 @@ Content-type: application/json
    "stepNumber": 1,
    "checklistId": 1,
    "stepDescription": "abc",
-   "stepName": "abc"
+      "stepName": "abc"
+   }
+#####
+PUT {{baseUrl}}/Steps
+Content-type: application/json
+
+{
+   "id": 1,
+   "stepNumber": 1,
+   "stepDescription": "abc",
+   "stepName": "abc",
+   "checked": True
 }
 #####
 
@@ -248,21 +235,21 @@ Content-type: application/json
    "sped": "abc",
    "country": "abc",
    "acceptingPort": "abc",
-   "expectedRetrieveWeek": "abc",
-   "weightInKg": 1,
-   "invoiceOn": "abc",
-   "retrieveDate": "abc",
-   "isContainer40": True,
-   "isContainerHc": True,
-   "retrieveLocation": "abc",
-   "debtCapitalGeneralForerunEur": 1,
-   "debtCapitalMainDol": 1,
-   "debtCapitalTrailingDol": 1,
-   "portOfDeparture": "abc",
-   "ets": "abc",
-   "eta": "abc",
-   "boat": "abc"
-}
+      "expectedRetrieveWeek": "abc",
+      "weightInKg": 1,
+      "invoiceOn": "abc",
+      "retrieveDate": "abc",
+      "isContainer40": True,
+      "isContainerHc": True,
+      "retrieveLocation": "abc",
+      "debtCapitalGeneralForerunEur": 1,
+      "debtCapitalMainDol": 1,
+      "debtCapitalTrailingDol": 1,
+      "portOfDeparture": "abc",
+      "ets": "abc",
+      "eta": "abc",
+      "boat": "abc"
+   }
 #####
 PUT {{baseUrl}}/Tlinquiries
 Content-type: application/json
@@ -275,17 +262,17 @@ Content-type: application/json
    "acceptingPort": "abc",
    "expectedRetrieveWeek": "abc",
    "weightInKg": 1,
-   "invoiceOn": "abc",
-   "retrieveDate": "abc",
-   "isContainer40": True,
-   "isContainerHc": True,
-   "retrieveLocation": "abc",
-   "debtCapitalGeneralForerunEur": 1,
-   "debtCapitalMainDol": 1,
-   "debtCapitalTrailingDol": 1,
-   "portOfDeparture": "abc",
-   "ets": "abc",
-   "eta": "abc",
-   "boat": "abc"
-}
+      "invoiceOn": "abc",
+      "retrieveDate": "abc",
+      "isContainer40": True,
+      "isContainerHc": True,
+      "retrieveLocation": "abc",
+      "debtCapitalGeneralForerunEur": 1,
+      "debtCapitalMainDol": 1,
+      "debtCapitalTrailingDol": 1,
+      "portOfDeparture": "abc",
+      "ets": "abc",
+      "eta": "abc",
+      "boat": "abc"
+   }
 #####

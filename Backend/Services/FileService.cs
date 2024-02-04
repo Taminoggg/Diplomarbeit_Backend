@@ -18,16 +18,24 @@ public class FileService
 
     public FileByteDto GetFile(int id)
     {
-        var file = _db.Files.Single(x => x.Id == id);
-
-        byte[] fileBytes = System.IO.File.ReadAllBytes(file.Path);
-
-        return new FileByteDto
+        try
         {
-            FileName = Path.GetFileName(file.Path),
-            FileContent = fileBytes,
-            FileType = Path.GetExtension(file.Path)
-        };
+            var file = _db.Files.Single(x => x.Id == id);
+
+            byte[] fileBytes = System.IO.File.ReadAllBytes(file.Path);
+
+            return new FileByteDto
+            {
+                FileName = Path.GetFileName(file.Path),
+                FileContent = fileBytes,
+                FileType = Path.GetExtension(file.Path)
+            };
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return new FileByteDto();
+        }
     }
 
     public ContainerToolDBDb.File PostFile([FromForm] IFormFile file)

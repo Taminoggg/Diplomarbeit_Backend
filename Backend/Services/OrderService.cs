@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using Backend.Dtos;
+using System.Globalization;
 
 namespace TippsBackend.Services;
 
@@ -41,7 +42,7 @@ public class OrderService
             .Include(x => x.Cs)
             .Include(x => x.Checklist)
             .OrderBy(x => x.Id)
-            .Where(x => x.Approved == approved)
+            .Where(x => x.ApprovedByCs == approved)
             .ToList();
     }
 
@@ -112,14 +113,14 @@ public class OrderService
     }
 
 
-    public List<Order> GetOrdersWithStatus(int status)
+    public List<Order> GetOrdersWithStatus(string status)
     {
         return _db.Orders
             .Include(x => x.Tl)
             .Include(x => x.Cs)
             .Include(x => x.Checklist)
             .OrderBy(x => x.Id)
-            .Where(x => x.Status == status)
+            .Where(x => x.Status.ToLower().Contains(status.ToLower()))
             .ToList();
     }
 
@@ -134,6 +135,25 @@ public class OrderService
         return order;
     }
 
+    public Order? ApproveCs(EditApproveOrderDto approveOrderDto)
+    {
+        try
+        {
+            var order = _db.Orders
+                .Include(x => x.Tl)
+                .Include(x => x.Cs)
+                .Single(x => x.Id == approveOrderDto.Id);
+            order.ApprovedByCs = approveOrderDto.Approve;
+            _db.SaveChanges();
+            return order;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return null;
+        }
+    }
+
     public OrderDto AddOrder(AddOrderDto addOrderDto)
     {
         var checklist = _db.Checklists.Single(x => x.Id == addOrderDto.ChecklistId);
@@ -142,7 +162,8 @@ public class OrderService
         var order = new Order
         {
             Amount = addOrderDto.Amount,
-            Approved = false,
+            ApprovedByCs = false,
+            ApprovedByTs = false,
             Checklist = checklist,
             ChecklistId = addOrderDto.ChecklistId,
             CreatedBy = addOrderDto.CreatedBy,
@@ -163,7 +184,8 @@ public class OrderService
             Id = order.Id,
             AbNumber = order.Cs.Abnumber,
             Amount = order.Amount,
-            Approved = order.Approved,
+            ApprovedByCs = order.ApprovedByCs,
+            ApprovedByTs = order.ApprovedByTs,
             ChecklistId = order.ChecklistId,
             Country = order.Tl.Country,
             CreatedBy = order.CreatedBy,
@@ -182,7 +204,7 @@ public class OrderService
         var checklist = _db.Checklists.Single(x => x.Id == editOrderDto.ChecklistId);
 
         var order = _db.Orders.Include(x => x.Tl).Include(x => x.Cs).Include(x => x.Checklist).Single(x => x.Id == editOrderDto.Id);
-        order.Approved = editOrderDto.Approved;
+        order.ApprovedByCs = editOrderDto.ApprovedByCs;
         order.Checklist = checklist;
         order.ChecklistId = editOrderDto.ChecklistId;
         order.Amount = editOrderDto.Amount;

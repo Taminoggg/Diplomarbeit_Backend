@@ -22,22 +22,30 @@ public class ArticleService
 
     public Article PutArticle(ArticleDto articleDto)
     {
-        var article = _db.Articles.Single(x => x.Id == articleDto.Id);
+        var article = _db.Articles.Include(x => x.Csinquiry).Single(x => x.Id == articleDto.Id);
         article.IsFastLine = articleDto.IsFastLine;
         article.IsDirectLine = articleDto.IsDirectLine;
         article.ArticleNumber = articleDto.ArticleNumber;
         article.Pallets = articleDto.Pallets;
-        article.CsinquiryId = articleDto.CsInquiryId;
+        _db.SaveChanges();
 
         return article;
     }
 
     public Article RemoveArticle(int id)
     {
-        var article = _db.Articles.Single(x => x.Id == id);
-        _db.Articles.Remove(article);
-        _db.SaveChanges();
-        return article;
+        try
+        {
+            var article = _db.Articles.Include(x => x.Csinquiry).Single(x => x.Id == id);
+            _db.Articles.Remove(article);
+            _db.SaveChanges();
+            return article;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return new Article();
+        }
     }
 
     public Article PostArticle(AddArticleDto articleDto)

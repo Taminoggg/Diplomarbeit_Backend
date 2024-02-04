@@ -1,4 +1,5 @@
-﻿using ContainerToolDBDb;
+﻿using Backend.Dtos;
+using ContainerToolDBDb;
 using TippsBackend.Services;
 
 namespace TippsBackend.Controllers;
@@ -46,7 +47,7 @@ public class OrdersController : ControllerBase
     }
 
     [HttpGet("Status")]
-    public List<OrderDto> GetOrdersWithStatus([FromQuery] int status)
+    public List<OrderDto> GetOrdersWithStatus([FromQuery] string status)
     {
         return _orderService.GetOrdersWithStatus(status).Select(x => ToOrderDto(x))
         .ToList();
@@ -82,12 +83,14 @@ public class OrdersController : ControllerBase
         }
         catch (Exception ex)
         {
+            Console.WriteLine(ex.Message);
             return new OrderDto
             {
                 Id = 0,
                 AbNumber = 1,
                 Amount = 1,
-                Approved = false,
+                ApprovedByCs = false,
+                ApprovedByTs = false,
                 ChecklistId = 1,
                 Country = "",
                 CreatedBy = "",
@@ -96,7 +99,7 @@ public class OrdersController : ControllerBase
                 LastUpdated = "",
                 ReadyToLoad = "",
                 Sped = "",
-                Status = 1,
+                Status = "",
                 Tlid = 1
             };
         }
@@ -106,6 +109,13 @@ public class OrdersController : ControllerBase
     public OrderDto Order(AddOrderDto addOrderDto)
     {
         return _orderService.AddOrder(addOrderDto);
+    }
+
+    [HttpPut("ApprovedByCs")]
+    public OrderDto? ApprovedByCs(EditApproveOrderDto editApproveOrderDto)
+    {
+        if (_orderService.ApproveCs(editApproveOrderDto) == null) return null;
+        return ToOrderDto(_orderService.ApproveCs(editApproveOrderDto)!);
     }
 
     [HttpPut]
@@ -127,7 +137,8 @@ public class OrdersController : ControllerBase
             Id = order.Id,
             AbNumber = order.Cs.Abnumber,
             Amount = order.Amount,
-            Approved = order.Approved,
+            ApprovedByCs = order.ApprovedByCs,
+            ApprovedByTs = order.ApprovedByTs,
             ChecklistId = order.ChecklistId,
             Country = order.Tl.Country,
             CreatedBy = order.CreatedBy,

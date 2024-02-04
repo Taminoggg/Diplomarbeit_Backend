@@ -249,7 +249,10 @@ namespace ContainerToolDB.Migrations
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
-                    b.Property<bool>("Approved")
+                    b.Property<bool>("ApprovedByCs")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("ApprovedByTs")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<int>("ChecklistId")
@@ -270,8 +273,9 @@ namespace ContainerToolDB.Migrations
                     b.Property<DateTime>("LastUpdated")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<int>("Tlid")
                         .HasColumnType("int")
@@ -336,6 +340,9 @@ namespace ContainerToolDB.Migrations
                         .HasColumnType("int");
 
                     b.Property<bool>("IsCompleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("LastUpdated")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("StepDescription")

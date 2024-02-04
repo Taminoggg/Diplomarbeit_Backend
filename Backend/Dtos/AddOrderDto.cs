@@ -1,7 +1,6 @@
 public class AddOrderDto
 {
-    [RegularExpression(@"^[1-9]\d*$", ErrorMessage = "Only numbers greater than 0 allowed!")]
-    [Required] public int Status { get; set; }
+    [Required] public string Status { get; set; } = null!;
     [Required] public string CustomerName { get; set; } = null!;
     [Required] public string CreatedBy { get; set; } = null!;
     [RegularExpression(@"^[1-9]\d*$", ErrorMessage = "Only numbers greater than 0 allowed!")]
