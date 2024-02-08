@@ -16,7 +16,7 @@ public class FileService
         return _db.Files.ToList();
     }
 
-    public FileByteDto GetFile(int id)
+    public FileByteDto? GetFile(int id)
     {
         try
         {
@@ -34,7 +34,7 @@ public class FileService
         catch (Exception ex)
         {
             Console.WriteLine(ex.Message);
-            return new FileByteDto();
+            return null;
         }
     }
 

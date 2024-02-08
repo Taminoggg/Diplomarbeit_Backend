@@ -18,9 +18,10 @@ public class ChecklistsController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public ChecklistDto ChecklistWithId(int id)
+    public ChecklistDto? ChecklistWithId(int id)
     {
-        return new ChecklistDto().CopyFrom(_checklistService.GetChecklistWithId(id));
+        if (_checklistService.GetChecklistWithId(id) == null) return null;
+        return new ChecklistDto().CopyFrom(_checklistService.GetChecklistWithId(id)!);
     }
 
     [HttpPost]

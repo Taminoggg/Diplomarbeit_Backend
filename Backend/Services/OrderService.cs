@@ -35,7 +35,7 @@ public class OrderService
             .ToList();
     }
 
-    public List<Order> GetOrdersWithApproved(bool approved)
+    public List<Order> GetOrdersWithApprovedByCs(bool approved)
     {
         return _db.Orders
             .Include(x => x.Tl)
@@ -43,6 +43,17 @@ public class OrderService
             .Include(x => x.Checklist)
             .OrderBy(x => x.Id)
             .Where(x => x.ApprovedByCs == approved)
+            .ToList();
+    }
+
+    public List<Order> GetOrdersWithApprovedByTl(bool approved)
+    {
+        return _db.Orders
+            .Include(x => x.Tl)
+            .Include(x => x.Cs)
+            .Include(x => x.Checklist)
+            .OrderBy(x => x.Id)
+            .Where(x => x.ApprovedByTl == approved)
             .ToList();
     }
 
@@ -90,7 +101,7 @@ public class OrderService
             .ToList();
     }
 
-    public List<Order> GetOrdersWithLastUpdated(string date)
+    public List<Order>? GetOrdersWithLastUpdated(string date)
     {
         try
         {
@@ -108,7 +119,7 @@ public class OrderService
         catch (Exception ex)
         {
             Console.WriteLine(ex.ToString());
-            return new List<Order>();
+            return null;
         }
     }
 
@@ -124,15 +135,23 @@ public class OrderService
             .ToList();
     }
 
-    public Order GetOrderWithId(int id)
+    public Order? GetOrderWithId(int id)
     {
-        Order order = _db.Orders
+        try
+        {
+            Order order = _db.Orders
             .Include(x => x.Tl)
             .Include(x => x.Cs)
             .Include(x => x.Checklist)
             .Single(x => x.Id == id);
 
-        return order;
+            return order;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return null;
+        }
     }
 
     public Order? ApproveCs(EditApproveOrderDto approveOrderDto)
@@ -154,49 +173,80 @@ public class OrderService
         }
     }
 
-    public OrderDto AddOrder(AddOrderDto addOrderDto)
+    public Order? ApproveTl(EditApproveOrderDto approveOrderDto)
     {
-        var checklist = _db.Checklists.Single(x => x.Id == addOrderDto.ChecklistId);
-        var cs = _db.Csinquiries.Single(x => x.Id == addOrderDto.Csid);
-        var tl = _db.Tlinquiries.Single(x => x.Id == addOrderDto.Tlid);
-        var order = new Order
+        try
         {
-            Amount = addOrderDto.Amount,
-            ApprovedByCs = false,
-            ApprovedByTs = false,
-            Checklist = checklist,
-            ChecklistId = addOrderDto.ChecklistId,
-            CreatedBy = addOrderDto.CreatedBy,
-            Cs = cs,
-            Tl = tl,
-            Csid = addOrderDto.Csid,
-            CustomerName = addOrderDto.CustomerName,
-            LastUpdated = DateTime.Now,
-            Status = addOrderDto.Status,
-            Tlid = addOrderDto.Tlid,
-        };
-
-        _db.Orders.Add(order);
-        _db.SaveChanges();
-
-        return new OrderDto
+            var order = _db.Orders
+                .Include(x => x.Tl)
+                .Include(x => x.Cs)
+                .Single(x => x.Id == approveOrderDto.Id);
+            order.ApprovedByTl = approveOrderDto.Approve;
+            _db.SaveChanges();
+            return order;
+        }
+        catch (Exception ex)
         {
-            Id = order.Id,
-            AbNumber = order.Cs.Abnumber,
-            Amount = order.Amount,
-            ApprovedByCs = order.ApprovedByCs,
-            ApprovedByTs = order.ApprovedByTs,
-            ChecklistId = order.ChecklistId,
-            Country = order.Tl.Country,
-            CreatedBy = order.CreatedBy,
-            Csid = order.Csid,
-            CustomerName = order.CustomerName,
-            LastUpdated = order.LastUpdated.ToString("dd.MM.yyyy"),
-            ReadyToLoad = order.Cs.ReadyToLoad.ToString("dd.MM.yyyy"),
-            Sped = order.Tl.Sped,
-            Status = order.Status,
-            Tlid = order.Tlid
-        };
+            Console.WriteLine(ex.Message);
+            return null;
+        }
+    }
+
+    public OrderDto? AddOrder(AddOrderDto addOrderDto)
+    {
+        try
+        {
+            Console.WriteLine("posting Order");
+            var checklist = _db.Checklists.Single(x => x.Id == addOrderDto.ChecklistId);
+            var cs = _db.Csinquiries.Single(x => x.Id == addOrderDto.Csid);
+            var tl = _db.Tlinquiries.Single(x => x.Id == addOrderDto.Tlid);
+            var order = new Order
+            {
+                Amount = addOrderDto.Amount,
+                ApprovedByCs = false,
+                ApprovedByTl = false,
+                Checklist = checklist,
+                ChecklistId = addOrderDto.ChecklistId,
+                CreatedBy = addOrderDto.CreatedBy,
+                Cs = cs,
+                Tl = tl,
+                Csid = addOrderDto.Csid,
+                CustomerName = addOrderDto.CustomerName,
+                LastUpdated = DateTime.Now,
+                Status = addOrderDto.Status,
+                Tlid = addOrderDto.Tlid,
+                AdditionalInformation = addOrderDto.AdditionalInformation
+            };
+            Console.WriteLine(order);
+
+            _db.Orders.Add(order);
+            _db.SaveChanges();
+
+            return new OrderDto
+            {
+                Id = order.Id,
+                AbNumber = order.Cs.Abnumber,
+                Amount = order.Amount,
+                ApprovedByCs = order.ApprovedByCs,
+                ApprovedByTl = order.ApprovedByTl,
+                ChecklistId = order.ChecklistId,
+                Country = order.Tl.Country,
+                CreatedBy = order.CreatedBy,
+                Csid = order.Csid,
+                CustomerName = order.CustomerName,
+                LastUpdated = order.LastUpdated.ToString("dd.MM.yyyy"),
+                ReadyToLoad = order.Cs.ReadyToLoad.ToString("dd.MM.yyyy"),
+                Sped = order.Tl.Sped,
+                Status = order.Status,
+                Tlid = order.Tlid,
+                AdditionalInformation = order.AdditionalInformation
+            };
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return null;
+        }
     }
 
     public Order EditOrder(EditOrderDto editOrderDto)
@@ -211,13 +261,13 @@ public class OrderService
         order.CreatedBy = editOrderDto.CreatedBy;
         order.CustomerName = editOrderDto.CustomerName;
         order.Status = editOrderDto.Status;
-
+        order.AdditionalInformation = editOrderDto.AdditionalInformation;
         order.LastUpdated = DateTime.Now;
         _db.SaveChanges();
 
         return order;
     }
-
+    
     public Order DeleteOrder(int id)
     {
         var order = _db.Orders.Include(x => x.Tl).Include(x => x.Cs).Include(x => x.Checklist).Single(x => x.Id == id);

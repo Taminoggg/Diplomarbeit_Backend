@@ -11,25 +11,33 @@ public class ChecklistService
         return _db.Checklists
         .Select(x => new ChecklistDto
         {
-            CustomerName = x.CustomerName,
+            Checklistname = x.Checklistname,
             Id = x.Id
         })
         .ToList();
     }
 
-    public Checklist GetChecklistWithId(int id)
+    public Checklist? GetChecklistWithId(int id)
     {
-        Checklist checklist = _db.Checklists
+        try
+        {
+            Checklist checklist = _db.Checklists
             .Single(x => x.Id == id);
 
-        return checklist;
+            return checklist;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return null;
+        }
     }
 
     public Checklist AddNewChecklist(AddChecklistDto addChecklistDto)
     {
         try
         {
-            var checklist = new Checklist { CustomerName = addChecklistDto.CustomerName };
+            var checklist = new Checklist { Checklistname = addChecklistDto.Checklistname };
             _db.Checklists.Add(checklist);
             _db.SaveChanges();
 
@@ -45,7 +53,7 @@ public class ChecklistService
     public Checklist EditChecklist(ChecklistDto editChecklist)
     {
         var checklist = _db.Checklists.Single(x => x.Id == editChecklist.Id);
-        checklist.CustomerName = editChecklist.CustomerName;
+        checklist.Checklistname = editChecklist.Checklistname;
         _db.SaveChanges();
 
         return checklist;

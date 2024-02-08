@@ -25,10 +25,17 @@ public class OrdersController : ControllerBase
         .ToList();
     }
 
-    [HttpGet("Approved")]
-    public List<OrderDto> GetOrdersWithApproved([FromQuery] bool approved)
+    [HttpGet("ApprovedByCs")]
+    public List<OrderDto> GetOrdersWithApprovedByCs([FromQuery] bool approved)
     {
-        return _orderService.GetOrdersWithApproved(approved).Select(x => ToOrderDto(x))
+        return _orderService.GetOrdersWithApprovedByCs(approved).Select(x => ToOrderDto(x))
+        .ToList();
+    }
+
+    [HttpGet("ApprovedByTl")]
+    public List<OrderDto> GetOrdersWithApprovedByTl([FromQuery] bool approved)
+    {
+        return _orderService.GetOrdersWithApprovedByTl(approved).Select(x => ToOrderDto(x))
         .ToList();
     }
 
@@ -54,68 +61,60 @@ public class OrdersController : ControllerBase
     }
 
     [HttpGet("LastUpdated")]
-    public List<OrderDto> GetOrdersWithLastUpdatedAt([FromQuery] string lastUpdated)
+    public List<OrderDto>? GetOrdersWithLastUpdatedAt([FromQuery] string lastUpdated)
     {
-        return _orderService.GetOrdersWithLastUpdated(lastUpdated).Select(x => ToOrderDto(x))
+        var ordersWithLastUpdated = _orderService.GetOrdersWithLastUpdated(lastUpdated);
+        if (ordersWithLastUpdated == null) return null;
+        return ordersWithLastUpdated.Select(x => ToOrderDto(x))
         .ToList();
     }
 
     [HttpGet("Country")]
     public List<OrderDto> GetOrdersWithCountry([FromQuery] string country)
     {
-        return _orderService.GetOrdersWithCountry(country).Select(x => ToOrderDto(x))
-        .ToList();
+        return _orderService.GetOrdersWithCountry(country)
+            .Select(x => ToOrderDto(x))
+            .ToList();
     }
 
     [HttpGet("Sped")]
     public List<OrderDto> GetOrdersWithSped([FromQuery] string sped)
     {
-        return _orderService.GetOrdersWithSped(sped).Select(x => ToOrderDto(x))
-        .ToList();
+        return _orderService.GetOrdersWithSped(sped)
+            .Select(x => ToOrderDto(x))
+            .ToList();
     }
 
     [HttpGet("{id}")]
-    public OrderDto OrderWithId(int id)
+    public OrderDto? OrderWithId(int id)
     {
-        try
-        {
-            return ToOrderDto(_orderService.GetOrderWithId(id));
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.Message);
-            return new OrderDto
-            {
-                Id = 0,
-                AbNumber = 1,
-                Amount = 1,
-                ApprovedByCs = false,
-                ApprovedByTs = false,
-                ChecklistId = 1,
-                Country = "",
-                CreatedBy = "",
-                Csid = 1,
-                CustomerName = "",
-                LastUpdated = "",
-                ReadyToLoad = "",
-                Sped = "",
-                Status = "",
-                Tlid = 1
-            };
-        }
+        var orderedById = _orderService.GetOrderWithId(id);
+        if (orderedById == null) return null;
+        return ToOrderDto(orderedById);
     }
 
     [HttpPost]
-    public OrderDto Order(AddOrderDto addOrderDto)
+    public OrderDto? Order(AddOrderDto addOrderDto)
     {
-        return _orderService.AddOrder(addOrderDto);
+        var addedOrder = _orderService.AddOrder(addOrderDto);
+        if (addedOrder == null) return null;
+        return addedOrder;
     }
 
     [HttpPut("ApprovedByCs")]
     public OrderDto? ApprovedByCs(EditApproveOrderDto editApproveOrderDto)
     {
-        if (_orderService.ApproveCs(editApproveOrderDto) == null) return null;
-        return ToOrderDto(_orderService.ApproveCs(editApproveOrderDto)!);
+        var orderDto = _orderService.ApproveCs(editApproveOrderDto);
+        if (orderDto == null) return null;
+        return ToOrderDto(orderDto!);
+    }
+
+    [HttpPut("ApprovedByTl")]
+    public OrderDto? ApprovedByTl(EditApproveOrderDto editApproveOrderDto)
+    {
+        var orderDto = _orderService.ApproveTl(editApproveOrderDto);
+        if (orderDto == null) return null;
+        return ToOrderDto(orderDto!);
     }
 
     [HttpPut]
@@ -138,7 +137,7 @@ public class OrdersController : ControllerBase
             AbNumber = order.Cs.Abnumber,
             Amount = order.Amount,
             ApprovedByCs = order.ApprovedByCs,
-            ApprovedByTs = order.ApprovedByTs,
+            ApprovedByTl = order.ApprovedByTl,
             ChecklistId = order.ChecklistId,
             Country = order.Tl.Country,
             CreatedBy = order.CreatedBy,
@@ -148,7 +147,8 @@ public class OrdersController : ControllerBase
             ReadyToLoad = order.Cs.ReadyToLoad.ToString("dd.MM.yyyy"),
             Sped = order.Tl.Sped,
             Status = order.Status,
-            Tlid = order.Tlid
+            Tlid = order.Tlid,
+            AdditionalInformation = order.AdditionalInformation
         };
     }
 }

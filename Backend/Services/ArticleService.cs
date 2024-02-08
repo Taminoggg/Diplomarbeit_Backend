@@ -1,5 +1,6 @@
 ﻿using Backend.Dtos;
 using ContainerToolDB;
+using Newtonsoft.Json;
 
 namespace Backend.Services;
 
@@ -32,6 +33,18 @@ public class ArticleService
         return article;
     }
 
+    public List<Article> RemoveArticlesForCsId(int id)
+    {
+        List<Article> removedArticles = new();
+        foreach (Article currArticle in _db.Articles.Where(x => x.CsinquiryId == id).ToList())
+        {
+            removedArticles.Add(currArticle);
+            _db.Articles.Remove(currArticle);
+        }
+        _db.SaveChanges();
+        return removedArticles;
+    }
+
     public Article RemoveArticle(int id)
     {
         try
@@ -46,6 +59,23 @@ public class ArticleService
             Console.WriteLine(ex.Message);
             return new Article();
         }
+    }
+
+    public Article EditArticle(EditArticleDto editArticleDto)
+    {
+        var article = _db.Articles.Single(x => x.Id == editArticleDto.Id);
+
+        article.MinHeigthRequired = editArticleDto.MinHeigthRequired;
+        article.DesiredDeliveryDate = editArticleDto.DesiredDeliveryDate;
+        article.InquiryForFixedOrder = editArticleDto.InquiryForFixedOrder;
+        article.InquiryForQuotation = editArticleDto.InquiryForQuotation;
+        if (editArticleDto.AdditionalInformation != null)
+        {
+            article.AdditionalInformation = editArticleDto.AdditionalInformation;
+        }
+
+        _db.SaveChanges();
+        return article;
     }
 
     public Article PostArticle(AddArticleDto articleDto)

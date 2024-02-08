@@ -13,11 +13,18 @@ public class CsinquiryService
         return _db.Csinquiries.ToList();
     }
 
-    public Csinquiry GetCsinquiryWithId(int id)
+    public Csinquiry? GetCsinquiryWithId(int id)
     {
-        var csinquiry = _db.Csinquiries.Single(x => x.Id == id);
+        try
+        {
+            var csinquiry = _db.Csinquiries.Single(x => x.Id == id);
 
-        return csinquiry;
+            return csinquiry;
+        }catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return null;
+        }
     }
 
     public Csinquiry AddCsinquiry(AddCsinquiryDto addCsinquiryDto)

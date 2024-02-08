@@ -34,6 +34,12 @@ public class ArticlesController
         return new ArticleDto().CopyFrom(article);
     }
 
+    [HttpDelete("CsId")]
+    public List<ArticleDto> ArticlesForCsId(int id)
+    {
+        return _articleService.RemoveArticlesForCsId(id).Select(x => new ArticleDto().CopyFrom(x)).ToList();
+    }
+
     [HttpDelete]
     public ArticleDto Article(int id)
     {

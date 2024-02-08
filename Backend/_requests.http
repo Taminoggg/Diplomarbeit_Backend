@@ -4,6 +4,8 @@
 ################################################## Articles
 DELETE {{baseUrl}}/Articles?id=1
 #####
+DELETE {{baseUrl}}/Articles/CsId?id=1
+#####
 GET {{baseUrl}}/Articles
 #####
 GET {{baseUrl}}/Articles/CsInquiry/1
@@ -14,10 +16,10 @@ Content-type: application/json
 {
       "articleNumber": 1,
       "isDirectLine": True,
-      "isFastLine": True,
-      "pallets": 1,
-      "csInquiryId": 1
-   }
+   "isFastLine": True,
+   "pallets": 1,
+   "csInquiryId": 1
+}
 #####
 PUT {{baseUrl}}/Articles
 Content-type: application/json
@@ -27,7 +29,7 @@ Content-type: application/json
       "articleNumber": 1,
       "isDirectLine": True,
       "isFastLine": True,
-      "pallets": 1,
+   "pallets": 1,
    "csinquiryId": 1
 }
 #####
@@ -43,15 +45,15 @@ POST {{baseUrl}}/Checklists
 Content-type: application/json
 
 {
-   "customerName": "abc"
+   "checklistname": "abc"
    }
 #####
 PUT {{baseUrl}}/Checklists
 Content-type: application/json
 
 {
-      "id": 1,
-   "customerName": "abc"
+   "id": 1,
+   "checklistname": "abc"
 }
 #####
 
@@ -68,9 +70,9 @@ Content-type: application/json
 {
       "container": "abc",
       "abnumber": 1,
-      "bruttoWeightInKg": 1,
-      "incoterm": "abc",
-      "containersizeA": 1,
+   "bruttoWeightInKg": 1,
+   "incoterm": "abc",
+   "containersizeA": 1,
    "containersizeB": 1,
    "containersizeHc": 1,
    "freeDetention": True,
@@ -83,8 +85,8 @@ PUT {{baseUrl}}/Csinquiries
 Content-type: application/json
 
 {
-      "id": 1,
-      "container": "abc",
+   "id": 1,
+   "container": "abc",
    "abnumber": 1,
    "grossWeightInKg": 1,
    "incoterm": "abc",
@@ -141,7 +143,9 @@ GET {{baseUrl}}/Orders/1
 #####
 GET {{baseUrl}}/Orders/Amount?amout=1
 #####
-GET {{baseUrl}}/Orders/Approved?approved=True
+GET {{baseUrl}}/Orders/ApprovedByCs?approved=True
+#####
+GET {{baseUrl}}/Orders/ApprovedByTl?approved=True
 #####
 GET {{baseUrl}}/Orders/Country?country=abc
 #####
@@ -159,8 +163,9 @@ POST {{baseUrl}}/Orders
 Content-type: application/json
 
 {
-   "status": "abc",
+      "status": "abc",
       "customerName": "abc",
+      "additionalInformation": "abc",
       "createdBy": "abc",
       "amount": 1,
       "checklistId": 1,
@@ -172,12 +177,13 @@ PUT {{baseUrl}}/Orders
 Content-type: application/json
 
 {
-   "id": 1,
-   "status": "abc",
-   "customerName": "abc",
-   "createdBy": "abc",
-   "approvedByCs": True,
-   "approvedByTs": True,
+      "id": 1,
+      "additionalInformation": "abc",
+      "status": "abc",
+      "customerName": "abc",
+      "createdBy": "abc",
+      "approvedByCs": True,
+      "approvedByTl": True,
       "amount": 1,
       "checklistId": 1
    }
@@ -186,9 +192,17 @@ PUT {{baseUrl}}/Orders/ApprovedByCs
 Content-type: application/json
 
 {
-   "id": 1,
-   "approve": True
-}
+      "id": 1,
+      "approve": True
+   }
+#####
+PUT {{baseUrl}}/Orders/ApprovedByTl
+Content-type: application/json
+
+{
+      "id": 1,
+      "approve": True
+   }
 #####
 
 ################################################## StepChecklists
@@ -202,9 +216,9 @@ POST {{baseUrl}}/Steps
 Content-type: application/json
 
 {
-   "stepNumber": 1,
-   "checklistId": 1,
-   "stepDescription": "abc",
+      "stepNumber": 1,
+      "checklistId": 1,
+      "stepDescription": "abc",
       "stepName": "abc"
    }
 #####
@@ -212,12 +226,12 @@ PUT {{baseUrl}}/Steps
 Content-type: application/json
 
 {
-   "id": 1,
-   "stepNumber": 1,
-   "stepDescription": "abc",
-   "stepName": "abc",
-   "checked": True
-}
+      "id": 1,
+      "stepNumber": 1,
+      "stepDescription": "abc",
+      "stepName": "abc",
+      "checked": True
+   }
 #####
 
 ################################################## Tlinquiries
@@ -232,22 +246,22 @@ Content-type: application/json
 
 {
    "inquiryNumber": 1,
-   "sped": "abc",
-   "country": "abc",
-   "acceptingPort": "abc",
+      "sped": "abc",
+      "country": "abc",
+      "acceptingPort": "abc",
       "expectedRetrieveWeek": "abc",
       "weightInKg": 1,
       "invoiceOn": "abc",
       "retrieveDate": "abc",
       "isContainer40": True,
       "isContainerHc": True,
-      "retrieveLocation": "abc",
-      "debtCapitalGeneralForerunEur": 1,
-      "debtCapitalMainDol": 1,
-      "debtCapitalTrailingDol": 1,
-      "portOfDeparture": "abc",
-      "ets": "abc",
-      "eta": "abc",
+   "retrieveLocation": "abc",
+   "debtCapitalGeneralForerunEur": 1,
+   "debtCapitalMainDol": 1,
+   "debtCapitalTrailingDol": 1,
+   "portOfDeparture": "abc",
+   "ets": "abc",
+   "eta": "abc",
       "boat": "abc"
    }
 #####
@@ -262,17 +276,17 @@ Content-type: application/json
    "acceptingPort": "abc",
    "expectedRetrieveWeek": "abc",
    "weightInKg": 1,
-      "invoiceOn": "abc",
-      "retrieveDate": "abc",
-      "isContainer40": True,
-      "isContainerHc": True,
-      "retrieveLocation": "abc",
+   "invoiceOn": "abc",
+   "retrieveDate": "abc",
+   "isContainer40": True,
+   "isContainerHc": True,
+   "retrieveLocation": "abc",
       "debtCapitalGeneralForerunEur": 1,
       "debtCapitalMainDol": 1,
-      "debtCapitalTrailingDol": 1,
-      "portOfDeparture": "abc",
-      "ets": "abc",
-      "eta": "abc",
-      "boat": "abc"
+   "debtCapitalTrailingDol": 1,
+   "portOfDeparture": "abc",
+   "ets": "abc",
+   "eta": "abc",
+   "boat": "abc"
    }
 #####

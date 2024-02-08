@@ -91,7 +91,7 @@ namespace ContainerToolDB.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("CustomerName")
+                    b.Property<string>("Checklistname")
                         .IsRequired()
                         .HasColumnType("longtext");
 
@@ -252,7 +252,7 @@ namespace ContainerToolDB.Migrations
                     b.Property<bool>("ApprovedByCs")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<bool>("ApprovedByTs")
+                    b.Property<bool>("ApprovedByTl")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<int>("ChecklistId")
@@ -342,8 +342,8 @@ namespace ContainerToolDB.Migrations
                     b.Property<bool>("IsCompleted")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<bool>("LastUpdated")
-                        .HasColumnType("tinyint(1)");
+                    b.Property<DateTime>("LastUpdated")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("StepDescription")
                         .IsRequired()

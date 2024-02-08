@@ -13,11 +13,18 @@ public class TlinquiryService
         return _db.Tlinquiries.ToList();
     }
 
-    public Tlinquiry GetTlinquiryWithId(int id)
+    public Tlinquiry? GetTlinquiryWithId(int id)
     {
-        var tlinquiry = _db.Tlinquiries.Single(x => x.Id == id);
+        try
+        {
+            var tlinquiry = _db.Tlinquiries.Single(x => x.Id == id);
 
-        return tlinquiry;
+            return tlinquiry;
+        }catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);    
+            return null;
+        }
     }
 
     public Tlinquiry AddTlinquiry(AddTlinquiryDto addTlinquiryDto)
