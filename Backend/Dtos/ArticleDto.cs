@@ -8,4 +8,8 @@ public class ArticleDto
     [Required] public bool IsFastLine { get; set; }
     [Required] public int Pallets { get; set; }
     [Required] public int CsinquiryId { get; set; }
+    public int? MinHeigthRequired { get; set; }
+    public string? DesiredDeliveryDate { get; set; }
+    public bool? InquiryForFixedOrder { get; set; }
+    public bool? InquiryForQuotation { get; set; }
 }

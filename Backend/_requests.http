@@ -14,8 +14,8 @@ POST {{baseUrl}}/Articles
 Content-type: application/json
 
 {
-      "articleNumber": 1,
-      "isDirectLine": True,
+   "articleNumber": 1,
+   "isDirectLine": True,
    "isFastLine": True,
    "pallets": 1,
    "csInquiryId": 1
@@ -25,12 +25,11 @@ PUT {{baseUrl}}/Articles
 Content-type: application/json
 
 {
-      "id": 1,
-      "articleNumber": 1,
-      "isDirectLine": True,
-      "isFastLine": True,
-   "pallets": 1,
-   "csinquiryId": 1
+   "id": 1,
+   "minHeigthRequired": 1,
+   "desiredDeliveryDate": "abc",
+   "inquiryForFixedOrder": True,
+   "inquiryForQuotation": True
 }
 #####
 
@@ -46,7 +45,7 @@ Content-type: application/json
 
 {
    "checklistname": "abc"
-   }
+}
 #####
 PUT {{baseUrl}}/Checklists
 Content-type: application/json
@@ -68,8 +67,8 @@ POST {{baseUrl}}/Csinquiries
 Content-type: application/json
 
 {
-      "container": "abc",
-      "abnumber": 1,
+   "container": "abc",
+   "abnumber": 1,
    "bruttoWeightInKg": 1,
    "incoterm": "abc",
    "containersizeA": 1,
@@ -163,46 +162,46 @@ POST {{baseUrl}}/Orders
 Content-type: application/json
 
 {
-      "status": "abc",
-      "customerName": "abc",
-      "additionalInformation": "abc",
-      "createdBy": "abc",
-      "amount": 1,
-      "checklistId": 1,
-      "csid": 1,
-      "tlid": 1
-   }
+   "status": "abc",
+   "customerName": "abc",
+   "additionalInformation": "abc",
+   "createdBy": "abc",
+   "amount": 1,
+   "checklistId": 1,
+   "csid": 1,
+   "tlid": 1
+}
 #####
 PUT {{baseUrl}}/Orders
 Content-type: application/json
 
 {
-      "id": 1,
-      "additionalInformation": "abc",
-      "status": "abc",
-      "customerName": "abc",
-      "createdBy": "abc",
-      "approvedByCs": True,
-      "approvedByTl": True,
-      "amount": 1,
-      "checklistId": 1
-   }
+   "id": 1,
+   "additionalInformation": "abc",
+   "status": "abc",
+   "customerName": "abc",
+   "createdBy": "abc",
+   "approvedByCs": True,
+   "approvedByTl": True,
+   "amount": 1,
+   "checklistId": 1
+}
 #####
 PUT {{baseUrl}}/Orders/ApprovedByCs
 Content-type: application/json
 
 {
-      "id": 1,
-      "approve": True
-   }
+   "id": 1,
+   "approve": True
+}
 #####
 PUT {{baseUrl}}/Orders/ApprovedByTl
 Content-type: application/json
 
 {
-      "id": 1,
-      "approve": True
-   }
+   "id": 1,
+   "approve": True
+}
 #####
 
 ################################################## StepChecklists
@@ -216,22 +215,22 @@ POST {{baseUrl}}/Steps
 Content-type: application/json
 
 {
-      "stepNumber": 1,
-      "checklistId": 1,
-      "stepDescription": "abc",
-      "stepName": "abc"
-   }
+   "stepNumber": 1,
+   "checklistId": 1,
+   "stepDescription": "abc",
+   "stepName": "abc"
+}
 #####
 PUT {{baseUrl}}/Steps
 Content-type: application/json
 
 {
-      "id": 1,
-      "stepNumber": 1,
-      "stepDescription": "abc",
-      "stepName": "abc",
-      "checked": True
-   }
+   "id": 1,
+   "stepNumber": 1,
+   "stepDescription": "abc",
+   "stepName": "abc",
+   "checked": True
+}
 #####
 
 ################################################## Tlinquiries
@@ -246,15 +245,15 @@ Content-type: application/json
 
 {
    "inquiryNumber": 1,
-      "sped": "abc",
-      "country": "abc",
-      "acceptingPort": "abc",
-      "expectedRetrieveWeek": "abc",
-      "weightInKg": 1,
-      "invoiceOn": "abc",
-      "retrieveDate": "abc",
-      "isContainer40": True,
-      "isContainerHc": True,
+   "sped": "abc",
+   "country": "abc",
+   "acceptingPort": "abc",
+   "expectedRetrieveWeek": "abc",
+   "weightInKg": 1,
+   "invoiceOn": "abc",
+   "retrieveDate": "abc",
+   "isContainer40": True,
+   "isContainerHc": True,
    "retrieveLocation": "abc",
    "debtCapitalGeneralForerunEur": 1,
    "debtCapitalMainDol": 1,
@@ -262,8 +261,8 @@ Content-type: application/json
    "portOfDeparture": "abc",
    "ets": "abc",
    "eta": "abc",
-      "boat": "abc"
-   }
+   "boat": "abc"
+}
 #####
 PUT {{baseUrl}}/Tlinquiries
 Content-type: application/json
@@ -281,12 +280,12 @@ Content-type: application/json
    "isContainer40": True,
    "isContainerHc": True,
    "retrieveLocation": "abc",
-      "debtCapitalGeneralForerunEur": 1,
-      "debtCapitalMainDol": 1,
+   "debtCapitalGeneralForerunEur": 1,
+   "debtCapitalMainDol": 1,
    "debtCapitalTrailingDol": 1,
    "portOfDeparture": "abc",
    "ets": "abc",
    "eta": "abc",
    "boat": "abc"
-   }
+}
 #####

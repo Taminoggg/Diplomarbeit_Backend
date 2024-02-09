@@ -6,11 +6,9 @@ namespace TippsBackend.Services;
 public class OrderService
 {
     private readonly ContainerToolDBContext _db;
-    private readonly ILogger _logger;
 
-    public OrderService(ContainerToolDBContext db, ILogger<OrderService> logger)
+    public OrderService(ContainerToolDBContext db)
     {
-        this._logger = logger;
         this._db = db;
     }
 

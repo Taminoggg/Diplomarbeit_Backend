@@ -11,7 +11,7 @@ public class StepsController : ControllerBase
     public StepsController(StepService stepsService) => _stepsService = stepsService;
 
     [HttpGet("{id}")]
-    public List<StepDto> ChecklistWithId(int id)
+    public List<StepDto> AllStepsWithChecklistId(int id)
     {
         return _stepsService.GetAllStepsForChecklist(id).Select(x => new StepDto().CopyFrom(x.Step)).ToList();
     }

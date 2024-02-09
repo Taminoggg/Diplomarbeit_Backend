@@ -19,8 +19,9 @@ public class TlinquiriesController : ControllerBase
     [HttpGet("{id}")]
     public TlinquiryDto? TlinquiryWithId(int id)
     {
-        if (_tlinquiryService.GetTlinquiryWithId(id) == null) return null;
-        return ToTlinquiryDto(_tlinquiryService.GetTlinquiryWithId(id)!);
+        var tlInquiryWithId = _tlinquiryService.GetTlinquiryWithId(id);
+        if (tlInquiryWithId == null) return null;
+        return ToTlinquiryDto(tlInquiryWithId);
     }
 
     [HttpPost]

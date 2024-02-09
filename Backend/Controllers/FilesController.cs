@@ -20,8 +20,9 @@ public class FilesController : ControllerBase
     [HttpGet("{id}")]
     public FileByteDto? File(int id)
     {
-        if (_fileService.GetFile(id) == null) return null;
-        return _fileService.GetFile(id);
+        var file = _fileService.GetFile(id);
+        if (file == null) return null;
+        return file;
     }
 
     [HttpPost]

@@ -25,17 +25,32 @@ namespace ContainerToolDB.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<string>("AdditionalInformation")
+                        .HasColumnType("longtext");
+
                     b.Property<int>("ArticleNumber")
                         .HasColumnType("int");
 
                     b.Property<int>("CsinquiryId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime?>("DesiredDeliveryDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<bool?>("InquiryForFixedOrder")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool?>("InquiryForQuotation")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<bool>("IsDirectLine")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<bool>("IsFastLine")
                         .HasColumnType("tinyint(1)");
+
+                    b.Property<int?>("MinHeigthRequired")
+                        .HasColumnType("int");
 
                     b.Property<int>("Pallets")
                         .HasColumnType("int");

@@ -1,6 +1,4 @@
-﻿using Backend.Dtos;
-using ContainerToolDBDb;
-using TippsBackend.Services;
+﻿using TippsBackend.Services;
 
 namespace TippsBackend.Controllers;
 

@@ -18,19 +18,7 @@ public class ArticleService
 
     public List<Article> ArticlesForCsInquiryId(int id)
     {
-        return _db.Articles.Where(x => x.CsinquiryId == id).ToList();
-    }
-
-    public Article PutArticle(ArticleDto articleDto)
-    {
-        var article = _db.Articles.Include(x => x.Csinquiry).Single(x => x.Id == articleDto.Id);
-        article.IsFastLine = articleDto.IsFastLine;
-        article.IsDirectLine = articleDto.IsDirectLine;
-        article.ArticleNumber = articleDto.ArticleNumber;
-        article.Pallets = articleDto.Pallets;
-        _db.SaveChanges();
-
-        return article;
+         return _db.Articles.Where(x => x.CsinquiryId == id).ToList();
     }
 
     public List<Article> RemoveArticlesForCsId(int id)
@@ -66,13 +54,9 @@ public class ArticleService
         var article = _db.Articles.Single(x => x.Id == editArticleDto.Id);
 
         article.MinHeigthRequired = editArticleDto.MinHeigthRequired;
-        article.DesiredDeliveryDate = editArticleDto.DesiredDeliveryDate;
+        article.DesiredDeliveryDate = DateTime.ParseExact(editArticleDto.DesiredDeliveryDate, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
         article.InquiryForFixedOrder = editArticleDto.InquiryForFixedOrder;
         article.InquiryForQuotation = editArticleDto.InquiryForQuotation;
-        if (editArticleDto.AdditionalInformation != null)
-        {
-            article.AdditionalInformation = editArticleDto.AdditionalInformation;
-        }
 
         _db.SaveChanges();
         return article;

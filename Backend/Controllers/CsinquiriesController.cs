@@ -19,8 +19,9 @@ public class CsinquiriesController : ControllerBase
     [HttpGet("{id}")]
     public CsinquiryDto? CsinquiryWithId(int id)
     {
-        if (_csinquiryService.GetCsinquiryWithId(id) == null) return null;
-        return ToCsinquiryDto(_csinquiryService.GetCsinquiryWithId(id)!);
+        var csinquiryWithId = _csinquiryService.GetCsinquiryWithId(id);
+        if (csinquiryWithId == null) return null;
+        return ToCsinquiryDto(csinquiryWithId);
     }
 
     [HttpPost]
