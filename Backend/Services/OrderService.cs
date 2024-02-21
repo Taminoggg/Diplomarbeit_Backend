@@ -40,7 +40,7 @@ public class OrderService
             .Include(x => x.Cs)
             .Include(x => x.Checklist)
             .OrderBy(x => x.Id)
-            .Where(x => x.ApprovedByCs == approved)
+            .Where(x => x.ApprovedByCrCs == approved)
             .ToList();
     }
 
@@ -51,7 +51,7 @@ public class OrderService
             .Include(x => x.Cs)
             .Include(x => x.Checklist)
             .OrderBy(x => x.Id)
-            .Where(x => x.ApprovedByTl == approved)
+            .Where(x => x.ApprovedByCrTl == approved)
             .ToList();
     }
 
@@ -152,7 +152,7 @@ public class OrderService
         }
     }
 
-    public Order? ApproveCs(EditApproveOrderDto approveOrderDto)
+    public Order? ApproveCrCs(EditApproveOrderDto approveOrderDto)
     {
         try
         {
@@ -160,7 +160,8 @@ public class OrderService
                 .Include(x => x.Tl)
                 .Include(x => x.Cs)
                 .Single(x => x.Id == approveOrderDto.Id);
-            order.ApprovedByCs = approveOrderDto.Approve;
+            order.ApprovedByCrCsTime = DateTime.Now;
+            order.ApprovedByCrCs = approveOrderDto.Approve;
             _db.SaveChanges();
             return order;
         }
@@ -171,7 +172,7 @@ public class OrderService
         }
     }
 
-    public Order? ApproveTl(EditApproveOrderDto approveOrderDto)
+    public Order? ApproveCrTl(EditApproveOrderDto approveOrderDto)
     {
         try
         {
@@ -179,7 +180,28 @@ public class OrderService
                 .Include(x => x.Tl)
                 .Include(x => x.Cs)
                 .Single(x => x.Id == approveOrderDto.Id);
-            order.ApprovedByTl = approveOrderDto.Approve;
+            order.ApprovedByCrTlTime = DateTime.Now;
+            order.ApprovedByCrTl = approveOrderDto.Approve;
+            _db.SaveChanges();
+            return order;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return null;
+        }
+    }
+
+    public Order? ApprovePpCs(EditApproveOrderDto approveOrderDto)
+    {
+        try
+        {
+            var order = _db.Orders
+                .Include(x => x.Tl)
+                .Include(x => x.Cs)
+                .Single(x => x.Id == approveOrderDto.Id);
+            order.ApprovedByPpCsTime = DateTime.Now;
+            order.ApprovedByPpCs = approveOrderDto.Approve;
             _db.SaveChanges();
             return order;
         }
@@ -201,8 +223,8 @@ public class OrderService
             var order = new Order
             {
                 Amount = addOrderDto.Amount,
-                ApprovedByCs = false,
-                ApprovedByTl = false,
+                ApprovedByCrCs = false,
+                ApprovedByCrTl = false,
                 Checklist = checklist,
                 ChecklistId = addOrderDto.ChecklistId,
                 CreatedBy = addOrderDto.CreatedBy,
@@ -213,7 +235,9 @@ public class OrderService
                 LastUpdated = DateTime.Now,
                 Status = addOrderDto.Status,
                 Tlid = addOrderDto.Tlid,
-                AdditionalInformation = addOrderDto.AdditionalInformation
+                AdditionalInformation = addOrderDto.AdditionalInformation,
+                ApprovedByCrCsTime = null,
+                ApprovedByCrTlTime = null
             };
             Console.WriteLine(order);
 
@@ -225,8 +249,9 @@ public class OrderService
                 Id = order.Id,
                 AbNumber = order.Cs.Abnumber,
                 Amount = order.Amount,
-                ApprovedByCs = order.ApprovedByCs,
-                ApprovedByTl = order.ApprovedByTl,
+                ApprovedByCrCs = order.ApprovedByCrCs,
+                ApprovedByCrTl = order.ApprovedByCrTl,
+                ApprovedByPpCs = order.ApprovedByPpCs,
                 ChecklistId = order.ChecklistId,
                 Country = order.Tl.Country,
                 CreatedBy = order.CreatedBy,
@@ -237,7 +262,10 @@ public class OrderService
                 Sped = order.Tl.Sped,
                 Status = order.Status,
                 Tlid = order.Tlid,
-                AdditionalInformation = order.AdditionalInformation
+                AdditionalInformation = order.AdditionalInformation,
+                ApprovedByTlTime = order.ApprovedByCrCsTime != null ? order.ApprovedByCrCsTime.Value.ToString("dd.MM.yyyy") : "",
+                ApprovedByCsTime = order.ApprovedByCrTlTime != null ? order.ApprovedByCrTlTime.Value.ToString("dd.MM.yyyy") : "",
+                ApprovedByPpCsTime = order.ApprovedByPpCsTime != null ? order.ApprovedByPpCsTime.Value.ToString("dd.MM.yyyy") : "",
             };
         }
         catch (Exception ex)
@@ -252,7 +280,7 @@ public class OrderService
         var checklist = _db.Checklists.Single(x => x.Id == editOrderDto.ChecklistId);
 
         var order = _db.Orders.Include(x => x.Tl).Include(x => x.Cs).Include(x => x.Checklist).Single(x => x.Id == editOrderDto.Id);
-        order.ApprovedByCs = editOrderDto.ApprovedByCs;
+        order.ApprovedByCrCs = editOrderDto.ApprovedByCs;
         order.Checklist = checklist;
         order.ChecklistId = editOrderDto.ChecklistId;
         order.Amount = editOrderDto.Amount;
@@ -265,7 +293,7 @@ public class OrderService
 
         return order;
     }
-    
+
     public Order DeleteOrder(int id)
     {
         var order = _db.Orders.Include(x => x.Tl).Include(x => x.Cs).Include(x => x.Checklist).Single(x => x.Id == id);

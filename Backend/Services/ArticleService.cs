@@ -1,6 +1,8 @@
 ﻿using Backend.Dtos;
 using ContainerToolDB;
+using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using System.Globalization;
 
 namespace Backend.Services;
 
@@ -62,6 +64,22 @@ public class ArticleService
         return article;
     }
 
+    public Article EditPPArticle(EditPPArticleDto editPPArticleDto)
+    {
+        var article = _db.Articles.Single(x => x.Id == editPPArticleDto.Id);
+
+        article.DeliveryDate = DateTime.ParseExact(editPPArticleDto.DeliveryDate, "dd.MM.yyyy", CultureInfo.InvariantCulture);
+        article.Factory = editPPArticleDto.Factory;
+        article.ShortText = editPPArticleDto.ShortText;
+        article.Nozzle = editPPArticleDto.Nozzle;
+        article.PlannedOrder = editPPArticleDto.PlannedOrder;
+        article.ProductionOrder = editPPArticleDto.ProductionOrder;
+        article.Plant = editPPArticleDto.Plant;
+
+        _db.SaveChanges();
+        return article;
+    }
+
     public Article PostArticle(AddArticleDto articleDto)
     {
         var order = _db.Csinquiries.Single(x => x.Id == articleDto.CsInquiryId);
@@ -72,7 +90,19 @@ public class ArticleService
             IsDirectLine = articleDto.IsDirectLine,
             IsFastLine = articleDto.IsFastLine,
             CsinquiryId = articleDto.CsInquiryId,
-            Pallets = articleDto.Pallets
+            Pallets = articleDto.Pallets,
+            DeliveryDate = null,
+            DesiredDeliveryDate = null,
+            AdditionalInformation = "",
+            Factory = "",
+            InquiryForFixedOrder = false,
+            InquiryForQuotation = false,
+            MinHeigthRequired = 0,
+            Nozzle = "",
+            PlannedOrder = "",
+            ProductionOrder = "",
+            ShortText = "",
+            Plant = ""
         };
 
         _db.Articles.Add(article);

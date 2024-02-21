@@ -1,8 +1,12 @@
-public class StepDto
+namespace Backend.Dtos
 {
-    public int Id { get; set; }
-    public int StepNumber { get; set; }
-    public int ChecklistId { get; set; }
-    public string StepDescription { get; set; } = null!;
-    public string StepName { get; set; } = null!;
+    public class StepDto
+    {
+        [Required] public int Id { get; set; }
+        [Required] public int StepNumber { get; set; }
+        [Required] public int ChecklistId { get; set; }
+        [Required] public string StepDescription { get; set; } = null!;
+        [Required] public string StepName { get; set; } = null!;
+        [Required] public bool IsCompleted { get; set; }
+    }
 }

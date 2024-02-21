@@ -14,22 +14,36 @@ POST {{baseUrl}}/Articles
 Content-type: application/json
 
 {
-   "articleNumber": 1,
-   "isDirectLine": True,
-   "isFastLine": True,
-   "pallets": 1,
-   "csInquiryId": 1
+      "articleNumber": 1,
+      "isDirectLine": True,
+      "isFastLine": True,
+      "pallets": 1,
+      "csInquiryId": 1
 }
 #####
 PUT {{baseUrl}}/Articles
 Content-type: application/json
 
 {
-   "id": 1,
-   "minHeigthRequired": 1,
-   "desiredDeliveryDate": "abc",
-   "inquiryForFixedOrder": True,
-   "inquiryForQuotation": True
+      "id": 1,
+      "minHeigthRequired": 1,
+      "desiredDeliveryDate": "abc",
+      "inquiryForFixedOrder": True,
+      "inquiryForQuotation": True
+}
+#####
+PUT {{baseUrl}}/Articles/ProductionPlanning
+Content-type: application/json
+
+{
+      "id": 1,
+      "shortText": "abc",
+      "deliveryDate": "abc",
+      "nozzle": "abc",
+      "factory": "abc",
+      "productionOrder": "abc",
+      "plannedOrder": "abc",
+      "plant": "abc"
 }
 #####
 
@@ -40,19 +54,24 @@ GET {{baseUrl}}/Checklists
 #####
 GET {{baseUrl}}/Checklists/1
 #####
+GET {{baseUrl}}/Checklists/GeneratedByAdmin
+#####
 POST {{baseUrl}}/Checklists
 Content-type: application/json
 
 {
-   "checklistname": "abc"
-}
+      "checklistname": "abc",
+      "generatedByAdmin": True,
+      "id": 1
+   }
 #####
 PUT {{baseUrl}}/Checklists
 Content-type: application/json
 
 {
-   "id": 1,
-   "checklistname": "abc"
+      "id": 1,
+      "checklistname": "abc",
+      "generatedByAdmin": True
 }
 #####
 
@@ -67,16 +86,16 @@ POST {{baseUrl}}/Csinquiries
 Content-type: application/json
 
 {
-   "container": "abc",
-   "abnumber": 1,
-   "bruttoWeightInKg": 1,
-   "incoterm": "abc",
-   "containersizeA": 1,
-   "containersizeB": 1,
-   "containersizeHc": 1,
-   "freeDetention": True,
-   "thctb": True,
-   "readyToLoad": "abc",
+      "container": "abc",
+      "abnumber": 1,
+      "bruttoWeightInKg": 1,
+      "incoterm": "abc",
+      "containersizeA": 1,
+      "containersizeB": 1,
+      "containersizeHc": 1,
+      "freeDetention": True,
+      "thctb": True,
+      "readyToLoad": "abc",
    "loadingPlattform": "abc"
 }
 #####
@@ -84,18 +103,18 @@ PUT {{baseUrl}}/Csinquiries
 Content-type: application/json
 
 {
-   "id": 1,
-   "container": "abc",
-   "abnumber": 1,
-   "grossWeightInKg": 1,
-   "incoterm": "abc",
-   "containersizeA": 1,
-   "containersizeB": 1,
-   "containersizeHc": 1,
-   "freeDetention": True,
-   "thctb": True,
-   "readyToLoad": "abc",
-   "loadingPlattform": "abc"
+      "id": 1,
+      "container": "abc",
+      "abnumber": 1,
+      "grossWeightInKg": 1,
+      "incoterm": "abc",
+      "containersizeA": 1,
+      "containersizeB": 1,
+      "containersizeHc": 1,
+      "freeDetention": True,
+      "thctb": True,
+      "readyToLoad": "abc",
+      "loadingPlattform": "abc"
 }
 #####
 
@@ -117,8 +136,8 @@ Content-type: application/json
 
 {
    "orderId": 1,
-   "messageId": 1
-}
+      "messageId": 1
+   }
 #####
 
 ################################################## Messages
@@ -163,14 +182,14 @@ Content-type: application/json
 
 {
    "status": "abc",
-   "customerName": "abc",
-   "additionalInformation": "abc",
-   "createdBy": "abc",
-   "amount": 1,
-   "checklistId": 1,
-   "csid": 1,
-   "tlid": 1
-}
+      "customerName": "abc",
+      "additionalInformation": "abc",
+      "createdBy": "abc",
+      "amount": 1,
+      "checklistId": 1,
+      "csid": 1,
+      "tlid": 1
+   }
 #####
 PUT {{baseUrl}}/Orders
 Content-type: application/json
@@ -185,9 +204,9 @@ Content-type: application/json
    "approvedByTl": True,
    "amount": 1,
    "checklistId": 1
-}
+   }
 #####
-PUT {{baseUrl}}/Orders/ApprovedByCs
+PUT {{baseUrl}}/Orders/ApprovedByCrCs
 Content-type: application/json
 
 {
@@ -195,7 +214,15 @@ Content-type: application/json
    "approve": True
 }
 #####
-PUT {{baseUrl}}/Orders/ApprovedByTl
+PUT {{baseUrl}}/Orders/ApprovedByCrTl
+Content-type: application/json
+
+{
+   "id": 1,
+   "approve": True
+}
+#####
+PUT {{baseUrl}}/Orders/ApprovedByPpCs
 Content-type: application/json
 
 {
@@ -228,8 +255,15 @@ Content-type: application/json
    "id": 1,
    "stepNumber": 1,
    "stepDescription": "abc",
-   "stepName": "abc",
-   "checked": True
+   "stepName": "abc"
+}
+#####
+PUT {{baseUrl}}/Steps/CompleteStep
+Content-type: application/json
+
+{
+   "id": 1,
+   "isCompleted": True
 }
 #####
 
@@ -244,13 +278,13 @@ POST {{baseUrl}}/Tlinquiries
 Content-type: application/json
 
 {
-   "inquiryNumber": 1,
-   "sped": "abc",
-   "country": "abc",
-   "acceptingPort": "abc",
-   "expectedRetrieveWeek": "abc",
-   "weightInKg": 1,
-   "invoiceOn": "abc",
+      "inquiryNumber": 1,
+      "sped": "abc",
+      "country": "abc",
+      "acceptingPort": "abc",
+      "expectedRetrieveWeek": "abc",
+      "weightInKg": 1,
+      "invoiceOn": "abc",
    "retrieveDate": "abc",
    "isContainer40": True,
    "isContainerHc": True,
@@ -259,22 +293,22 @@ Content-type: application/json
    "debtCapitalMainDol": 1,
    "debtCapitalTrailingDol": 1,
    "portOfDeparture": "abc",
-   "ets": "abc",
-   "eta": "abc",
-   "boat": "abc"
-}
+      "ets": "abc",
+      "eta": "abc",
+      "boat": "abc"
+   }
 #####
 PUT {{baseUrl}}/Tlinquiries
 Content-type: application/json
 
 {
-   "id": 1,
-   "inquiryNumber": 1,
-   "sped": "abc",
-   "country": "abc",
-   "acceptingPort": "abc",
-   "expectedRetrieveWeek": "abc",
-   "weightInKg": 1,
+      "id": 1,
+      "inquiryNumber": 1,
+      "sped": "abc",
+      "country": "abc",
+      "acceptingPort": "abc",
+      "expectedRetrieveWeek": "abc",
+      "weightInKg": 1,
    "invoiceOn": "abc",
    "retrieveDate": "abc",
    "isContainer40": True,

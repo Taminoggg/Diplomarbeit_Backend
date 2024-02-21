@@ -17,6 +17,12 @@ public class ChecklistsController : ControllerBase
         return _checklistService.GetAllChecklists();
     }
 
+    [HttpGet("GeneratedByAdmin")]
+    public List<ChecklistDto> ChecklistByAdmin()
+    {
+        return _checklistService.GetAllChecklistsGeneratedByAdmin();
+    }
+
     [HttpGet("{id}")]
     public ChecklistDto? ChecklistWithId(int id)
     {

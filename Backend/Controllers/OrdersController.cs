@@ -1,4 +1,5 @@
-﻿using TippsBackend.Services;
+﻿using Backend.Dtos;
+using TippsBackend.Services;
 
 namespace TippsBackend.Controllers;
 
@@ -99,18 +100,26 @@ public class OrdersController : ControllerBase
         return addedOrder;
     }
 
-    [HttpPut("ApprovedByCs")]
+    [HttpPut("ApprovedByCrCs")]
     public OrderDto? ApprovedByCs(EditApproveOrderDto editApproveOrderDto)
     {
-        var orderDto = _orderService.ApproveCs(editApproveOrderDto);
+        var orderDto = _orderService.ApproveCrCs(editApproveOrderDto);
         if (orderDto == null) return null;
         return ToOrderDto(orderDto!);
     }
 
-    [HttpPut("ApprovedByTl")]
+    [HttpPut("ApprovedByCrTl")]
     public OrderDto? ApprovedByTl(EditApproveOrderDto editApproveOrderDto)
     {
-        var orderDto = _orderService.ApproveTl(editApproveOrderDto);
+        var orderDto = _orderService.ApproveCrTl(editApproveOrderDto);
+        if (orderDto == null) return null;
+        return ToOrderDto(orderDto!);
+    }
+
+    [HttpPut("ApprovedByPpCs")]
+    public OrderDto? ApprovedByPpCs(EditApproveOrderDto editApproveOrderDto)
+    {
+        var orderDto = _orderService.ApprovePpCs(editApproveOrderDto);
         if (orderDto == null) return null;
         return ToOrderDto(orderDto!);
     }
@@ -127,26 +136,27 @@ public class OrdersController : ControllerBase
         return ToOrderDto(_orderService.DeleteOrder(id));
     }
 
-    private static OrderDto ToOrderDto(Order order)
+    private static OrderDto ToOrderDto(Order order) => new()
     {
-        return new OrderDto
-        {
-            Id = order.Id,
-            AbNumber = order.Cs.Abnumber,
-            Amount = order.Amount,
-            ApprovedByCs = order.ApprovedByCs,
-            ApprovedByTl = order.ApprovedByTl,
-            ChecklistId = order.ChecklistId,
-            Country = order.Tl.Country,
-            CreatedBy = order.CreatedBy,
-            Csid = order.Csid,
-            CustomerName = order.CustomerName,
-            LastUpdated = order.LastUpdated.ToString("dd.MM.yyyy"),
-            ReadyToLoad = order.Cs.ReadyToLoad.ToString("dd.MM.yyyy"),
-            Sped = order.Tl.Sped,
-            Status = order.Status,
-            Tlid = order.Tlid,
-            AdditionalInformation = order.AdditionalInformation
-        };
-    }
+        Id = order.Id,
+        AbNumber = order.Cs.Abnumber,
+        Amount = order.Amount,
+        ApprovedByCrCs = order.ApprovedByCrCs,
+        ApprovedByCrTl = order.ApprovedByCrTl,
+        ApprovedByPpCs = order.ApprovedByPpCs,
+        ChecklistId = order.ChecklistId,
+        Country = order.Tl.Country,
+        CreatedBy = order.CreatedBy,
+        Csid = order.Csid,
+        CustomerName = order.CustomerName,
+        LastUpdated = order.LastUpdated.ToString("dd.MM.yyyy"),
+        ReadyToLoad = order.Cs.ReadyToLoad.ToString("dd.MM.yyyy"),
+        Sped = order.Tl.Sped,
+        Status = order.Status,
+        Tlid = order.Tlid,
+        AdditionalInformation = order.AdditionalInformation,
+        ApprovedByPpCsTime = order.ApprovedByPpCsTime != null ? order.ApprovedByPpCsTime.Value.ToString("dd.MM.yyyy") : "",
+        ApprovedByCsTime = order.ApprovedByCrCsTime != null ? order.ApprovedByCrCsTime.Value.ToString("dd.MM.yyyy") : "",
+        ApprovedByTlTime = order.ApprovedByCrTlTime != null ? order.ApprovedByCrTlTime.Value.ToString("dd.MM.yyyy") : "",
+    };
 }

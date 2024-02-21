@@ -1,11 +1,17 @@
+namespace Backend.Dtos;
+
 public class OrderDto
 {
     [Required] public int Id { get; set; }
     [Required] public string Status { get; set; } = null!;
     [Required] public string CustomerName { get; set; } = null!;
     [Required] public string CreatedBy { get; set; } = null!;
-    [Required] public bool ApprovedByCs { get; set; }
-    [Required] public bool ApprovedByTl { get; set; }
+    [Required] public bool ApprovedByCrCs { get; set; }
+    [Required] public bool ApprovedByPpCs { get; set; }
+    [Required] public bool ApprovedByCrTl { get; set; }
+    [Required] public string ApprovedByCsTime { get; set; } = null!;
+    [Required] public string ApprovedByTlTime { get; set; } = null!;
+    [Required] public string ApprovedByPpCsTime { get; set; } = null!;
     [Required] public int Amount { get; set; }
     [Required] public string? AdditionalInformation { get; set; }
     [Required] public string LastUpdated { get; set; } = null!;

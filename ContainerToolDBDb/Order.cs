@@ -1,6 +1,7 @@
 ﻿using ContainerToolDB;
 using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace ContainerToolDBDb;
 
@@ -14,8 +15,12 @@ public partial class Order
 
     public string CreatedBy { get; set; } = null!;
 
-    public bool ApprovedByCs { get; set; }
-    public bool ApprovedByTl { get; set; }
+    public bool ApprovedByCrCs { get; set; }
+    public bool ApprovedByCrTl { get; set; }
+    public bool ApprovedByPpCs { get; set; }
+    public DateTime? ApprovedByCrCsTime { get; set; }
+    public DateTime? ApprovedByCrTlTime { get; set; }
+    public DateTime? ApprovedByPpCsTime { get; set; }
 
     public int Amount { get; set; }
 

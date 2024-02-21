@@ -1,6 +1,4 @@
 ﻿using ContainerToolDB;
-using System;
-using System.Collections.Generic;
 
 namespace ContainerToolDBDb;
 
@@ -12,7 +10,7 @@ public partial class Csinquiry
 
     public int Abnumber { get; set; }
 
-    public int BruttoWeightInKg { get; set; }
+    public int GrossWeightInKg { get; set; }
 
     public string Incoterm { get; set; } = null!;
 

@@ -1,3 +1,4 @@
+using Backend.Dtos;
 using ContainerToolDBDb;
 
 namespace TippsBackend.Services;
@@ -16,10 +17,10 @@ public class StepService
             .ToList();
     }
 
-    public Step CheckStep(EditStepDto editStepDto) 
+    public Step CheckStep(EditCheckStepDto editStepDto) 
     {
         var step = _db.Steps.Single(x => x.Id == editStepDto.Id);
-        step.IsCompleted = editStepDto.Checked;
+        step.IsCompleted = editStepDto.IsCompleted;
         step.LastUpdated = DateTime.Now;
 
         _db.SaveChanges();
@@ -27,6 +28,18 @@ public class StepService
         return step;
     }
 
+    public Step EditStep(EditStepDto editStepDto)
+    {
+        var step = _db.Steps.Single(x => x.Id == editStepDto.Id);
+        step.StepDescription = editStepDto.StepDescription;
+        step.StepName = editStepDto.StepName;
+        step.StepNumber = editStepDto.StepNumber;
+        step.LastUpdated = DateTime.Now;
+
+        _db.SaveChanges();
+
+        return step;
+    }
 
     public Step CreateNewStepForChecklist(AddStepDto addStepDto)
     {

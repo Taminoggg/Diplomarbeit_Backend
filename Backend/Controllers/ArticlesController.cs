@@ -1,8 +1,6 @@
 ﻿using Backend.Dtos;
 using Backend.Services;
 using ContainerToolDB;
-using ContainerToolDBDb;
-using TippsBackend.Services;
 
 namespace Backend.Controllers;
 
@@ -35,6 +33,12 @@ public class ArticlesController
         return ToArticleDto(_articleService.EditArticle(editArticleDto));
     }
 
+    [HttpPut("ProductionPlanning")]
+    public ArticleDto ArticleForProduction(EditPPArticleDto editPPArticleDto)
+    {
+        return ToArticleDto(_articleService.EditPPArticle(editPPArticleDto));
+    }
+
     [HttpDelete("CsId")]
     public List<ArticleDto> ArticlesForCsId(int id)
     {
@@ -58,7 +62,7 @@ public class ArticlesController
         return new ArticleDto
         {
             Id = article.Id,
-            DesiredDeliveryDate = article.DesiredDeliveryDate != null ? article.DesiredDeliveryDate.Value.ToString("dd.MM.yyyy") : null,
+            DesiredDeliveryDate = article.DesiredDeliveryDate?.ToString("dd.MM.yyyy") ?? "",
             IsDirectLine = article.IsDirectLine,
             ArticleNumber = article.ArticleNumber,
             CsinquiryId = article.CsinquiryId,
@@ -66,7 +70,14 @@ public class ArticlesController
             InquiryForQuotation = article.InquiryForQuotation,
             IsFastLine = article.IsFastLine,
             MinHeigthRequired = article.MinHeigthRequired,
-            Pallets = article.Pallets
+            Pallets = article.Pallets,
+            DeliveryDate = article.DeliveryDate?.ToString("dd.MM.yyyy") ?? "",
+            Factory = article.Factory,
+            Nozzle = article.Nozzle,
+            PlannedOrder = article.PlannedOrder,
+            ProductionOrder = article.ProductionOrder,
+            ShortText = article.ShortText,
+            Plant = article.Plant
         };
     }
 }

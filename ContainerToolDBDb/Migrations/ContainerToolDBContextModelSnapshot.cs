@@ -34,13 +34,20 @@ namespace ContainerToolDB.Migrations
                     b.Property<int>("CsinquiryId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime?>("DeliveryDate")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<DateTime?>("DesiredDeliveryDate")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<bool?>("InquiryForFixedOrder")
+                    b.Property<string>("Factory")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<bool>("InquiryForFixedOrder")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<bool?>("InquiryForQuotation")
+                    b.Property<bool>("InquiryForQuotation")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<bool>("IsDirectLine")
@@ -49,11 +56,31 @@ namespace ContainerToolDB.Migrations
                     b.Property<bool>("IsFastLine")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<int?>("MinHeigthRequired")
+                    b.Property<int>("MinHeigthRequired")
                         .HasColumnType("int");
+
+                    b.Property<string>("Nozzle")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<int>("Pallets")
                         .HasColumnType("int");
+
+                    b.Property<string>("PlannedOrder")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Plant")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ProductionOrder")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ShortText")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -110,6 +137,9 @@ namespace ContainerToolDB.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<bool>("GeneratedByAdmin")
+                        .HasColumnType("tinyint(1)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Checklists");
@@ -124,10 +154,6 @@ namespace ContainerToolDB.Migrations
                     b.Property<int>("Abnumber")
                         .HasColumnType("int")
                         .HasColumnName("ABNumber");
-
-                    b.Property<int>("BruttoWeightInKg")
-                        .HasColumnType("int")
-                        .HasColumnName("BruttoWeightInKG");
 
                     b.Property<string>("Container")
                         .IsRequired()
@@ -145,6 +171,10 @@ namespace ContainerToolDB.Migrations
 
                     b.Property<bool>("FreeDetention")
                         .HasColumnType("tinyint(1)");
+
+                    b.Property<int>("GrossWeightInKg")
+                        .HasColumnType("int")
+                        .HasColumnName("GrossWeightInKG");
 
                     b.Property<string>("Incoterm")
                         .IsRequired()
@@ -264,11 +294,23 @@ namespace ContainerToolDB.Migrations
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
-                    b.Property<bool>("ApprovedByCs")
+                    b.Property<bool>("ApprovedByCrCs")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<bool>("ApprovedByTl")
+                    b.Property<DateTime?>("ApprovedByCrCsTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<bool>("ApprovedByCrTl")
                         .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTime?>("ApprovedByCrTlTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<bool>("ApprovedByPpCs")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTime?>("ApprovedByPpCsTime")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int>("ChecklistId")
                         .HasColumnType("int");

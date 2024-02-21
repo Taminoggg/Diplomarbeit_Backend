@@ -12,7 +12,21 @@ public class ChecklistService
         .Select(x => new ChecklistDto
         {
             Checklistname = x.Checklistname,
-            Id = x.Id
+            Id = x.Id,
+            GeneratedByAdmin = x.GeneratedByAdmin
+        })
+        .ToList();
+    }
+
+    public List<ChecklistDto> GetAllChecklistsGeneratedByAdmin()
+    {
+        return _db.Checklists
+        .Where(x => x.GeneratedByAdmin == true)
+        .Select(x => new ChecklistDto
+        {
+            Checklistname = x.Checklistname,
+            Id = x.Id,
+            GeneratedByAdmin = x.GeneratedByAdmin
         })
         .ToList();
     }
@@ -33,11 +47,26 @@ public class ChecklistService
         }
     }
 
-    public Checklist AddNewChecklist(AddChecklistDto addChecklistDto)
+    public Checklist? AddNewChecklist(AddChecklistDto addChecklistDto)
     {
         try
         {
-            var checklist = new Checklist { Checklistname = addChecklistDto.Checklistname };
+            Checklist? checklist = null;
+            if (addChecklistDto.Id == null)
+            {
+                checklist = new Checklist { Checklistname = addChecklistDto.Checklistname, GeneratedByAdmin = addChecklistDto.GeneratedByAdmin };
+            }
+            else
+            {
+                var checklistToClone = _db.Checklists.Single(x => x.Id == addChecklistDto.Id);
+                var newChecklist = new Checklist
+                {
+                    Checklistname = checklistToClone.Checklistname,
+                    GeneratedByAdmin = addChecklistDto.GeneratedByAdmin
+                };
+                checklist = newChecklist;
+            }
+
             _db.Checklists.Add(checklist);
             _db.SaveChanges();
 
@@ -46,7 +75,7 @@ public class ChecklistService
         catch (Exception ex)
         {
             Console.WriteLine(ex.ToString());
-            return new Checklist();
+            return null;
         }
     }
 

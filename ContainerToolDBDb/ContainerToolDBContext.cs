@@ -67,7 +67,7 @@ public partial class ContainerToolDBContext : DbContext
             entity.ToTable("CSInquiries");
 
             entity.Property(e => e.Abnumber).HasColumnName("ABNumber");
-            entity.Property(e => e.BruttoWeightInKg).HasColumnName("BruttoWeightInKG");
+            entity.Property(e => e.GrossWeightInKg).HasColumnName("GrossWeightInKG");
             entity.Property(e => e.ContainersizeHc).HasColumnName("ContainersizeHC");
             entity.Property(e => e.Incoterm).HasColumnName("INCOTERM");
             entity.Property(e => e.Thctb).HasColumnName("THCTb");
