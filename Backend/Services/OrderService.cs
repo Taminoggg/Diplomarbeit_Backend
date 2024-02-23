@@ -55,6 +55,28 @@ public class OrderService
             .ToList();
     }
 
+    public List<Order> GetOrdersWithApprovedByPpCs(bool approved)
+    {
+        return _db.Orders
+            .Include(x => x.Tl)
+            .Include(x => x.Cs)
+            .Include(x => x.Checklist)
+            .OrderBy(x => x.Id)
+            .Where(x => x.ApprovedByPpCs == approved)
+            .ToList();
+    }
+
+    public List<Order> GetOrdersWithApprovedByPp(bool approved)
+    {
+        return _db.Orders
+            .Include(x => x.Tl)
+            .Include(x => x.Cs)
+            .Include(x => x.Checklist)
+            .OrderBy(x => x.Id)
+            .Where(x => x.ApprovedByPpPp == approved)
+            .ToList();
+    }
+
     public List<Order> GetOrdersWithAmount(int amount)
     {
         return _db.Orders
@@ -212,6 +234,26 @@ public class OrderService
         }
     }
 
+    public Order? ApprovePpPp(EditApproveOrderDto approveOrderDto)
+    {
+        try
+        {
+            var order = _db.Orders
+                .Include(x => x.Tl)
+                .Include(x => x.Cs)
+                .Single(x => x.Id == approveOrderDto.Id);
+            order.ApprovedByPpPpTime = DateTime.Now;
+            order.ApprovedByPpPp = approveOrderDto.Approve;
+            _db.SaveChanges();
+            return order;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return null;
+        }
+    }
+
     public OrderDto? AddOrder(AddOrderDto addOrderDto)
     {
         try
@@ -225,6 +267,8 @@ public class OrderService
                 Amount = addOrderDto.Amount,
                 ApprovedByCrCs = false,
                 ApprovedByCrTl = false,
+                ApprovedByPpCs = false,
+                ApprovedByPpPp = false,
                 Checklist = checklist,
                 ChecklistId = addOrderDto.ChecklistId,
                 CreatedBy = addOrderDto.CreatedBy,
@@ -237,7 +281,9 @@ public class OrderService
                 Tlid = addOrderDto.Tlid,
                 AdditionalInformation = addOrderDto.AdditionalInformation,
                 ApprovedByCrCsTime = null,
-                ApprovedByCrTlTime = null
+                ApprovedByCrTlTime = null,
+                ApprovedByPpCsTime = null,
+                ApprovedByPpPpTime = null
             };
             Console.WriteLine(order);
 
@@ -266,6 +312,7 @@ public class OrderService
                 ApprovedByTlTime = order.ApprovedByCrCsTime != null ? order.ApprovedByCrCsTime.Value.ToString("dd.MM.yyyy") : "",
                 ApprovedByCsTime = order.ApprovedByCrTlTime != null ? order.ApprovedByCrTlTime.Value.ToString("dd.MM.yyyy") : "",
                 ApprovedByPpCsTime = order.ApprovedByPpCsTime != null ? order.ApprovedByPpCsTime.Value.ToString("dd.MM.yyyy") : "",
+                ApprovedByPpPpTime = order.ApprovedByPpPpTime != null ? order.ApprovedByPpPpTime.Value.ToString("dd.MM.yyyy") : "",
             };
         }
         catch (Exception ex)

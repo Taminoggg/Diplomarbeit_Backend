@@ -38,6 +38,22 @@ public class OrdersController : ControllerBase
         .ToList();
     }
 
+    [HttpGet("ApprovedByPpCs")]
+    public List<OrderDto> GetOrdersWithApprovedByPpCs([FromQuery] bool approved)
+    {
+        return _orderService.GetOrdersWithApprovedByPpCs(approved)
+            .Select(x => ToOrderDto(x))
+            .ToList();
+    }
+
+    [HttpGet("ApprovedByPp")]
+    public List<OrderDto> GetOrdersWithApprovedByPp([FromQuery] bool approved)
+    {
+        return _orderService.GetOrdersWithApprovedByPp(approved)
+            .Select(x => ToOrderDto(x))
+            .ToList();
+    }
+
     [HttpGet("Amount")]
     public List<OrderDto> GetOrdersWithAmount([FromQuery] int amout)
     {
@@ -124,6 +140,14 @@ public class OrdersController : ControllerBase
         return ToOrderDto(orderDto!);
     }
 
+    [HttpPut("ApprovedByPpPp")]
+    public OrderDto? ApprovedByPpPp(EditApproveOrderDto editApproveOrderDto)
+    {
+        var orderDto = _orderService.ApprovePpPp(editApproveOrderDto);
+        if (orderDto == null) return null;
+        return ToOrderDto(orderDto!);
+    }
+
     [HttpPut]
     public OrderDto Order(EditOrderDto editOrderDto)
     {
@@ -144,6 +168,7 @@ public class OrdersController : ControllerBase
         ApprovedByCrCs = order.ApprovedByCrCs,
         ApprovedByCrTl = order.ApprovedByCrTl,
         ApprovedByPpCs = order.ApprovedByPpCs,
+        ApprovedByPpPp = order.ApprovedByPpPp,
         ChecklistId = order.ChecklistId,
         Country = order.Tl.Country,
         CreatedBy = order.CreatedBy,
@@ -158,5 +183,6 @@ public class OrdersController : ControllerBase
         ApprovedByPpCsTime = order.ApprovedByPpCsTime != null ? order.ApprovedByPpCsTime.Value.ToString("dd.MM.yyyy") : "",
         ApprovedByCsTime = order.ApprovedByCrCsTime != null ? order.ApprovedByCrCsTime.Value.ToString("dd.MM.yyyy") : "",
         ApprovedByTlTime = order.ApprovedByCrTlTime != null ? order.ApprovedByCrTlTime.Value.ToString("dd.MM.yyyy") : "",
+        ApprovedByPpPpTime = order.ApprovedByPpPpTime != null ? order.ApprovedByPpPpTime.Value.ToString("dd.MM.yyyy") : ""
     };
 }

@@ -8,10 +8,12 @@ public class OrderDto
     [Required] public string CreatedBy { get; set; } = null!;
     [Required] public bool ApprovedByCrCs { get; set; }
     [Required] public bool ApprovedByPpCs { get; set; }
+    [Required] public bool ApprovedByPpPp { get; set; }
     [Required] public bool ApprovedByCrTl { get; set; }
     [Required] public string ApprovedByCsTime { get; set; } = null!;
     [Required] public string ApprovedByTlTime { get; set; } = null!;
     [Required] public string ApprovedByPpCsTime { get; set; } = null!;
+    [Required] public string ApprovedByPpPpTime { get; set; } = null!;
     [Required] public int Amount { get; set; }
     [Required] public string? AdditionalInformation { get; set; }
     [Required] public string LastUpdated { get; set; } = null!;

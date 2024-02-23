@@ -312,6 +312,12 @@ namespace ContainerToolDB.Migrations
                     b.Property<DateTime?>("ApprovedByPpCsTime")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<bool>("ApprovedByPpPp")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTime?>("ApprovedByPpPpTime")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<int>("ChecklistId")
                         .HasColumnType("int");
 
