@@ -20,4 +20,6 @@ public class EditCsinquiryDto
     [Required] public bool Thctb { get; set; }
     [Required] public string ReadyToLoad { get; set; } = null!;
     [Required] public string LoadingPlattform { get; set; } = null!;
+    [Required] public bool IsFastLine { get; set; }
+    [Required] public bool IsDirectLine { get; set; }
 }

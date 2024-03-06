@@ -27,7 +27,11 @@ public partial class Csinquiry
     public DateTime ReadyToLoad { get; set; }
 
     public string LoadingPlattform { get; set; } = null!;
+    public bool ApprovedByCrCs { get; set; }
+    public DateTime? ApprovedByCrCsTime { get; set; }
+    public bool IsDirectLine { get; set; }
+    public bool IsFastLine { get; set; }
 
-    public virtual ICollection<Article> Articles { get; } = new List<Article>();
+    public virtual ICollection<ArticleCR> Articles { get; } = new List<ArticleCR>();
     public virtual ICollection<Order> Orders { get; } = new List<Order>();
 }

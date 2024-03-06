@@ -6,14 +6,6 @@ public class OrderDto
     [Required] public string Status { get; set; } = null!;
     [Required] public string CustomerName { get; set; } = null!;
     [Required] public string CreatedBy { get; set; } = null!;
-    [Required] public bool ApprovedByCrCs { get; set; }
-    [Required] public bool ApprovedByPpCs { get; set; }
-    [Required] public bool ApprovedByPpPp { get; set; }
-    [Required] public bool ApprovedByCrTl { get; set; }
-    [Required] public string ApprovedByCsTime { get; set; } = null!;
-    [Required] public string ApprovedByTlTime { get; set; } = null!;
-    [Required] public string ApprovedByPpCsTime { get; set; } = null!;
-    [Required] public string ApprovedByPpPpTime { get; set; } = null!;
     [Required] public int Amount { get; set; }
     [Required] public string? AdditionalInformation { get; set; }
     [Required] public string LastUpdated { get; set; } = null!;
@@ -24,4 +16,5 @@ public class OrderDto
     [Required] public int AbNumber { get; set; }
     [Required] public int Csid { get; set; }
     [Required] public int Tlid { get; set; }
+    [Required] public int PpId { get; set; }
 }

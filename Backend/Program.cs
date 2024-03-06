@@ -38,7 +38,9 @@ builder.Services
   );
 builder.Services.AddLogging(x => x.AddCustomFormatter());
 builder.Services.AddScoped<CsinquiryService>();
-builder.Services.AddScoped<ArticleService>();
+builder.Services.AddScoped<ArticleCRService>();
+builder.Services.AddScoped<ArticlePPService>();
+builder.Services.AddScoped<ProductionPlanningService>();
 builder.Services.AddScoped<OrderService>();
 builder.Services.AddScoped<TlinquiryService>();
 builder.Services.AddScoped<ChecklistService>();

@@ -20,7 +20,8 @@ public class CsinquiryService
             var csinquiry = _db.Csinquiries.Single(x => x.Id == id);
 
             return csinquiry;
-        }catch (Exception ex)
+        }
+        catch (Exception ex)
         {
             Console.WriteLine(ex.Message);
             return null;
@@ -41,7 +42,10 @@ public class CsinquiryService
             Incoterm = addCsinquiryDto.Incoterm,
             LoadingPlattform = addCsinquiryDto.LoadingPlattform,
             ReadyToLoad = DateTime.ParseExact(addCsinquiryDto.ReadyToLoad, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture),
-            Thctb = addCsinquiryDto.Thctb
+            Thctb = addCsinquiryDto.Thctb,
+            IsDirectLine = addCsinquiryDto.IsDirectLine,
+            IsFastLine = addCsinquiryDto.IsFastLine,
+            ApprovedByCrCsTime = null
         };
 
         _db.Csinquiries.Add(csinquiry);
@@ -50,23 +54,51 @@ public class CsinquiryService
         return csinquiry;
     }
 
-    public Csinquiry EditCsinquiry(EditCsinquiryDto editCsinquiryDto)
+    public Csinquiry? ApproveCrCs(EditApproveDto approveOrderDto)
     {
-        var csinquiry = _db.Csinquiries.Single(x => x.Id == editCsinquiryDto.Id);
-        csinquiry.Thctb = editCsinquiryDto.Thctb;
-        csinquiry.ContainersizeB = editCsinquiryDto.ContainersizeB;
-        csinquiry.Container = editCsinquiryDto.Container;
-        csinquiry.Abnumber = editCsinquiryDto.Abnumber;
-        csinquiry.GrossWeightInKg = editCsinquiryDto.GrossWeightInKg;
-        csinquiry.ContainersizeA = editCsinquiryDto.ContainersizeA;
-        csinquiry.ContainersizeHc = editCsinquiryDto.ContainersizeHc;
-        csinquiry.FreeDetention = editCsinquiryDto.FreeDetention;
-        csinquiry.Incoterm = editCsinquiryDto.Incoterm;
-        csinquiry.LoadingPlattform = editCsinquiryDto.LoadingPlattform;
-        csinquiry.ReadyToLoad = DateTime.ParseExact(editCsinquiryDto.ReadyToLoad, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
-        _db.SaveChanges();
+        try
+        {
+            var csinquiry = _db.Csinquiries
+                .Single(x => x.Id == approveOrderDto.Id);
+            csinquiry.ApprovedByCrCsTime = DateTime.Now;
+            csinquiry.ApprovedByCrCs = approveOrderDto.Approve;
+            _db.SaveChanges();
+            return csinquiry;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return null;
+        }
+    }
 
-        return csinquiry;
+    public Csinquiry? EditCsinquiry(EditCsinquiryDto editCsinquiryDto)
+    {
+        try
+        {
+            var csinquiry = _db.Csinquiries.Single(x => x.Id == editCsinquiryDto.Id);
+            csinquiry.Thctb = editCsinquiryDto.Thctb;
+            csinquiry.ContainersizeB = editCsinquiryDto.ContainersizeB;
+            csinquiry.Container = editCsinquiryDto.Container;
+            csinquiry.Abnumber = editCsinquiryDto.Abnumber;
+            csinquiry.GrossWeightInKg = editCsinquiryDto.GrossWeightInKg;
+            csinquiry.ContainersizeA = editCsinquiryDto.ContainersizeA;
+            csinquiry.ContainersizeHc = editCsinquiryDto.ContainersizeHc;
+            csinquiry.FreeDetention = editCsinquiryDto.FreeDetention;
+            csinquiry.Incoterm = editCsinquiryDto.Incoterm;
+            csinquiry.LoadingPlattform = editCsinquiryDto.LoadingPlattform;
+            csinquiry.ReadyToLoad = DateTime.ParseExact(editCsinquiryDto.ReadyToLoad, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            csinquiry.IsFastLine = editCsinquiryDto.IsFastLine;
+            csinquiry.IsDirectLine = editCsinquiryDto.IsDirectLine;
+            _db.SaveChanges();
+
+            return csinquiry;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return null;
+        }
     }
 
     public Csinquiry DeleteCsinquiry(int id)

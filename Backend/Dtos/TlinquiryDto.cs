@@ -21,4 +21,6 @@ public class TlinquiryDto
     [Required] public string Ets { get; set; } = null!;
     [Required] public string Eta { get; set; } = null!;
     [Required] public string Boat { get; set; } = null!;
+    [Required] public bool ApprovedByCrTl { get; set; }
+    [Required] public string ApprovedByCrTlTime { get; set; } = null!;
 }

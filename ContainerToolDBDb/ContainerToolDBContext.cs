@@ -1,65 +1,68 @@
-﻿using System;
-using System.Collections.Generic;
-using ContainerToolDB;
+﻿using ContainerToolDB;
 using Microsoft.EntityFrameworkCore;
 
 namespace ContainerToolDBDb;
 
 public partial class ContainerToolDBContext : DbContext
 {
-    public ContainerToolDBContext()
-    {
-    }
-
-    public ContainerToolDBContext(DbContextOptions<ContainerToolDBContext> options)
-        : base(options)
-    {
-    }
-
-    public virtual DbSet<ArticlesInDispatchRequest> ArticlesInDispatchRequests { get; set; }
+    public ContainerToolDBContext() { }
+    public ContainerToolDBContext(DbContextOptions<ContainerToolDBContext> options) : base(options) { }
 
     public virtual DbSet<Checklist> Checklists { get; set; }
-
     public virtual DbSet<Csinquiry> Csinquiries { get; set; }
-
-    public virtual DbSet<DispachDateRequest> DispachDateRequests { get; set; }
-
     public virtual DbSet<File> Files { get; set; }
-
     public virtual DbSet<Message> Messages { get; set; }
-
     public virtual DbSet<MessageConversation> MessageConversations { get; set; }
-
     public virtual DbSet<Order> Orders { get; set; }
-
-    public virtual DbSet<Article> Articles { get; set; }
-
-    public virtual DbSet<PlanningSt> PlanningSts { get; set; }
-
-    public virtual DbSet<Plant> Plants { get; set; }
-
+    public virtual DbSet<ArticleCR> ArticlesCR { get; set; }
+    public virtual DbSet<ArticlePP> ArticlesPP { get; set; }
     public virtual DbSet<Step> Steps { get; set; }
-
     public virtual DbSet<StepChecklist> StepChecklists { get; set; }
-
-    public virtual DbSet<Stsarticle> Stsarticles { get; set; }
-
     public virtual DbSet<Tlinquiry> Tlinquiries { get; set; }
+    public virtual DbSet<ProductionPlanning> ProductionPlannings { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<ArticlesInDispatchRequest>(entity =>
+        modelBuilder.Entity<ArticleCR>(entity =>
         {
-            entity.HasIndex(e => e.DispachDateRequestId, "IX_ArticlesInDispatchRequests_DispachDateRequestId");
+            entity.ToTable("ArticlesCR");
 
-            entity.HasOne(d => d.DispachDateRequest).WithMany(p => p.ArticlesInDispatchRequests).HasForeignKey(d => d.DispachDateRequestId);
+            entity.HasKey(e => e.Id);
+
+            entity.Property(e => e.ArticleNumber).HasColumnName("ArticleNumber").IsRequired();
+            entity.Property(e => e.CsinquiryId).HasColumnName("CsinquiryId").IsRequired();
+            entity.Property(e => e.Pallets).HasColumnName("Pallets").IsRequired();
+
+            entity.HasOne(d => d.Csinquiry)
+                  .WithMany(p => p.Articles)
+                  .HasForeignKey(d => d.CsinquiryId)
+                  .IsRequired();
         });
 
-        modelBuilder.Entity<Article>(entity =>
+        modelBuilder.Entity<ArticlePP>(entity =>
         {
-            entity.HasIndex(e => e.CsinquiryId, "IX_Conversations_OrderId");
+            entity.ToTable("ArticlesPP");
 
-            entity.HasOne(d => d.Csinquiry).WithMany(p => p.Articles).HasForeignKey(d => d.CsinquiryId);
+            entity.HasKey(e => e.Id);
+
+            entity.Property(e => e.ArticleNumber).HasColumnName("ArticleNumber");
+            entity.Property(e => e.MinHeigthRequired).HasColumnName("MinHeightRequired");
+            entity.Property(e => e.DesiredDeliveryDate).HasColumnName("DesiredDeliveryDate");
+            entity.Property(e => e.DeliveryDate).HasColumnName("DeliveryDate");
+            entity.Property(e => e.ShortText).HasColumnName("ShortText").IsRequired();
+            entity.Property(e => e.Factory).HasColumnName("Factory").IsRequired();
+            entity.Property(e => e.Nozzle).HasColumnName("Nozzle").IsRequired();
+            entity.Property(e => e.ProductionOrder).HasColumnName("ProductionOrder").IsRequired();
+            entity.Property(e => e.PlannedOrder).HasColumnName("PlannedOrder").IsRequired();
+            entity.Property(e => e.InquiryForFixedOrder).HasColumnName("InquiryForFixedOrder");
+            entity.Property(e => e.InquiryForQuotation).HasColumnName("InquiryForQuotation");
+            entity.Property(e => e.Pallets).HasColumnName("Pallets");
+            entity.Property(e => e.ProductionPlanningId).HasColumnName("ProductionPlanningId");
+
+            entity.HasOne(d => d.ProductionPlanning)
+                  .WithMany(p => p.Articles)
+                  .HasForeignKey(d => d.ProductionPlanningId)
+                  .IsRequired();
         });
 
         modelBuilder.Entity<Csinquiry>(entity =>
@@ -93,26 +96,25 @@ public partial class ContainerToolDBContext : DbContext
 
         modelBuilder.Entity<Order>(entity =>
         {
-            entity.HasIndex(e => e.Csid, "IX_Orders_CSId");
+            entity.HasIndex(e => e.CsId, "IX_Orders_CSId");
 
             entity.HasIndex(e => e.ChecklistId, "IX_Orders_ChecklistId");
 
-            entity.HasIndex(e => e.Tlid, "IX_Orders_TLId");
+            entity.HasIndex(e => e.TlId, "IX_Orders_TLId");
 
-            entity.Property(e => e.Csid).HasColumnName("CSId");
-            entity.Property(e => e.Tlid).HasColumnName("TLId");
+            entity.HasIndex(e => e.PpId, "IX_Orders_PPId");
+
+            entity.Property(e => e.CsId).HasColumnName("CSId");
+            entity.Property(e => e.TlId).HasColumnName("TLId");
+            entity.Property(e => e.PpId).HasColumnName("PpId");
 
             entity.HasOne(d => d.Checklist).WithMany(p => p.Orders).HasForeignKey(d => d.ChecklistId);
 
-            entity.HasOne(d => d.Cs).WithMany(p => p.Orders).HasForeignKey(d => d.Csid);
-
-            entity.HasOne(d => d.Tl).WithMany(p => p.Orders).HasForeignKey(d => d.Tlid);
+            entity.HasOne(d => d.Cs).WithMany(p => p.Orders).HasForeignKey(d => d.CsId);
+            entity.HasOne(d => d.ProductionPlanning).WithMany(p => p.Orders).HasForeignKey(d => d.PpId);
+            entity.HasOne(d => d.Tl).WithMany(p => p.Orders).HasForeignKey(d => d.TlId);
         });
 
-        modelBuilder.Entity<PlanningSt>(entity =>
-        {
-            entity.ToTable("PlanningSTS");
-        });
 
         modelBuilder.Entity<StepChecklist>(entity =>
         {
@@ -123,15 +125,6 @@ public partial class ContainerToolDBContext : DbContext
             entity.HasOne(d => d.Checklist).WithMany(p => p.StepChecklists).HasForeignKey(d => d.ChecklistId);
 
             entity.HasOne(d => d.Step).WithMany(p => p.StepChecklists).HasForeignKey(d => d.StepId);
-        });
-
-        modelBuilder.Entity<Stsarticle>(entity =>
-        {
-            entity.ToTable("STSArticles");
-
-            entity.HasIndex(e => e.PlantId, "IX_STSArticles_PlantId");
-
-            entity.HasOne(d => d.Plant).WithMany(p => p.Stsarticles).HasForeignKey(d => d.PlantId);
         });
 
         modelBuilder.Entity<Tlinquiry>(entity =>
@@ -145,6 +138,26 @@ public partial class ContainerToolDBContext : DbContext
             entity.Property(e => e.Ets).HasColumnName("ETS");
             entity.Property(e => e.IsContainerHc).HasColumnName("IsContainerHC");
             entity.Property(e => e.WeightInKg).HasColumnName("WeightInKG");
+        });
+
+        modelBuilder.Entity<ProductionPlanning>(entity =>
+        {
+            entity.ToTable("ProductionPlannings");
+
+            entity.Property(e => e.Id).HasColumnName("Id");
+
+            entity.Property(e => e.ApprovedByPpCs).HasColumnName("ApprovedByPPCS");
+
+            entity.Property(e => e.ApprovedByPpPp).HasColumnName("ApprovedByPPPP");
+
+            entity.Property(e => e.ApprovedByPpCsTime).HasColumnName("ApprovedByPPCSTime");
+
+            entity.Property(e => e.ApprovedByPpPpTime).HasColumnName("ApprovedByPPPPTime");
+
+            entity.HasMany(e => e.Articles)
+                  .WithOne()
+                  .IsRequired()
+                  .HasForeignKey(e => e.ProductionPlanningId);
         });
 
         OnModelCreatingPartial(modelBuilder);

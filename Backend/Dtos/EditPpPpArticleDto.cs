@@ -1,6 +1,6 @@
 ﻿namespace Backend.Dtos;
 
-public class EditPPArticleDto
+public class EditPpPpArticleDto
 {
     [Required] public int Id { get; set; }
     [Required] public string ShortText { get; set; } = null!;

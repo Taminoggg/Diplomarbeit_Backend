@@ -11,22 +11,16 @@ public partial class Order
     public string Status { get; set; } = null!;
     public string CustomerName { get; set; } = null!;
     public string CreatedBy { get; set; } = null!;
-    public bool ApprovedByCrCs { get; set; }
-    public bool ApprovedByCrTl { get; set; }
-    public bool ApprovedByPpCs { get; set; }
-    public bool ApprovedByPpPp { get; set; }
-    public DateTime? ApprovedByCrCsTime { get; set; }
-    public DateTime? ApprovedByCrTlTime { get; set; }
-    public DateTime? ApprovedByPpCsTime { get; set; }
-    public DateTime? ApprovedByPpPpTime { get; set; }
     public int Amount { get; set; }
     public DateTime LastUpdated { get; set; }
-    public int ChecklistId { get; set; }
-    public int Csid { get; set; }
-    public int Tlid { get; set; }
+    public int? ChecklistId { get; set; }
+    public int? CsId { get; set; }
+    public int? TlId { get; set; }
+    public int? PpId { get; set; }
     public string? AdditionalInformation { get; set; }
-    public virtual Checklist Checklist { get; set; } = null!;
+    public virtual Checklist? Checklist { get; set; } = null!;
     public virtual ICollection<MessageConversation> MessageConversations { get; } = new List<MessageConversation>();
-    public virtual Csinquiry Cs { get; set; } = null!;
-    public virtual Tlinquiry Tl { get; set; } = null!;
+    public virtual Csinquiry? Cs { get; set; }
+    public virtual Tlinquiry? Tl { get; set; }
+    public virtual ProductionPlanning? ProductionPlanning { get; set; }
 }

@@ -19,56 +19,54 @@ namespace ContainerToolDB.Migrations
                 .HasAnnotation("ProductVersion", "7.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("ContainerToolDB.Article", b =>
+            modelBuilder.Entity("ArticlePP", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("AdditionalInformation")
-                        .HasColumnType("longtext");
-
                     b.Property<int>("ArticleNumber")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CsinquiryId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("ArticleNumber");
 
                     b.Property<DateTime?>("DeliveryDate")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("DeliveryDate");
 
                     b.Property<DateTime?>("DesiredDeliveryDate")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("DesiredDeliveryDate");
 
                     b.Property<string>("Factory")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("longtext")
+                        .HasColumnName("Factory");
 
                     b.Property<bool>("InquiryForFixedOrder")
-                        .HasColumnType("tinyint(1)");
+                        .HasColumnType("tinyint(1)")
+                        .HasColumnName("InquiryForFixedOrder");
 
                     b.Property<bool>("InquiryForQuotation")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<bool>("IsDirectLine")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<bool>("IsFastLine")
-                        .HasColumnType("tinyint(1)");
+                        .HasColumnType("tinyint(1)")
+                        .HasColumnName("InquiryForQuotation");
 
                     b.Property<int>("MinHeigthRequired")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("MinHeightRequired");
 
                     b.Property<string>("Nozzle")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("longtext")
+                        .HasColumnName("Nozzle");
 
                     b.Property<int>("Pallets")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("Pallets");
 
                     b.Property<string>("PlannedOrder")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("longtext")
+                        .HasColumnName("PlannedOrder");
 
                     b.Property<string>("Plant")
                         .IsRequired()
@@ -76,55 +74,81 @@ namespace ContainerToolDB.Migrations
 
                     b.Property<string>("ProductionOrder")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("longtext")
+                        .HasColumnName("ProductionOrder");
+
+                    b.Property<int>("ProductionPlanningId")
+                        .HasColumnType("int")
+                        .HasColumnName("ProductionPlanningId");
+
+                    b.Property<int>("ProductionPlanningId1")
+                        .HasColumnType("int");
 
                     b.Property<string>("ShortText")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("longtext")
+                        .HasColumnName("ShortText");
 
                     b.HasKey("Id");
 
-                    b.HasIndex(new[] { "CsinquiryId" }, "IX_Conversations_OrderId");
+                    b.HasIndex("ProductionPlanningId");
 
-                    b.ToTable("Articles");
+                    b.HasIndex("ProductionPlanningId1");
+
+                    b.ToTable("ArticlesPP", (string)null);
                 });
 
-            modelBuilder.Entity("ContainerToolDBDb.ArticlesInDispatchRequest", b =>
+            modelBuilder.Entity("ContainerToolDB.ArticleCR", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("AmountNeeded")
-                        .HasColumnType("int");
+                    b.Property<int>("ArticleNumber")
+                        .HasColumnType("int")
+                        .HasColumnName("ArticleNumber");
 
-                    b.Property<string>("Articlenumber")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Property<int>("CsinquiryId")
+                        .HasColumnType("int")
+                        .HasColumnName("CsinquiryId");
 
-                    b.Property<bool>("AskedDeal")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<DateTime>("DispachDate")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<int>("DispachDateRequestId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("FixOrder")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<bool>("MinLotSize")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<DateTime>("Neededby")
-                        .HasColumnType("datetime(6)");
+                    b.Property<int>("Pallets")
+                        .HasColumnType("int")
+                        .HasColumnName("Pallets");
 
                     b.HasKey("Id");
 
-                    b.HasIndex(new[] { "DispachDateRequestId" }, "IX_ArticlesInDispatchRequests_DispachDateRequestId");
+                    b.HasIndex("CsinquiryId");
 
-                    b.ToTable("ArticlesInDispatchRequests");
+                    b.ToTable("ArticlesCR", (string)null);
+                });
+
+            modelBuilder.Entity("ContainerToolDB.ProductionPlanning", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("Id");
+
+                    b.Property<bool>("ApprovedByPpCs")
+                        .HasColumnType("tinyint(1)")
+                        .HasColumnName("ApprovedByPPCS");
+
+                    b.Property<DateTime?>("ApprovedByPpCsTime")
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("ApprovedByPPCSTime");
+
+                    b.Property<bool>("ApprovedByPpPp")
+                        .HasColumnType("tinyint(1)")
+                        .HasColumnName("ApprovedByPPPP");
+
+                    b.Property<DateTime?>("ApprovedByPpPpTime")
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("ApprovedByPPPPTime");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProductionPlannings", (string)null);
                 });
 
             modelBuilder.Entity("ContainerToolDBDb.Checklist", b =>
@@ -155,6 +179,12 @@ namespace ContainerToolDB.Migrations
                         .HasColumnType("int")
                         .HasColumnName("ABNumber");
 
+                    b.Property<bool>("ApprovedByCrCs")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTime?>("ApprovedByCrCsTime")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<string>("Container")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -181,6 +211,12 @@ namespace ContainerToolDB.Migrations
                         .HasColumnType("longtext")
                         .HasColumnName("INCOTERM");
 
+                    b.Property<bool>("IsDirectLine")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("IsFastLine")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<string>("LoadingPlattform")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -195,32 +231,6 @@ namespace ContainerToolDB.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("CSInquiries", (string)null);
-                });
-
-            modelBuilder.Entity("ContainerToolDBDb.DispachDateRequest", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Annotation")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("Information")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("WorkerId")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DispachDateRequests");
                 });
 
             modelBuilder.Entity("ContainerToolDBDb.File", b =>
@@ -294,38 +304,14 @@ namespace ContainerToolDB.Migrations
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
-                    b.Property<bool>("ApprovedByCrCs")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<DateTime?>("ApprovedByCrCsTime")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<bool>("ApprovedByCrTl")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<DateTime?>("ApprovedByCrTlTime")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<bool>("ApprovedByPpCs")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<DateTime?>("ApprovedByPpCsTime")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<bool>("ApprovedByPpPp")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<DateTime?>("ApprovedByPpPpTime")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<int>("ChecklistId")
+                    b.Property<int?>("ChecklistId")
                         .HasColumnType("int");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("Csid")
+                    b.Property<int?>("CsId")
                         .HasColumnType("int")
                         .HasColumnName("CSId");
 
@@ -336,64 +322,29 @@ namespace ContainerToolDB.Migrations
                     b.Property<DateTime>("LastUpdated")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int?>("PpId")
+                        .HasColumnType("int")
+                        .HasColumnName("PpId");
+
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("Tlid")
+                    b.Property<int?>("TlId")
                         .HasColumnType("int")
                         .HasColumnName("TLId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex(new[] { "Csid" }, "IX_Orders_CSId");
+                    b.HasIndex(new[] { "CsId" }, "IX_Orders_CSId");
 
                     b.HasIndex(new[] { "ChecklistId" }, "IX_Orders_ChecklistId");
 
-                    b.HasIndex(new[] { "Tlid" }, "IX_Orders_TLId");
+                    b.HasIndex(new[] { "PpId" }, "IX_Orders_PPId");
+
+                    b.HasIndex(new[] { "TlId" }, "IX_Orders_TLId");
 
                     b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("ContainerToolDBDb.PlanningSt", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Annotation")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("Information")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("WorkerId")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PlanningSTS", (string)null);
-                });
-
-            modelBuilder.Entity("ContainerToolDBDb.Plant", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Plants");
                 });
 
             modelBuilder.Entity("ContainerToolDBDb.Step", b =>
@@ -445,39 +396,6 @@ namespace ContainerToolDB.Migrations
                     b.ToTable("StepChecklists");
                 });
 
-            modelBuilder.Entity("ContainerToolDBDb.Stsarticle", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("ArrivalDate")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("Info")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Jet")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("Planinquiry")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PlantId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Productioninquiry")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex(new[] { "PlantId" }, "IX_STSArticles_PlantId");
-
-                    b.ToTable("STSArticles", (string)null);
-                });
-
             modelBuilder.Entity("ContainerToolDBDb.Tlinquiry", b =>
                 {
                     b.Property<int>("Id")
@@ -487,6 +405,12 @@ namespace ContainerToolDB.Migrations
                     b.Property<string>("AcceptingPort")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<bool>("ApprovedByCrTl")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTime?>("ApprovedByCrTlTime")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Boat")
                         .IsRequired()
@@ -556,7 +480,24 @@ namespace ContainerToolDB.Migrations
                     b.ToTable("TLInquiries", (string)null);
                 });
 
-            modelBuilder.Entity("ContainerToolDB.Article", b =>
+            modelBuilder.Entity("ArticlePP", b =>
+                {
+                    b.HasOne("ContainerToolDB.ProductionPlanning", null)
+                        .WithMany("Articles")
+                        .HasForeignKey("ProductionPlanningId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ContainerToolDB.ProductionPlanning", "ProductionPlanning")
+                        .WithMany()
+                        .HasForeignKey("ProductionPlanningId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ProductionPlanning");
+                });
+
+            modelBuilder.Entity("ContainerToolDB.ArticleCR", b =>
                 {
                     b.HasOne("ContainerToolDBDb.Csinquiry", "Csinquiry")
                         .WithMany("Articles")
@@ -565,17 +506,6 @@ namespace ContainerToolDB.Migrations
                         .IsRequired();
 
                     b.Navigation("Csinquiry");
-                });
-
-            modelBuilder.Entity("ContainerToolDBDb.ArticlesInDispatchRequest", b =>
-                {
-                    b.HasOne("ContainerToolDBDb.DispachDateRequest", "DispachDateRequest")
-                        .WithMany("ArticlesInDispatchRequests")
-                        .HasForeignKey("DispachDateRequestId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("DispachDateRequest");
                 });
 
             modelBuilder.Entity("ContainerToolDBDb.Message", b =>
@@ -610,25 +540,25 @@ namespace ContainerToolDB.Migrations
                 {
                     b.HasOne("ContainerToolDBDb.Checklist", "Checklist")
                         .WithMany("Orders")
-                        .HasForeignKey("ChecklistId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ChecklistId");
 
                     b.HasOne("ContainerToolDBDb.Csinquiry", "Cs")
                         .WithMany("Orders")
-                        .HasForeignKey("Csid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CsId");
+
+                    b.HasOne("ContainerToolDB.ProductionPlanning", "ProductionPlanning")
+                        .WithMany("Orders")
+                        .HasForeignKey("PpId");
 
                     b.HasOne("ContainerToolDBDb.Tlinquiry", "Tl")
                         .WithMany("Orders")
-                        .HasForeignKey("Tlid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TlId");
 
                     b.Navigation("Checklist");
 
                     b.Navigation("Cs");
+
+                    b.Navigation("ProductionPlanning");
 
                     b.Navigation("Tl");
                 });
@@ -652,15 +582,11 @@ namespace ContainerToolDB.Migrations
                     b.Navigation("Step");
                 });
 
-            modelBuilder.Entity("ContainerToolDBDb.Stsarticle", b =>
+            modelBuilder.Entity("ContainerToolDB.ProductionPlanning", b =>
                 {
-                    b.HasOne("ContainerToolDBDb.Plant", "Plant")
-                        .WithMany("Stsarticles")
-                        .HasForeignKey("PlantId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Articles");
 
-                    b.Navigation("Plant");
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("ContainerToolDBDb.Checklist", b =>
@@ -677,11 +603,6 @@ namespace ContainerToolDB.Migrations
                     b.Navigation("Orders");
                 });
 
-            modelBuilder.Entity("ContainerToolDBDb.DispachDateRequest", b =>
-                {
-                    b.Navigation("ArticlesInDispatchRequests");
-                });
-
             modelBuilder.Entity("ContainerToolDBDb.File", b =>
                 {
                     b.Navigation("Messages");
@@ -695,11 +616,6 @@ namespace ContainerToolDB.Migrations
             modelBuilder.Entity("ContainerToolDBDb.Order", b =>
                 {
                     b.Navigation("MessageConversations");
-                });
-
-            modelBuilder.Entity("ContainerToolDBDb.Plant", b =>
-                {
-                    b.Navigation("Stsarticles");
                 });
 
             modelBuilder.Entity("ContainerToolDBDb.Step", b =>

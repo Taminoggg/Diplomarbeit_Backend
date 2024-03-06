@@ -1,13 +1,9 @@
-﻿using ContainerToolDBDb;
-using System.ComponentModel.DataAnnotations;
+﻿using ContainerToolDB;
 
-namespace ContainerToolDB;
-
-public class Article
+public partial class ArticlePP
 {
     public int Id { get; set; }
     public int ArticleNumber { get; set; }
-    public bool IsDirectLine { get; set; }
     public int MinHeigthRequired { get; set; }
     public DateTime? DesiredDeliveryDate { get; set; }
     public DateTime? DeliveryDate { get; set; }
@@ -18,10 +14,8 @@ public class Article
     public string PlannedOrder { get; set; } = null!;
     public bool InquiryForFixedOrder { get; set; }
     public bool InquiryForQuotation { get; set; }
-    public string? AdditionalInformation { get; set; }
-    public bool IsFastLine { get; set; }
     public int Pallets { get; set; }
-    public int CsinquiryId { get; set; }
+    public int ProductionPlanningId { get; set; }
     public string Plant { get; set; } = null!;
-    public virtual Csinquiry Csinquiry { get; set; } = null!;
+    public virtual ProductionPlanning ProductionPlanning { get; set; } = null!;
 }

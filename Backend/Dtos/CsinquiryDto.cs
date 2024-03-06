@@ -12,6 +12,10 @@ public class CsinquiryDto
     [Required] public int ContainersizeHc { get; set; }
     [Required] public bool FreeDetention { get; set; }
     [Required] public bool Thctb { get; set; }
+    [Required] public bool IsFastLine { get; set; }
+    [Required] public bool IsDirectLine { get; set; }
     [Required] public string ReadyToLoad { get; set; } = null!;
     [Required] public string LoadingPlattform { get; set; } = null!;
+    [Required] public bool ApprovedByCrCs { get; set; }
+    [Required] public string ApprovedByCrCsTime { get; set; } = null!;
 }

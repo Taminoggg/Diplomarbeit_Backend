@@ -27,6 +27,24 @@ public class TlinquiryService
         }
     }
 
+    public Tlinquiry? ApproveCrTl(EditApproveDto approveOrderDto)
+    {
+        try
+        {
+            var tlinquiry = _db.Tlinquiries
+                .Single(x => x.Id == approveOrderDto.Id);
+            tlinquiry.ApprovedByCrTlTime = DateTime.Now;
+            tlinquiry.ApprovedByCrTl = approveOrderDto.Approve;
+            _db.SaveChanges();
+            return tlinquiry;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return null;
+        }
+    }
+
     public Tlinquiry AddTlinquiry(AddTlinquiryDto addTlinquiryDto)
     {
         var tlinquiry = new Tlinquiry 
@@ -48,7 +66,9 @@ public class TlinquiryService
             IsContainerHc = addTlinquiryDto.IsContainerHc,
             RetrieveLocation = addTlinquiryDto.RetrieveLocation,
             Sped = addTlinquiryDto.Sped,
-            WeightInKg = addTlinquiryDto.WeightInKg
+            WeightInKg = addTlinquiryDto.WeightInKg,
+            ApprovedByCrTl = false,
+            ApprovedByCrTlTime = null
         };
 
         _db.Tlinquiries.Add(tlinquiry);

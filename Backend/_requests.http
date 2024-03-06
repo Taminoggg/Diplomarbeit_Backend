@@ -1,27 +1,42 @@
 @baseUrl = http://localhost:5000
 
 
-################################################## Articles
-DELETE {{baseUrl}}/Articles?id=1
+################################################## ArticlesCR
+DELETE {{baseUrl}}/ArticlesCR?id=1
 #####
-DELETE {{baseUrl}}/Articles/CsId?id=1
+DELETE {{baseUrl}}/ArticlesCR/CsId?id=1
 #####
-GET {{baseUrl}}/Articles
+GET {{baseUrl}}/ArticlesCR
 #####
-GET {{baseUrl}}/Articles/CsInquiry/1
+GET {{baseUrl}}/ArticlesCR/CsInquiry/1
 #####
-POST {{baseUrl}}/Articles
+POST {{baseUrl}}/ArticlesCR
 Content-type: application/json
 
 {
    "articleNumber": 1,
-   "isDirectLine": True,
-   "isFastLine": True,
    "pallets": 1,
    "csInquiryId": 1
 }
 #####
-PUT {{baseUrl}}/Articles
+
+################################################## ArticlesPP
+DELETE {{baseUrl}}/ArticlesPP?id=1
+#####
+GET {{baseUrl}}/ArticlesPP
+#####
+GET {{baseUrl}}/ArticlesPP/ProductionPlanning/1
+#####
+POST {{baseUrl}}/ArticlesPP
+Content-type: application/json
+
+{
+   "articleNumber": 1,
+   "pallets": 1,
+   "productionPlanningId": 1
+}
+#####
+PUT {{baseUrl}}/ArticlesPP/EditPpCrArticle
 Content-type: application/json
 
 {
@@ -29,10 +44,11 @@ Content-type: application/json
    "minHeigthRequired": 1,
    "desiredDeliveryDate": "abc",
    "inquiryForFixedOrder": True,
-   "inquiryForQuotation": True
+   "inquiryForQuotation": True,
+   "articleNumber": 1
 }
 #####
-PUT {{baseUrl}}/Articles/ProductionPlanning
+PUT {{baseUrl}}/ArticlesPP/EditPpPpArticle
 Content-type: application/json
 
 {
@@ -96,7 +112,9 @@ Content-type: application/json
    "freeDetention": True,
    "thctb": True,
    "readyToLoad": "abc",
-   "loadingPlattform": "abc"
+   "loadingPlattform": "abc",
+   "isDirectLine": True,
+   "isFastLine": True
 }
 #####
 PUT {{baseUrl}}/Csinquiries
@@ -114,7 +132,17 @@ Content-type: application/json
    "freeDetention": True,
    "thctb": True,
    "readyToLoad": "abc",
-   "loadingPlattform": "abc"
+   "loadingPlattform": "abc",
+   "isFastLine": True,
+   "isDirectLine": True
+}
+#####
+PUT {{baseUrl}}/Csinquiries/ApproveCrCs
+Content-type: application/json
+
+{
+   "id": 1,
+   "approve": True
 }
 #####
 
@@ -191,8 +219,9 @@ Content-type: application/json
    "createdBy": "abc",
    "amount": 1,
    "checklistId": 1,
-   "csid": 1,
-   "tlid": 1
+   "csId": 1,
+   "tlId": 1,
+   "ppId": 1
 }
 #####
 PUT {{baseUrl}}/Orders
@@ -204,13 +233,17 @@ Content-type: application/json
    "status": "abc",
    "customerName": "abc",
    "createdBy": "abc",
-   "approvedByCs": True,
-   "approvedByTl": True,
    "amount": 1,
    "checklistId": 1
 }
 #####
-PUT {{baseUrl}}/Orders/ApprovedByCrCs
+
+################################################## ProductionPlannings
+GET {{baseUrl}}/ProductionPlannings
+#####
+POST {{baseUrl}}/ProductionPlannings
+#####
+PUT {{baseUrl}}/ProductionPlannings/PpCs
 Content-type: application/json
 
 {
@@ -218,23 +251,7 @@ Content-type: application/json
    "approve": True
 }
 #####
-PUT {{baseUrl}}/Orders/ApprovedByCrTl
-Content-type: application/json
-
-{
-   "id": 1,
-   "approve": True
-}
-#####
-PUT {{baseUrl}}/Orders/ApprovedByPpCs
-Content-type: application/json
-
-{
-   "id": 1,
-   "approve": True
-}
-#####
-PUT {{baseUrl}}/Orders/ApprovedByPpPp
+PUT {{baseUrl}}/ProductionPlannings/PpPp
 Content-type: application/json
 
 {
@@ -333,5 +350,13 @@ Content-type: application/json
    "ets": "abc",
    "eta": "abc",
    "boat": "abc"
+}
+#####
+PUT {{baseUrl}}/Tlinquiries/ApproveCrTl
+Content-type: application/json
+
+{
+   "id": 1,
+   "approve": True
 }
 #####

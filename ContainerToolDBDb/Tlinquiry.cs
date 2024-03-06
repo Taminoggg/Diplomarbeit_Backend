@@ -43,5 +43,7 @@ public partial class Tlinquiry
     public DateTime Eta { get; set; }
 
     public string Boat { get; set; } = null!;
+    public bool ApprovedByCrTl { get; set; }
+    public DateTime? ApprovedByCrTlTime { get; set; }
     public virtual ICollection<Order> Orders { get; } = new List<Order>();
 }

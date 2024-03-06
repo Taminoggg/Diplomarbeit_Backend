@@ -1,6 +1,6 @@
 ﻿namespace Backend.Dtos;
 
-public class ArticleDto
+public class ArticlePPDto
 {
     [Required] public int Id { get; set; }
     [Required] public int ArticleNumber { get; set; }

@@ -11,38 +11,54 @@ public class TlinquiriesController : ControllerBase
     public TlinquiriesController(TlinquiryService tlinquiryService) => _tlinquiryService = tlinquiryService;
 
     [HttpGet]
-    public List<TlinquiryDto> AllCsinquiries()
+    public List<TlinquiryDto> Tlinquiries()
     {
-        return _tlinquiryService.GetAllTlinquirys().Select(x => ToTlinquiryDto(x)).ToList();
+        var tlinquiries = _tlinquiryService.GetAllTlinquirys();
+        if (tlinquiries == null) return new List<TlinquiryDto>();
+        return tlinquiries.Select(x => ToTlinquiryDto(x)).ToList();
     }
 
     [HttpGet("{id}")]
-    public TlinquiryDto? TlinquiryWithId(int id)
+    public TlinquiryDto? GetTlinquiryWithId(int id)
     {
-        var tlInquiryWithId = _tlinquiryService.GetTlinquiryWithId(id);
-        if (tlInquiryWithId == null) return null;
-        return ToTlinquiryDto(tlInquiryWithId);
+        var tlinquiry = _tlinquiryService.GetTlinquiryWithId(id);
+        if (tlinquiry == null) return null;
+        return ToTlinquiryDto(tlinquiry);
     }
 
     [HttpPost]
     public TlinquiryDto Tlinquiry(AddTlinquiryDto addTlinquiryDto)
     {
-        return ToTlinquiryDto(_tlinquiryService.AddTlinquiry(addTlinquiryDto));
+        var tlinquiry = _tlinquiryService.AddTlinquiry(addTlinquiryDto);
+        if (tlinquiry == null) return null;
+        return ToTlinquiryDto(tlinquiry);
     }
 
     [HttpPut]
-    public TlinquiryDto Tlinquiry(EditTlInqueryDto editTlinquiry)
+    public TlinquiryDto? Tlinquiry(EditTlInqueryDto editTlinquiry)
     {
-        return ToTlinquiryDto(_tlinquiryService.EditTlinquiry(editTlinquiry));
+        var tlinquiry = _tlinquiryService.EditTlinquiry(editTlinquiry);
+        if (tlinquiry == null) return null;
+        return ToTlinquiryDto(tlinquiry);
+    }
+
+    [HttpPut("ApproveCrTl")]
+    public TlinquiryDto? TlinquiryApproveCrTl(EditApproveDto editApproveDto)
+    {
+        var tlinquiry = _tlinquiryService.ApproveCrTl(editApproveDto);
+        if (tlinquiry == null) return null;
+        return ToTlinquiryDto(tlinquiry);
     }
 
     [HttpDelete]
-    public TlinquiryDto Tlinquiry(int id)
+    public TlinquiryDto? Tlinquiry(int id)
     {
-        return ToTlinquiryDto(_tlinquiryService.DeleteTlinquiry(id));
+        var tlinquiry = _tlinquiryService.DeleteTlinquiry(id);
+        if (tlinquiry == null) return null;
+        return ToTlinquiryDto(tlinquiry);
     }
 
-    private static TlinquiryDto ToTlinquiryDto(Tlinquiry tlinquiry)
+    private TlinquiryDto ToTlinquiryDto(Tlinquiry tlinquiry)
     {
         return new TlinquiryDto
         {
@@ -59,12 +75,14 @@ public class TlinquiriesController : ControllerBase
             ExpectedRetrieveWeek = tlinquiry.ExpectedRetrieveWeek.ToString("dd.MM.yyyy"),
             InquiryNumber = tlinquiry.InquiryNumber,
             InvoiceOn = tlinquiry.InvoiceOn.ToString("dd.MM.yyyy"),
-            Id = tlinquiry.Id,
             IsContainer40 = tlinquiry.IsContainer40,
             IsContainerHc = tlinquiry.IsContainerHc,
             RetrieveLocation = tlinquiry.RetrieveLocation,
             Sped = tlinquiry.Sped,
-            WeightInKg = tlinquiry.WeightInKg
-        };
+            WeightInKg = tlinquiry.WeightInKg,
+            Id = tlinquiry.Id,
+            ApprovedByCrTl = tlinquiry.ApprovedByCrTl,
+            ApprovedByCrTlTime = tlinquiry.ApprovedByCrTlTime?.ToString("dd.MM.yyyy") ?? ""
+    };
     }
 }

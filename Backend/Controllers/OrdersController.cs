@@ -113,39 +113,7 @@ public class OrdersController : ControllerBase
     {
         var addedOrder = _orderService.AddOrder(addOrderDto);
         if (addedOrder == null) return null;
-        return addedOrder;
-    }
-
-    [HttpPut("ApprovedByCrCs")]
-    public OrderDto? ApprovedByCs(EditApproveOrderDto editApproveOrderDto)
-    {
-        var orderDto = _orderService.ApproveCrCs(editApproveOrderDto);
-        if (orderDto == null) return null;
-        return ToOrderDto(orderDto!);
-    }
-
-    [HttpPut("ApprovedByCrTl")]
-    public OrderDto? ApprovedByTl(EditApproveOrderDto editApproveOrderDto)
-    {
-        var orderDto = _orderService.ApproveCrTl(editApproveOrderDto);
-        if (orderDto == null) return null;
-        return ToOrderDto(orderDto!);
-    }
-
-    [HttpPut("ApprovedByPpCs")]
-    public OrderDto? ApprovedByPpCs(EditApproveOrderDto editApproveOrderDto)
-    {
-        var orderDto = _orderService.ApprovePpCs(editApproveOrderDto);
-        if (orderDto == null) return null;
-        return ToOrderDto(orderDto!);
-    }
-
-    [HttpPut("ApprovedByPpPp")]
-    public OrderDto? ApprovedByPpPp(EditApproveOrderDto editApproveOrderDto)
-    {
-        var orderDto = _orderService.ApprovePpPp(editApproveOrderDto);
-        if (orderDto == null) return null;
-        return ToOrderDto(orderDto!);
+        return ToOrderDto(addedOrder);
     }
 
     [HttpPut]
@@ -163,26 +131,19 @@ public class OrdersController : ControllerBase
     private static OrderDto ToOrderDto(Order order) => new()
     {
         Id = order.Id,
-        AbNumber = order.Cs.Abnumber,
+        AbNumber = order.Cs?.Abnumber ?? -1,
         Amount = order.Amount,
-        ApprovedByCrCs = order.ApprovedByCrCs,
-        ApprovedByCrTl = order.ApprovedByCrTl,
-        ApprovedByPpCs = order.ApprovedByPpCs,
-        ApprovedByPpPp = order.ApprovedByPpPp,
-        ChecklistId = order.ChecklistId,
-        Country = order.Tl.Country,
+        ChecklistId = order.ChecklistId ?? -1,
+        Country = order.Tl?.Country ?? "",
         CreatedBy = order.CreatedBy,
-        Csid = order.Csid,
+        Csid = order.CsId ?? -1,
         CustomerName = order.CustomerName,
         LastUpdated = order.LastUpdated.ToString("dd.MM.yyyy"),
-        ReadyToLoad = order.Cs.ReadyToLoad.ToString("dd.MM.yyyy"),
-        Sped = order.Tl.Sped,
+        ReadyToLoad = order.Cs?.ReadyToLoad.ToString("dd.MM.yyyy") ?? "",
+        Sped = order.Tl?.Sped ?? "",
         Status = order.Status,
-        Tlid = order.Tlid,
+        Tlid = order.TlId ?? -1,
         AdditionalInformation = order.AdditionalInformation,
-        ApprovedByPpCsTime = order.ApprovedByPpCsTime != null ? order.ApprovedByPpCsTime.Value.ToString("dd.MM.yyyy") : "",
-        ApprovedByCsTime = order.ApprovedByCrCsTime != null ? order.ApprovedByCrCsTime.Value.ToString("dd.MM.yyyy") : "",
-        ApprovedByTlTime = order.ApprovedByCrTlTime != null ? order.ApprovedByCrTlTime.Value.ToString("dd.MM.yyyy") : "",
-        ApprovedByPpPpTime = order.ApprovedByPpPpTime != null ? order.ApprovedByPpPpTime.Value.ToString("dd.MM.yyyy") : ""
+        PpId = order.PpId ?? -1
     };
 }
