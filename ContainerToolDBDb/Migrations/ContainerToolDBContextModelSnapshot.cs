@@ -304,6 +304,9 @@ namespace ContainerToolDB.Migrations
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
+                    b.Property<bool>("Canceled")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<int?>("ChecklistId")
                         .HasColumnType("int");
 
@@ -329,6 +332,9 @@ namespace ContainerToolDB.Migrations
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<bool>("SuccessfullyFinished")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<int?>("TlId")
                         .HasColumnType("int")
@@ -432,21 +438,21 @@ namespace ContainerToolDB.Migrations
                         .HasColumnType("int")
                         .HasColumnName("DebtCapitalTrailingDOL");
 
-                    b.Property<DateTime>("Eta")
+                    b.Property<DateTime?>("Eta")
                         .HasColumnType("datetime(6)")
                         .HasColumnName("ETA");
 
-                    b.Property<DateTime>("Ets")
+                    b.Property<DateTime?>("Ets")
                         .HasColumnType("datetime(6)")
                         .HasColumnName("ETS");
 
-                    b.Property<DateTime>("ExpectedRetrieveWeek")
+                    b.Property<DateTime?>("ExpectedRetrieveWeek")
                         .HasColumnType("datetime(6)");
 
                     b.Property<int>("InquiryNumber")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("InvoiceOn")
+                    b.Property<DateTime?>("InvoiceOn")
                         .HasColumnType("datetime(6)");
 
                     b.Property<bool>("IsContainer40")
@@ -460,7 +466,7 @@ namespace ContainerToolDB.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<DateTime>("RetrieveDate")
+                    b.Property<DateTime?>("RetrieveDate")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("RetrieveLocation")

@@ -6,6 +6,8 @@ public class OrderDto
     [Required] public string Status { get; set; } = null!;
     [Required] public string CustomerName { get; set; } = null!;
     [Required] public string CreatedBy { get; set; } = null!;
+    [Required] public bool Canceled { get; set; }
+    [Required] public bool SuccessfullyFinished { get; set; }
     [Required] public int Amount { get; set; }
     [Required] public string? AdditionalInformation { get; set; }
     [Required] public string LastUpdated { get; set; } = null!;

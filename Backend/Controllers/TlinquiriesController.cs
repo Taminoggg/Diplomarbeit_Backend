@@ -27,9 +27,9 @@ public class TlinquiriesController : ControllerBase
     }
 
     [HttpPost]
-    public TlinquiryDto Tlinquiry(AddTlinquiryDto addTlinquiryDto)
+    public TlinquiryDto? Tlinquiry()
     {
-        var tlinquiry = _tlinquiryService.AddTlinquiry(addTlinquiryDto);
+        var tlinquiry = _tlinquiryService.AddTlinquiry();
         if (tlinquiry == null) return null;
         return ToTlinquiryDto(tlinquiry);
     }
@@ -43,7 +43,7 @@ public class TlinquiriesController : ControllerBase
     }
 
     [HttpPut("ApproveCrTl")]
-    public TlinquiryDto? TlinquiryApproveCrTl(EditApproveDto editApproveDto)
+    public TlinquiryDto? TlinquiryApproveCrTl(EditStatusDto editApproveDto)
     {
         var tlinquiry = _tlinquiryService.ApproveCrTl(editApproveDto);
         if (tlinquiry == null) return null;
@@ -66,15 +66,15 @@ public class TlinquiriesController : ControllerBase
             DebtCapitalMainDol = tlinquiry.DebtCapitalMainDol,
             DebtCapitalTrailingDol = tlinquiry.DebtCapitalTrailingDol,
             PortOfDeparture = tlinquiry.PortOfDeparture,
-            RetrieveDate = tlinquiry.RetrieveDate.ToString("dd.MM.yyyy"),
+            RetrieveDate = tlinquiry.RetrieveDate?.ToString("dd.MM.yyyy") ?? "",
             AcceptingPort = tlinquiry.AcceptingPort,
             Boat = tlinquiry.Boat,
             Country = tlinquiry.Country,
-            Eta = tlinquiry.Eta.ToString("dd.MM.yyyy"),
-            Ets = tlinquiry.Ets.ToString("dd.MM.yyyy"),
-            ExpectedRetrieveWeek = tlinquiry.ExpectedRetrieveWeek.ToString("dd.MM.yyyy"),
+            Eta = tlinquiry.Eta?.ToString("yyyy-MM-dd") ?? "",
+            Ets = tlinquiry.Ets?.ToString("yyyy-MM-dd") ?? "",
+            ExpectedRetrieveWeek = tlinquiry.ExpectedRetrieveWeek?.ToString("yyyy-MM-dd") ?? "",
             InquiryNumber = tlinquiry.InquiryNumber,
-            InvoiceOn = tlinquiry.InvoiceOn.ToString("dd.MM.yyyy"),
+            InvoiceOn = tlinquiry.InvoiceOn?.ToString("yyyy-MM-dd") ?? "",
             IsContainer40 = tlinquiry.IsContainer40,
             IsContainerHc = tlinquiry.IsContainerHc,
             RetrieveLocation = tlinquiry.RetrieveLocation,
@@ -82,7 +82,7 @@ public class TlinquiriesController : ControllerBase
             WeightInKg = tlinquiry.WeightInKg,
             Id = tlinquiry.Id,
             ApprovedByCrTl = tlinquiry.ApprovedByCrTl,
-            ApprovedByCrTlTime = tlinquiry.ApprovedByCrTlTime?.ToString("dd.MM.yyyy") ?? ""
+            ApprovedByCrTlTime = tlinquiry.ApprovedByCrTlTime?.ToString("yyyy-MM-dd") ?? ""
     };
     }
 }

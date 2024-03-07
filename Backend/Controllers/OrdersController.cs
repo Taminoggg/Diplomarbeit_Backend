@@ -1,4 +1,5 @@
 ﻿using Backend.Dtos;
+using Backend.Services;
 using TippsBackend.Services;
 
 namespace TippsBackend.Controllers;
@@ -116,6 +117,24 @@ public class OrdersController : ControllerBase
         return ToOrderDto(addedOrder);
     }
 
+    [HttpPut("SuccessfullyFinished")]
+    public OrderDto SetSuccessfullyFinishedForOrder(EditStatusDto statusDto)
+    {
+        return ToOrderDto(_orderService.SetOrderSuccessfullyFinished(statusDto));
+    }
+
+    [HttpPut("Cancel")]
+    public OrderDto SetCancelForOrder(EditStatusDto statusDto)
+    {
+        return ToOrderDto(_orderService.SetOrderCanceled(statusDto));
+    }
+
+    [HttpPut("Status")]
+    public OrderDto SetOrderStatus(EditOrderStatusDto editOrderStatusDto)
+    {
+        return ToOrderDto(_orderService.SetOrderStatus(editOrderStatusDto));
+    }
+
     [HttpPut]
     public OrderDto Order(EditOrderDto editOrderDto)
     {
@@ -138,12 +157,14 @@ public class OrdersController : ControllerBase
         CreatedBy = order.CreatedBy,
         Csid = order.CsId ?? -1,
         CustomerName = order.CustomerName,
-        LastUpdated = order.LastUpdated.ToString("dd.MM.yyyy"),
-        ReadyToLoad = order.Cs?.ReadyToLoad.ToString("dd.MM.yyyy") ?? "",
+        LastUpdated = order.LastUpdated.ToString("yyyy-MM-dd"),
+        ReadyToLoad = order.Cs?.ReadyToLoad.ToString("yyyy-MM-dd") ?? "",
         Sped = order.Tl?.Sped ?? "",
         Status = order.Status,
         Tlid = order.TlId ?? -1,
         AdditionalInformation = order.AdditionalInformation,
-        PpId = order.PpId ?? -1
+        PpId = order.PpId ?? -1,
+        Canceled = order.Canceled,
+        SuccessfullyFinished = order.SuccessfullyFinished
     };
 }

@@ -58,36 +58,13 @@ public class ArticlePPService
         }
     }
 
-    public ArticlePP? EditPpCrArticle(EditPpCrArticleDto editArticleDto)
-    {
-        try
-        {
-            var article = _db.ArticlesPP.Single(x => x.Id == editArticleDto.Id);
-
-            article.MinHeigthRequired = editArticleDto.MinHeigthRequired;
-            article.DesiredDeliveryDate = DateTime.ParseExact(editArticleDto.DesiredDeliveryDate, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
-            article.InquiryForFixedOrder = editArticleDto.InquiryForFixedOrder;
-            article.InquiryForQuotation = editArticleDto.InquiryForQuotation;
-            article.ArticleNumber = editArticleDto.ArticleNumber;
-
-            _db.SaveChanges();
-            return article;
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.Message);
-            return null;
-        }
-
-    }
-
     public ArticlePP? EditPPArticle(EditPpPpArticleDto editPPArticleDto)
     {
         try
         {
             var article = _db.ArticlesPP.Single(x => x.Id == editPPArticleDto.Id);
 
-            article.DeliveryDate = DateTime.ParseExact(editPPArticleDto.DeliveryDate, "dd.MM.yyyy", CultureInfo.InvariantCulture);
+            article.DeliveryDate = DateTime.ParseExact(editPPArticleDto.DeliveryDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
             article.Factory = editPPArticleDto.Factory;
             article.ShortText = editPPArticleDto.ShortText;
             article.Nozzle = editPPArticleDto.Nozzle;
@@ -117,11 +94,11 @@ public class ArticlePPService
                 ProductionPlanningId = articleDto.ProductionPlanningId,
                 Pallets = articleDto.Pallets,
                 DeliveryDate = null,
-                DesiredDeliveryDate = null,
+                DesiredDeliveryDate = DateTime.ParseExact(articleDto.DesiredDeliveryDate, "yyyy-MM-dd", CultureInfo.InvariantCulture),
                 Factory = "",
-                InquiryForFixedOrder = false,
-                InquiryForQuotation = false,
-                MinHeigthRequired = 0,
+                InquiryForFixedOrder = articleDto.InquiryForFixedOrder,
+                InquiryForQuotation = articleDto.InquiryForQuotation,
+                MinHeigthRequired = articleDto.MinHeigthRequired,
                 Nozzle = "",
                 PlannedOrder = "",
                 ProductionOrder = "",

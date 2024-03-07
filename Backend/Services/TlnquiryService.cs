@@ -27,14 +27,14 @@ public class TlinquiryService
         }
     }
 
-    public Tlinquiry? ApproveCrTl(EditApproveDto approveOrderDto)
+    public Tlinquiry? ApproveCrTl(EditStatusDto approveOrderDto)
     {
         try
         {
             var tlinquiry = _db.Tlinquiries
                 .Single(x => x.Id == approveOrderDto.Id);
             tlinquiry.ApprovedByCrTlTime = DateTime.Now;
-            tlinquiry.ApprovedByCrTl = approveOrderDto.Approve;
+            tlinquiry.ApprovedByCrTl = approveOrderDto.Status;
             _db.SaveChanges();
             return tlinquiry;
         }
@@ -45,28 +45,28 @@ public class TlinquiryService
         }
     }
 
-    public Tlinquiry AddTlinquiry(AddTlinquiryDto addTlinquiryDto)
+    public Tlinquiry AddTlinquiry()
     {
         var tlinquiry = new Tlinquiry 
         {
-            AcceptingPort = addTlinquiryDto.AcceptingPort,
-            Boat = addTlinquiryDto.Boat,
-            DebtCapitalGeneralForerunEur = addTlinquiryDto.DebtCapitalGeneralForerunEur,
-            DebtCapitalMainDol = addTlinquiryDto.DebtCapitalMainDol,
-            DebtCapitalTrailingDol = addTlinquiryDto.DebtCapitalTrailingDol,
-            PortOfDeparture = addTlinquiryDto.PortOfDeparture,
-            RetrieveDate = DateTime.ParseExact(addTlinquiryDto.RetrieveDate, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture),
-            Country = addTlinquiryDto.Country,
-            Eta = DateTime.ParseExact(addTlinquiryDto.Eta, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture),
-            Ets = DateTime.ParseExact(addTlinquiryDto.Ets, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture),
-            ExpectedRetrieveWeek = DateTime.ParseExact(addTlinquiryDto.ExpectedRetrieveWeek, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture),
-            InquiryNumber = addTlinquiryDto.InquiryNumber,
-            InvoiceOn = DateTime.ParseExact(addTlinquiryDto.InvoiceOn, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture),
-            IsContainer40 = addTlinquiryDto.IsContainer40,
-            IsContainerHc = addTlinquiryDto.IsContainerHc,
-            RetrieveLocation = addTlinquiryDto.RetrieveLocation,
-            Sped = addTlinquiryDto.Sped,
-            WeightInKg = addTlinquiryDto.WeightInKg,
+            AcceptingPort = "",
+            Boat = "",
+            DebtCapitalGeneralForerunEur = -1,
+            DebtCapitalMainDol = 1,
+            DebtCapitalTrailingDol = -1,
+            PortOfDeparture = "",
+            RetrieveDate = null,
+            Country = "",
+            Eta = null,
+            Ets = null,
+            ExpectedRetrieveWeek = null,
+            InquiryNumber = 1,
+            InvoiceOn = null,
+            IsContainer40 = false,
+            IsContainerHc = false,
+            RetrieveLocation = "",
+            Sped = "",
+            WeightInKg = -1,
             ApprovedByCrTl = false,
             ApprovedByCrTlTime = null
         };
@@ -82,17 +82,17 @@ public class TlinquiryService
         var tlinquiry = _db.Tlinquiries.Single(x => x.Id == editTlinquiryDto.Id);
         tlinquiry.InquiryNumber = editTlinquiryDto.InquiryNumber;
         tlinquiry.Boat = editTlinquiryDto.Boat;
-        tlinquiry.RetrieveDate = DateTime.ParseExact(editTlinquiryDto.RetrieveDate, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
+        tlinquiry.RetrieveDate = DateTime.ParseExact(editTlinquiryDto.RetrieveDate, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
         tlinquiry.RetrieveLocation = editTlinquiryDto.RetrieveLocation;
-        tlinquiry.ExpectedRetrieveWeek = DateTime.ParseExact(editTlinquiryDto.ExpectedRetrieveWeek, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
+        tlinquiry.ExpectedRetrieveWeek = DateTime.ParseExact(editTlinquiryDto.ExpectedRetrieveWeek, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
         tlinquiry.AcceptingPort = editTlinquiryDto.AcceptingPort;
         tlinquiry.Country = editTlinquiryDto.Country;
         tlinquiry.DebtCapitalGeneralForerunEur = editTlinquiryDto.DebtCapitalGeneralForerunEur;
         tlinquiry.DebtCapitalMainDol = editTlinquiryDto.DebtCapitalMainDol;
         tlinquiry.DebtCapitalTrailingDol = editTlinquiryDto.DebtCapitalTrailingDol;
-        tlinquiry.Eta = DateTime.ParseExact(editTlinquiryDto.Eta, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
-        tlinquiry.Ets = DateTime.ParseExact(editTlinquiryDto.Ets, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
-        tlinquiry.InvoiceOn = DateTime.ParseExact(editTlinquiryDto.InvoiceOn, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
+        tlinquiry.Eta = DateTime.ParseExact(editTlinquiryDto.Eta, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+        tlinquiry.Ets = DateTime.ParseExact(editTlinquiryDto.Ets, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+        tlinquiry.InvoiceOn = DateTime.ParseExact(editTlinquiryDto.InvoiceOn, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
         tlinquiry.IsContainer40 = editTlinquiryDto.IsContainer40;
         tlinquiry.IsContainerHc = editTlinquiryDto.IsContainerHc;
         tlinquiry.PortOfDeparture = editTlinquiryDto.PortOfDeparture;

@@ -8,6 +8,8 @@ namespace ContainerToolDBDb;
 public partial class Order
 {
     public int Id { get; set; }
+    public bool Canceled { get; set; }
+    public bool SuccessfullyFinished { get; set; }
     public string Status { get; set; } = null!;
     public string CustomerName { get; set; } = null!;
     public string CreatedBy { get; set; } = null!;

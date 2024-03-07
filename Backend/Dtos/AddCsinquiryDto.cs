@@ -19,7 +19,7 @@ public class AddCsinquiryDto
     [Required] public int ContainersizeHc { get; set; }
     [Required] public bool FreeDetention { get; set; }
     [Required] public bool Thctb { get; set; }
-    [RegularExpression(@"^(?<day>[0-2]\d|3[0-1])\.(?<month>0\d|1[0-2])\.(?<year>\d{4})$", ErrorMessage = "Only date in the format dd.MM.yyyy allowed!")]
+    [RegularExpression(@"^^(?<year>\d{4})\-(?<month>0\d|1[0-2])\-(?<day>[0-2]\d|3[0-1])$", ErrorMessage = "Only date in the format yyyy-MM-dd allowed!")]
     [Required] public string ReadyToLoad { get; set; } = null!;
     [Required] public string LoadingPlattform { get; set; } = null!;
     [Required] public bool IsDirectLine { get; set; }

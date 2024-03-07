@@ -1,6 +1,5 @@
 public class AddOrderDto
 {
-    [Required] public string Status { get; set; } = null!;
     [Required] public string CustomerName { get; set; } = null!;
     public string? AdditionalInformation { get; set; }
     [Required] public string CreatedBy { get; set; } = null!;

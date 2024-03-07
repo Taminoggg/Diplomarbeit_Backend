@@ -43,7 +43,7 @@ public class CsinquiriesController : ControllerBase
     }
 
     [HttpPut("ApproveCrCs")]
-    public CsinquiryDto? ApproveCrCs(EditApproveDto editApproveDto)
+    public CsinquiryDto? ApproveCrCs(EditStatusDto editApproveDto)
     {
         var csinquiry = _csinquiryService.ApproveCrCs(editApproveDto);
         if (csinquiry == null) return null;
@@ -73,11 +73,11 @@ public class CsinquiriesController : ControllerBase
             Incoterm = csinquiry.Incoterm,
             IsFastLine = csinquiry.IsFastLine,
             LoadingPlattform = csinquiry.LoadingPlattform,
-            ReadyToLoad = csinquiry.ReadyToLoad.ToString("dd.MM.yyyy"),
+            ReadyToLoad = csinquiry.ReadyToLoad.ToString("yyyy-MM-dd"),
             Thctb = csinquiry.Thctb,
             Id = csinquiry.Id,
             ApprovedByCrCs = csinquiry.ApprovedByCrCs,
-            ApprovedByCrCsTime = csinquiry.ApprovedByCrCsTime?.ToString("dd.MM.yyyy") ?? ""
+            ApprovedByCrCsTime = csinquiry.ApprovedByCrCsTime?.ToString("yyyy-MM-dd") ?? ""
         };
     }
 }

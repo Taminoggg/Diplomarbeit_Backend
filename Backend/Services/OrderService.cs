@@ -1,4 +1,5 @@
 ﻿using Backend.Dtos;
+using Backend.Services;
 using ContainerToolDB;
 using System.Globalization;
 using System.Linq;
@@ -220,7 +221,7 @@ public class OrderService
                 CsId = csId,
                 CustomerName = addOrderDto.CustomerName,
                 LastUpdated = DateTime.Now,
-                Status = addOrderDto.Status,
+                Status = "cs-in-progress",
                 TlId = tlId,
                 AdditionalInformation = addOrderDto.AdditionalInformation,
                 PpId = ppId,
@@ -240,6 +241,30 @@ public class OrderService
         }
     }
 
+    public Order SetOrderSuccessfullyFinished(EditStatusDto statusDto)
+    {
+        var order = _db.Orders.Single(x => x.Id == statusDto.Id);
+        order.SuccessfullyFinished = statusDto.Status;
+        _db.SaveChanges();
+        return order;
+    }
+
+    public Order SetOrderCanceled(EditStatusDto statusDto)
+    {
+        var order = _db.Orders.Single(x => x.Id == statusDto.Id);
+        order.Canceled = statusDto.Status;
+        _db.SaveChanges();
+        return order;
+    }
+
+    public Order SetOrderStatus(EditOrderStatusDto editOrderStatusDto)
+    {
+        var order = _db.Orders.Single(x => x.Id == editOrderStatusDto.Id);
+        order.Status = editOrderStatusDto.Status;
+        _db.SaveChanges();
+        return order;
+    }
+
     public Order EditOrder(EditOrderDto editOrderDto)
     {
         var checklist = _db.Checklists.Single(x => x.Id == editOrderDto.ChecklistId);
@@ -250,7 +275,6 @@ public class OrderService
         order.Amount = editOrderDto.Amount;
         order.CreatedBy = editOrderDto.CreatedBy;
         order.CustomerName = editOrderDto.CustomerName;
-        order.Status = editOrderDto.Status;
         order.AdditionalInformation = editOrderDto.AdditionalInformation;
         order.LastUpdated = DateTime.Now;
         _db.SaveChanges();

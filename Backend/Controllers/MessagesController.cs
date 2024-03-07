@@ -28,7 +28,7 @@ public class MessagesController : ControllerBase
         return new MessageDto
         {
             Id = message.Id,
-            DateTime = message.DateTime.ToString("dd.MM.yyyy"),
+            DateTime = message.DateTime.ToString("yyyy-MM-dd"),
             AttachmentId = message.AttachmentId ?? 0,
             Content = message.Content
         };

@@ -41,7 +41,7 @@ public class CsinquiryService
             ContainersizeHc = addCsinquiryDto.ContainersizeHc,
             Incoterm = addCsinquiryDto.Incoterm,
             LoadingPlattform = addCsinquiryDto.LoadingPlattform,
-            ReadyToLoad = DateTime.ParseExact(addCsinquiryDto.ReadyToLoad, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture),
+            ReadyToLoad = DateTime.ParseExact(addCsinquiryDto.ReadyToLoad, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture),
             Thctb = addCsinquiryDto.Thctb,
             IsDirectLine = addCsinquiryDto.IsDirectLine,
             IsFastLine = addCsinquiryDto.IsFastLine,
@@ -54,14 +54,14 @@ public class CsinquiryService
         return csinquiry;
     }
 
-    public Csinquiry? ApproveCrCs(EditApproveDto approveOrderDto)
+    public Csinquiry? ApproveCrCs(EditStatusDto approveOrderDto)
     {
         try
         {
             var csinquiry = _db.Csinquiries
                 .Single(x => x.Id == approveOrderDto.Id);
             csinquiry.ApprovedByCrCsTime = DateTime.Now;
-            csinquiry.ApprovedByCrCs = approveOrderDto.Approve;
+            csinquiry.ApprovedByCrCs = approveOrderDto.Status;
             _db.SaveChanges();
             return csinquiry;
         }
@@ -87,7 +87,7 @@ public class CsinquiryService
             csinquiry.FreeDetention = editCsinquiryDto.FreeDetention;
             csinquiry.Incoterm = editCsinquiryDto.Incoterm;
             csinquiry.LoadingPlattform = editCsinquiryDto.LoadingPlattform;
-            csinquiry.ReadyToLoad = DateTime.ParseExact(editCsinquiryDto.ReadyToLoad, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            csinquiry.ReadyToLoad = DateTime.ParseExact(editCsinquiryDto.ReadyToLoad, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
             csinquiry.IsFastLine = editCsinquiryDto.IsFastLine;
             csinquiry.IsDirectLine = editCsinquiryDto.IsDirectLine;
             _db.SaveChanges();

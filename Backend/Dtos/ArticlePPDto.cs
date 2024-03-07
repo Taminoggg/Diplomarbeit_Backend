@@ -4,10 +4,8 @@ public class ArticlePPDto
 {
     [Required] public int Id { get; set; }
     [Required] public int ArticleNumber { get; set; }
-    [Required] public bool IsDirectLine { get; set; }
-    [Required] public bool IsFastLine { get; set; }
     [Required] public int Pallets { get; set; }
-    [Required] public int CsinquiryId { get; set; }
+    [Required] public int ProductionPlanningId { get; set; }
     [Required] public int? MinHeigthRequired { get; set; }
     [Required] public string DesiredDeliveryDate { get; set; } = null!;
     [Required] public bool InquiryForFixedOrder { get; set; }

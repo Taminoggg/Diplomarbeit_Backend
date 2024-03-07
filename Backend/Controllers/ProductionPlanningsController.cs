@@ -19,16 +19,24 @@ public class ProductionPlanningsController : ControllerBase
         return _productionPlanningService.GetAllProdcutionPlannings().Select(x => ToProductionPlanningDto(x)).ToList();
     }
 
-    [HttpPut("PpCs")]
-    public ProductionPlanningDto? ApprovePpCs(EditApproveDto editApproveDto)
+    [HttpGet("{id}")]
+    public ProductionPlanningDto? OrderWithId(int id)
+    {
+        var productionPlanning = _productionPlanningService.GetProdcutionPlanningsForId(id);
+        if (productionPlanning == null) return null;
+        return ToProductionPlanningDto(productionPlanning);
+    }
+
+    [HttpPut("ApprovePpCs")]
+    public ProductionPlanningDto? ApprovePpCs(EditStatusDto editApproveDto)
     {
         var prodctionPlanning = _productionPlanningService.ApprovePpCs(editApproveDto);
         if (prodctionPlanning == null) return null;
         return ToProductionPlanningDto(prodctionPlanning);
     }
 
-    [HttpPut("PpPp")]
-    public ProductionPlanningDto? ApprovePpPp(EditApproveDto editApproveDto)
+    [HttpPut("ApprovePpPp")]
+    public ProductionPlanningDto? ApprovePpPp(EditStatusDto editApproveDto)
     {
         var prodctionPlanning = _productionPlanningService.ApprovePpPp(editApproveDto);
         if (prodctionPlanning == null) return null;
@@ -50,8 +58,8 @@ public class ProductionPlanningsController : ControllerBase
             ApprovedByPpCs = productionPlanning.ApprovedByPpCs,
             ApprovedByPpPp = productionPlanning.ApprovedByPpPp,
             Id = productionPlanning.Id,
-            ApprovedByPpCsTime = productionPlanning.ApprovedByPpCsTime?.ToString("dd.MM.yyyy") ?? "",
-            ApprovedByPpPpTime = productionPlanning.ApprovedByPpPpTime?.ToString("dd.MM.yyyy") ?? ""
+            ApprovedByPpCsTime = productionPlanning.ApprovedByPpCsTime?.ToString("yyyy-MM-dd") ?? "",
+            ApprovedByPpPpTime = productionPlanning.ApprovedByPpPpTime?.ToString("yyyy-MM-dd") ?? ""
         };
     }
 }

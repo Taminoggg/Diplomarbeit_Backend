@@ -23,6 +23,8 @@ Content-type: application/json
 ################################################## ArticlesPP
 DELETE {{baseUrl}}/ArticlesPP?id=1
 #####
+DELETE {{baseUrl}}/ArticlesPP/ProductionPlanningId?id=1
+#####
 GET {{baseUrl}}/ArticlesPP
 #####
 GET {{baseUrl}}/ArticlesPP/ProductionPlanning/1
@@ -33,22 +35,14 @@ Content-type: application/json
 {
    "articleNumber": 1,
    "pallets": 1,
-   "productionPlanningId": 1
-}
-#####
-PUT {{baseUrl}}/ArticlesPP/EditPpCrArticle
-Content-type: application/json
-
-{
-   "id": 1,
+   "productionPlanningId": 1,
    "minHeigthRequired": 1,
    "desiredDeliveryDate": "abc",
    "inquiryForFixedOrder": True,
-   "inquiryForQuotation": True,
-   "articleNumber": 1
+   "inquiryForQuotation": True
 }
 #####
-PUT {{baseUrl}}/ArticlesPP/EditPpPpArticle
+PUT {{baseUrl}}/ArticlesPP
 Content-type: application/json
 
 {
@@ -142,7 +136,7 @@ Content-type: application/json
 
 {
    "id": 1,
-   "approve": True
+   "status": True
 }
 #####
 
@@ -213,7 +207,6 @@ POST {{baseUrl}}/Orders
 Content-type: application/json
 
 {
-   "status": "abc",
    "customerName": "abc",
    "additionalInformation": "abc",
    "createdBy": "abc",
@@ -230,33 +223,58 @@ Content-type: application/json
 {
    "id": 1,
    "additionalInformation": "abc",
-   "status": "abc",
    "customerName": "abc",
    "createdBy": "abc",
    "amount": 1,
    "checklistId": 1
 }
 #####
+PUT {{baseUrl}}/Orders/Cancel
+Content-type: application/json
+
+{
+   "id": 1,
+   "status": True
+}
+#####
+PUT {{baseUrl}}/Orders/Status
+Content-type: application/json
+
+{
+   "id": 1,
+   "status": "abc"
+}
+#####
+PUT {{baseUrl}}/Orders/SuccessfullyFinished
+Content-type: application/json
+
+{
+   "id": 1,
+   "status": True
+}
+#####
 
 ################################################## ProductionPlannings
 GET {{baseUrl}}/ProductionPlannings
 #####
+GET {{baseUrl}}/ProductionPlannings/1
+#####
 POST {{baseUrl}}/ProductionPlannings
 #####
-PUT {{baseUrl}}/ProductionPlannings/PpCs
+PUT {{baseUrl}}/ProductionPlannings/ApprovePpCs
 Content-type: application/json
 
 {
    "id": 1,
-   "approve": True
+   "status": True
 }
 #####
-PUT {{baseUrl}}/ProductionPlannings/PpPp
+PUT {{baseUrl}}/ProductionPlannings/ApprovePpPp
 Content-type: application/json
 
 {
    "id": 1,
-   "approve": True
+   "status": True
 }
 #####
 
@@ -304,28 +322,6 @@ GET {{baseUrl}}/Tlinquiries
 GET {{baseUrl}}/Tlinquiries/1
 #####
 POST {{baseUrl}}/Tlinquiries
-Content-type: application/json
-
-{
-   "inquiryNumber": 1,
-   "sped": "abc",
-   "country": "abc",
-   "acceptingPort": "abc",
-   "expectedRetrieveWeek": "abc",
-   "weightInKg": 1,
-   "invoiceOn": "abc",
-   "retrieveDate": "abc",
-   "isContainer40": True,
-   "isContainerHc": True,
-   "retrieveLocation": "abc",
-   "debtCapitalGeneralForerunEur": 1,
-   "debtCapitalMainDol": 1,
-   "debtCapitalTrailingDol": 1,
-   "portOfDeparture": "abc",
-   "ets": "abc",
-   "eta": "abc",
-   "boat": "abc"
-}
 #####
 PUT {{baseUrl}}/Tlinquiries
 Content-type: application/json
@@ -357,6 +353,6 @@ Content-type: application/json
 
 {
    "id": 1,
-   "approve": True
+   "status": True
 }
 #####

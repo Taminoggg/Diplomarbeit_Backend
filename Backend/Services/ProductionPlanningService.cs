@@ -20,14 +20,27 @@ public class ProductionPlanningService
         }
     }
 
-    public ProductionPlanning? ApprovePpCs(EditApproveDto approveOrderDto)
+    public ProductionPlanning? GetProdcutionPlanningsForId(int id)
+    {
+        try
+        {
+            return _db.ProductionPlannings.Single(x => x.Id == id);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return null;
+        }
+    }
+
+    public ProductionPlanning? ApprovePpCs(EditStatusDto approveOrderDto)
     {
         try
         {
             var productionPlanning = _db.ProductionPlannings
                 .Single(x => x.Id == approveOrderDto.Id);
             productionPlanning.ApprovedByPpCsTime = DateTime.Now;
-            productionPlanning.ApprovedByPpCs = approveOrderDto.Approve;
+            productionPlanning.ApprovedByPpCs = approveOrderDto.Status;
             _db.SaveChanges();
             return productionPlanning;
         }
@@ -38,14 +51,14 @@ public class ProductionPlanningService
         }
     }
 
-    public ProductionPlanning? ApprovePpPp(EditApproveDto approveOrderDto)
+    public ProductionPlanning? ApprovePpPp(EditStatusDto approveOrderDto)
     {
         try
         {
             var productionPlanning = _db.ProductionPlannings
                 .Single(x => x.Id == approveOrderDto.Id);
             productionPlanning.ApprovedByPpPpTime = DateTime.Now;
-            productionPlanning.ApprovedByPpPp = approveOrderDto.Approve;
+            productionPlanning.ApprovedByPpPp = approveOrderDto.Status;
             _db.SaveChanges();
             return productionPlanning;
         }

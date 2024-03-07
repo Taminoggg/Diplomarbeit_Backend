@@ -35,18 +35,16 @@ public class ArticlesPPController : ControllerBase
         return ToArticleDto(article);
     }
 
-    [HttpPut("EditPpPpArticle")]
+    [HttpDelete("ProductionPlanningId")]
+    public List<ArticlePPDto> ArticlesForCsId(int id)
+    {
+        return _articleService.RemoveArticlesForProductionPlanningId(id).Select(x => ToArticleDto(x)).ToList();
+    }
+
+    [HttpPut]
     public ArticlePPDto? EditPpPpArticle(EditPpPpArticleDto addArticleDto)
     {
         var article = _articleService.EditPPArticle(addArticleDto);
-        if (article == null) return null;
-        return ToArticleDto(article);
-    }
-
-    [HttpPut("EditPpCrArticle")]
-    public ArticlePPDto? EditPpCrArticle(EditPpCrArticleDto addArticleDto)
-    {
-        var article = _articleService.EditPpCrArticle(addArticleDto);
         if (article == null) return null;
         return ToArticleDto(article);
     }
@@ -64,19 +62,20 @@ public class ArticlesPPController : ControllerBase
         return new ArticlePPDto
         {
             Id = article.Id,
-            DesiredDeliveryDate = article.DesiredDeliveryDate?.ToString("dd.MM.yyyy") ?? "",
+            DesiredDeliveryDate = article.DesiredDeliveryDate?.ToString("yyyy-MM-dd") ?? "",
             ArticleNumber = article.ArticleNumber,
             InquiryForFixedOrder = article.InquiryForFixedOrder,
             InquiryForQuotation = article.InquiryForQuotation,
             MinHeigthRequired = article.MinHeigthRequired,
             Pallets = article.Pallets,
-            DeliveryDate = article.DeliveryDate?.ToString("dd.MM.yyyy") ?? "",
+            DeliveryDate = article.DeliveryDate?.ToString("yyyy-MM-dd") ?? "",
             Factory = article.Factory,
             Nozzle = article.Nozzle,
             PlannedOrder = article.PlannedOrder,
             ProductionOrder = article.ProductionOrder,
             ShortText = article.ShortText,
-            Plant = article.Plant
+            Plant = article.Plant,
+            ProductionPlanningId = article.ProductionPlanningId
         };
     }
 }
