@@ -170,6 +170,7 @@ Content-type: application/json
 
 {
    "content": "abc",
+   "from": "abc",
    "attachmentId": 1
 }
 #####
@@ -225,8 +226,7 @@ Content-type: application/json
    "additionalInformation": "abc",
    "customerName": "abc",
    "createdBy": "abc",
-   "amount": 1,
-   "checklistId": 1
+   "amount": 1
 }
 #####
 PUT {{baseUrl}}/Orders/Cancel

@@ -51,9 +51,9 @@ public class TlinquiryService
         {
             AcceptingPort = "",
             Boat = "",
-            DebtCapitalGeneralForerunEur = -1,
+            DebtCapitalGeneralForerunEur = 1,
             DebtCapitalMainDol = 1,
-            DebtCapitalTrailingDol = -1,
+            DebtCapitalTrailingDol = 1,
             PortOfDeparture = "",
             RetrieveDate = null,
             Country = "",
@@ -66,7 +66,7 @@ public class TlinquiryService
             IsContainerHc = false,
             RetrieveLocation = "",
             Sped = "",
-            WeightInKg = -1,
+            WeightInKg = 1,
             ApprovedByCrTl = false,
             ApprovedByCrTlTime = null
         };

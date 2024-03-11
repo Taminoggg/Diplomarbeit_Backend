@@ -29,7 +29,8 @@ namespace Backend.Controllers
                     Id = x.Id,
                     DateTime = x.DateTime.ToString("dd.MM.yyyy HH:mm"),
                     AttachmentId = x.AttachmentId ?? 0,
-                    Content = x.Content
+                    Content = x.Content,
+                    From = x.From
                 })
                 .ToList();
         }

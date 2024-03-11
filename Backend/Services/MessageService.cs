@@ -34,7 +34,8 @@ public class MessageService
                     DateTime = DateTime.Now,
                     AttachmentId = addMessageDto.AttachmentId,
                     Content = addMessageDto.Content,
-                    Attachment = attachment
+                    Attachment = attachment,
+                    From = addMessageDto.From
                 };
             }
             else
@@ -44,7 +45,8 @@ public class MessageService
                     DateTime = DateTime.Now,
                     AttachmentId = addMessageDto.AttachmentId,
                     Attachment = attachment,
-                    Content = ""
+                    Content = "",
+                    From = addMessageDto.From
                 };
             }
         }
@@ -53,7 +55,8 @@ public class MessageService
             message = new Message
             {
                 DateTime = DateTime.Now,
-                Content = addMessageDto.Content!
+                Content = addMessageDto.Content!,
+                From = addMessageDto.From
             };
         }  
 

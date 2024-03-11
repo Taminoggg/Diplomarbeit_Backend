@@ -30,7 +30,8 @@ public class MessagesController : ControllerBase
             Id = message.Id,
             DateTime = message.DateTime.ToString("yyyy-MM-dd"),
             AttachmentId = message.AttachmentId ?? 0,
-            Content = message.Content
+            Content = message.Content,
+            From = message.From
         };
     }
 }

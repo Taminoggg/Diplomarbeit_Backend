@@ -267,12 +267,8 @@ public class OrderService
 
     public Order EditOrder(EditOrderDto editOrderDto)
     {
-        var checklist = _db.Checklists.Single(x => x.Id == editOrderDto.ChecklistId);
-
         var order = _db.Orders.Include(x => x.Tl).Include(x => x.Cs).Include(x => x.Checklist).Single(x => x.Id == editOrderDto.Id);
-        order.Checklist = checklist;
-        order.ChecklistId = editOrderDto.ChecklistId;
-        order.Amount = editOrderDto.Amount;
+        order.Amount = editOrderDto.Amount ?? -1;
         order.CreatedBy = editOrderDto.CreatedBy;
         order.CustomerName = editOrderDto.CustomerName;
         order.AdditionalInformation = editOrderDto.AdditionalInformation;

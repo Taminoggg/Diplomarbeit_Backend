@@ -264,6 +264,10 @@ namespace ContainerToolDB.Migrations
                     b.Property<DateTime>("DateTime")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<string>("From")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.HasKey("Id");
 
                     b.HasIndex(new[] { "AttachmentId" }, "IX_Messages_AttachmentId");

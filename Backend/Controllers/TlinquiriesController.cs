@@ -66,7 +66,7 @@ public class TlinquiriesController : ControllerBase
             DebtCapitalMainDol = tlinquiry.DebtCapitalMainDol,
             DebtCapitalTrailingDol = tlinquiry.DebtCapitalTrailingDol,
             PortOfDeparture = tlinquiry.PortOfDeparture,
-            RetrieveDate = tlinquiry.RetrieveDate?.ToString("dd.MM.yyyy") ?? "",
+            RetrieveDate = tlinquiry.RetrieveDate?.ToString("yyyy-MM-dd") ?? "",
             AcceptingPort = tlinquiry.AcceptingPort,
             Boat = tlinquiry.Boat,
             Country = tlinquiry.Country,

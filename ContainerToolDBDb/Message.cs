@@ -10,6 +10,7 @@ public partial class Message
     public string Content { get; set; } = null!;
 
     public int? AttachmentId { get; set; }
+    public string From { get; set; } = null!;
 
     public DateTime DateTime { get; set; }
 
