@@ -20,7 +20,7 @@ public partial class Csinquiry
 
     public int ContainersizeHc { get; set; }
 
-    public bool FreeDetention { get; set; }
+    public int FreeDetention { get; set; }
 
     public bool Thctb { get; set; }
 

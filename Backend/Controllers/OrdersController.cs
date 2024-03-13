@@ -55,13 +55,6 @@ public class OrdersController : ControllerBase
             .ToList();
     }
 
-    [HttpGet("Amount")]
-    public List<OrderDto> GetOrdersWithAmount([FromQuery] int amout)
-    {
-        return _orderService.GetOrdersWithAmount(amout).Select(x => ToOrderDto(x))
-        .ToList();
-    }
-
     [HttpGet("CreatedBy")]
     public List<OrderDto> GetOrdersWithCreatedBy([FromQuery] string createdBy)
     {
@@ -135,10 +128,16 @@ public class OrdersController : ControllerBase
         return ToOrderDto(_orderService.SetOrderStatus(editOrderStatusDto));
     }
 
-    [HttpPut]
-    public OrderDto Order(EditOrderDto editOrderDto)
+    [HttpPut("OrderCS")]
+    public OrderDto OrderCS(EditOrderCSDto editOrderDto)
     {
-        return ToOrderDto(_orderService.EditOrder(editOrderDto));
+        return ToOrderDto(_orderService.EditOrderCS(editOrderDto));
+    }
+
+    [HttpPut("OrderSD")]
+    public OrderDto OrderSD(EditOrderSDDto editOrderDto)
+    {
+        return ToOrderDto(_orderService.EditOrderSD(editOrderDto));
     }
 
     [HttpDelete]
@@ -151,14 +150,16 @@ public class OrdersController : ControllerBase
     {
         Id = order.Id,
         AbNumber = order.Cs?.Abnumber ?? -1,
-        Amount = order.Amount,
         ChecklistId = order.ChecklistId ?? -1,
         Country = order.Tl?.Country ?? "",
-        CreatedBy = order.CreatedBy,
+        CreatedByCS = order.CreatedByCS,
+        CreatedBySD = order.CreatedBySD,
         Csid = order.CsId ?? -1,
         CustomerName = order.CustomerName,
-        LastUpdated = order.LastUpdated.ToString("yyyy-MM-dd"),
+        LastUpdated = order.LastUpdatedOn.ToString("yyyy-MM-dd"),
         ReadyToLoad = order.Cs?.ReadyToLoad.ToString("yyyy-MM-dd") ?? "",
+        CreatedOn = order.CreatedOn.ToString("yyyy-MM-dd"),
+        FinishedOn = order.FinishedOn?.ToString("yyyy-MM-dd") ?? "",
         Sped = order.Tl?.Sped ?? "",
         Status = order.Status,
         Tlid = order.TlId ?? -1,

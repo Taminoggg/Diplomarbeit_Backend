@@ -103,7 +103,7 @@ Content-type: application/json
    "containersizeA": 1,
    "containersizeB": 1,
    "containersizeHc": 1,
-   "freeDetention": True,
+   "freeDetention": 1,
    "thctb": True,
    "readyToLoad": "abc",
    "loadingPlattform": "abc",
@@ -123,7 +123,7 @@ Content-type: application/json
    "containersizeA": 1,
    "containersizeB": 1,
    "containersizeHc": 1,
-   "freeDetention": True,
+   "freeDetention": 1,
    "thctb": True,
    "readyToLoad": "abc",
    "loadingPlattform": "abc",
@@ -182,8 +182,6 @@ GET {{baseUrl}}/Orders
 #####
 GET {{baseUrl}}/Orders/1
 #####
-GET {{baseUrl}}/Orders/Amount?amout=1
-#####
 GET {{baseUrl}}/Orders/ApprovedByCs?approved=True
 #####
 GET {{baseUrl}}/Orders/ApprovedByPp?approved=True
@@ -211,22 +209,10 @@ Content-type: application/json
    "customerName": "abc",
    "additionalInformation": "abc",
    "createdBy": "abc",
-   "amount": 1,
    "checklistId": 1,
    "csId": 1,
    "tlId": 1,
    "ppId": 1
-}
-#####
-PUT {{baseUrl}}/Orders
-Content-type: application/json
-
-{
-   "id": 1,
-   "additionalInformation": "abc",
-   "customerName": "abc",
-   "createdBy": "abc",
-   "amount": 1
 }
 #####
 PUT {{baseUrl}}/Orders/Cancel
@@ -235,6 +221,25 @@ Content-type: application/json
 {
    "id": 1,
    "status": True
+}
+#####
+PUT {{baseUrl}}/Orders/OrderCS
+Content-type: application/json
+
+{
+   "id": 1,
+   "additionalInformation": "abc",
+   "customerName": "abc",
+   "createdBy": "abc"
+}
+#####
+PUT {{baseUrl}}/Orders/OrderSD
+Content-type: application/json
+
+{
+   "id": 1,
+   "additionalInformation": "abc",
+   "createdBy": "abc"
 }
 #####
 PUT {{baseUrl}}/Orders/Status
@@ -260,6 +265,21 @@ GET {{baseUrl}}/ProductionPlannings
 GET {{baseUrl}}/ProductionPlannings/1
 #####
 POST {{baseUrl}}/ProductionPlannings
+Content-type: application/json
+
+{
+   "recievingCountry": "abc",
+   "customerPriority": "abc"
+}
+#####
+PUT {{baseUrl}}/ProductionPlannings
+Content-type: application/json
+
+{
+   "id": 1,
+   "recievingCountry": "abc",
+   "customerPriority": "abc"
+}
 #####
 PUT {{baseUrl}}/ProductionPlannings/ApprovePpCs
 Content-type: application/json
@@ -328,20 +348,16 @@ Content-type: application/json
 
 {
    "id": 1,
-   "inquiryNumber": 1,
    "sped": "abc",
    "country": "abc",
    "acceptingPort": "abc",
    "expectedRetrieveWeek": "abc",
-   "weightInKg": 1,
    "invoiceOn": "abc",
    "retrieveDate": "abc",
-   "isContainer40": True,
-   "isContainerHc": True,
    "retrieveLocation": "abc",
-   "debtCapitalGeneralForerunEur": 1,
-   "debtCapitalMainDol": 1,
-   "debtCapitalTrailingDol": 1,
+   "scGeneral": 1,
+   "scMain": 1,
+   "scTrail": 1,
    "portOfDeparture": "abc",
    "ets": "abc",
    "eta": "abc",

@@ -1,4 +1,5 @@
-﻿using ContainerToolDB;
+﻿using Backend.Dtos;
+using ContainerToolDB;
 
 namespace Backend.Services;
 
@@ -69,7 +70,24 @@ public class ProductionPlanningService
         }
     }
 
-    public ProductionPlanning? Post()
+    public ProductionPlanning? Put(EditProductionPlanningDto editProductionPlanningDto)
+    {
+        try
+        {
+            var productionPlanning = _db.ProductionPlannings.Single(x => x.Id == editProductionPlanningDto.Id);
+            productionPlanning.CustomerPriority = editProductionPlanningDto.CustomerPriority;
+            productionPlanning.RecievingCountry = editProductionPlanningDto.RecievingCountry;
+            _db.SaveChanges();
+            return productionPlanning;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            return null;
+        }
+    }
+
+    public ProductionPlanning? Post(AddProductionPlanningDto addProductionPlanningDto)
     {
         try
         {
@@ -78,7 +96,9 @@ public class ProductionPlanningService
                 ApprovedByPpCs = false,
                 ApprovedByPpPp = false,
                 ApprovedByPpCsTime = null,
-                ApprovedByPpPpTime = null
+                ApprovedByPpPpTime = null,
+                CustomerPriority = addProductionPlanningDto.CustomerPriority,
+                RecievingCountry = addProductionPlanningDto.RecievingCountry
             };
             _db.ProductionPlannings.Add(productionPlanning);
             _db.SaveChanges();

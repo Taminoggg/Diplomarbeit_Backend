@@ -78,17 +78,6 @@ public class OrderService
             .ToList();
     }
 
-    public List<Order> GetOrdersWithAmount(int amount)
-    {
-        return _db.Orders
-            .Include(x => x.Tl)
-            .Include(x => x.Cs)
-            .Include(x => x.Checklist)
-            .OrderBy(x => x.Id)
-            .Where(x => x.Amount == amount)
-            .ToList();
-    }
-
     public List<Order> GetOrdersWithCreatedBy(string createdBy)
     {
         return _db.Orders
@@ -96,7 +85,7 @@ public class OrderService
             .Include(x => x.Cs)
             .Include(x => x.Checklist)
             .OrderBy(x => x.Id)
-            .Where(x => x.CreatedBy.ToLower().Contains(createdBy.ToLower()))
+            .Where(x => x.CreatedByCS.ToLower().Contains(createdBy.ToLower()))
             .ToList();
     }
 
@@ -134,7 +123,7 @@ public class OrderService
                 .Include(x => x.Checklist)
                 .OrderBy(x => x.Id)
                 .AsEnumerable()
-                .Where(x => (x.LastUpdated.Date - parsedDate.Date).Days == 0)
+                .Where(x => (x.LastUpdatedOn.Date - parsedDate.Date).Days == 0)
                 .ToList();
         }
         catch (Exception ex)
@@ -212,17 +201,19 @@ public class OrderService
 
             var order = new Order
             {
-                Amount = addOrderDto.Amount,
                 Checklist = checklist,
                 ChecklistId = checklistId,
-                CreatedBy = addOrderDto.CreatedBy,
+                CreatedByCS = addOrderDto.CreatedBy,
                 Cs = cs,
                 Tl = tl,
+                CreatedBySD = "",
                 CsId = csId,
                 CustomerName = addOrderDto.CustomerName,
-                LastUpdated = DateTime.Now,
+                LastUpdatedOn = DateTime.Now,
+                CreatedOn = DateTime.Now,
                 Status = "cs-in-progress",
                 TlId = tlId,
+                FinishedOn = null,
                 AdditionalInformation = addOrderDto.AdditionalInformation,
                 PpId = ppId,
                 ProductionPlanning = pp
@@ -245,6 +236,7 @@ public class OrderService
     {
         var order = _db.Orders.Single(x => x.Id == statusDto.Id);
         order.SuccessfullyFinished = statusDto.Status;
+        order.FinishedOn = DateTime.Now;
         _db.SaveChanges();
         return order;
     }
@@ -253,6 +245,7 @@ public class OrderService
     {
         var order = _db.Orders.Single(x => x.Id == statusDto.Id);
         order.Canceled = statusDto.Status;
+        order.FinishedOn = DateTime.Now;
         _db.SaveChanges();
         return order;
     }
@@ -265,14 +258,24 @@ public class OrderService
         return order;
     }
 
-    public Order EditOrder(EditOrderDto editOrderDto)
+    public Order EditOrderCS(EditOrderCSDto editOrderDto)
     {
-        var order = _db.Orders.Include(x => x.Tl).Include(x => x.Cs).Include(x => x.Checklist).Single(x => x.Id == editOrderDto.Id);
-        order.Amount = editOrderDto.Amount ?? -1;
-        order.CreatedBy = editOrderDto.CreatedBy;
+        var order = _db.Orders.Include(x => x.ProductionPlanning).Include(x => x.Tl).Include(x => x.Cs).Include(x => x.Checklist).Single(x => x.Id == editOrderDto.Id);
+        order.CreatedByCS = editOrderDto.CreatedBy;
         order.CustomerName = editOrderDto.CustomerName;
         order.AdditionalInformation = editOrderDto.AdditionalInformation;
-        order.LastUpdated = DateTime.Now;
+        order.LastUpdatedOn = DateTime.Now;
+        _db.SaveChanges();
+
+        return order;
+    }
+
+    public Order EditOrderSD(EditOrderSDDto editOrderDto)
+    {
+        var order = _db.Orders.Include(x => x.ProductionPlanning).Include(x => x.Tl).Include(x => x.Cs).Include(x => x.Checklist).Single(x => x.Id == editOrderDto.Id);
+        order.CreatedBySD = editOrderDto.CreatedBy;
+        order.AdditionalInformation = editOrderDto.AdditionalInformation;
+        order.LastUpdatedOn = DateTime.Now;
         _db.SaveChanges();
 
         return order;

@@ -146,6 +146,14 @@ namespace ContainerToolDB.Migrations
                         .HasColumnType("datetime(6)")
                         .HasColumnName("ApprovedByPPPPTime");
 
+                    b.Property<string>("CustomerPriority")
+                        .IsRequired()
+                        .HasColumnType("varchar(1)");
+
+                    b.Property<string>("RecievingCountry")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.HasKey("Id");
 
                     b.ToTable("ProductionPlannings", (string)null);
@@ -199,8 +207,8 @@ namespace ContainerToolDB.Migrations
                         .HasColumnType("int")
                         .HasColumnName("ContainersizeHC");
 
-                    b.Property<bool>("FreeDetention")
-                        .HasColumnType("tinyint(1)");
+                    b.Property<int>("FreeDetention")
+                        .HasColumnType("int");
 
                     b.Property<int>("GrossWeightInKg")
                         .HasColumnType("int")
@@ -305,18 +313,22 @@ namespace ContainerToolDB.Migrations
                     b.Property<string>("AdditionalInformation")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("Amount")
-                        .HasColumnType("int");
-
                     b.Property<bool>("Canceled")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<int?>("ChecklistId")
                         .HasColumnType("int");
 
-                    b.Property<string>("CreatedBy")
+                    b.Property<string>("CreatedByCS")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<string>("CreatedBySD")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int?>("CsId")
                         .HasColumnType("int")
@@ -326,7 +338,10 @@ namespace ContainerToolDB.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<DateTime>("LastUpdated")
+                    b.Property<DateTime?>("FinishedOn")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("LastUpdatedOn")
                         .HasColumnType("datetime(6)");
 
                     b.Property<int?>("PpId")
@@ -414,33 +429,26 @@ namespace ContainerToolDB.Migrations
 
                     b.Property<string>("AcceptingPort")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("longtext")
+                        .HasColumnName("AcceptingPort");
 
                     b.Property<bool>("ApprovedByCrTl")
-                        .HasColumnType("tinyint(1)");
+                        .HasColumnType("tinyint(1)")
+                        .HasColumnName("ApprovedByCrTL");
 
                     b.Property<DateTime?>("ApprovedByCrTlTime")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("ApprovedByCrTLTime");
 
                     b.Property<string>("Boat")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("longtext")
+                        .HasColumnName("Boat");
 
                     b.Property<string>("Country")
                         .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("DebtCapitalGeneralForerunEur")
-                        .HasColumnType("int")
-                        .HasColumnName("DebtCapitalGeneralForerunEUR");
-
-                    b.Property<int>("DebtCapitalMainDol")
-                        .HasColumnType("int")
-                        .HasColumnName("DebtCapitalMainDOL");
-
-                    b.Property<int>("DebtCapitalTrailingDol")
-                        .HasColumnType("int")
-                        .HasColumnName("DebtCapitalTrailingDOL");
+                        .HasColumnType("longtext")
+                        .HasColumnName("Country");
 
                     b.Property<DateTime?>("Eta")
                         .HasColumnType("datetime(6)")
@@ -451,43 +459,47 @@ namespace ContainerToolDB.Migrations
                         .HasColumnName("ETS");
 
                     b.Property<DateTime?>("ExpectedRetrieveWeek")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<int>("InquiryNumber")
-                        .HasColumnType("int");
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("ExpectedRetrieveWeek");
 
                     b.Property<DateTime?>("InvoiceOn")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<bool>("IsContainer40")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<bool>("IsContainerHc")
-                        .HasColumnType("tinyint(1)")
-                        .HasColumnName("IsContainerHC");
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("InvoiceOn");
 
                     b.Property<string>("PortOfDeparture")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("longtext")
+                        .HasColumnName("PortOfDeparture");
 
                     b.Property<DateTime?>("RetrieveDate")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("RetrieveDate");
 
                     b.Property<string>("RetrieveLocation")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("longtext")
+                        .HasColumnName("RetrieveLocation");
+
+                    b.Property<int>("SCGeneral")
+                        .HasColumnType("int")
+                        .HasColumnName("SCGeneral");
+
+                    b.Property<int>("SCMainRun")
+                        .HasColumnType("int")
+                        .HasColumnName("SCMainRun");
+
+                    b.Property<int>("SCTrail")
+                        .HasColumnType("int")
+                        .HasColumnName("SCTrail");
 
                     b.Property<string>("Sped")
                         .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("WeightInKg")
-                        .HasColumnType("int")
-                        .HasColumnName("WeightInKG");
+                        .HasColumnType("longtext")
+                        .HasColumnName("Sped");
 
                     b.HasKey("Id");
 
-                    b.ToTable("TLInquiries", (string)null);
+                    b.ToTable("Tlinquiries", (string)null);
                 });
 
             modelBuilder.Entity("ArticlePP", b =>

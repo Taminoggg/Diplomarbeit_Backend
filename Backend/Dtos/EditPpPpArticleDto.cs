@@ -3,11 +3,11 @@
 public class EditPpPpArticleDto
 {
     [Required] public int Id { get; set; }
-    [Required] public string ShortText { get; set; } = null!;
+    public string? ShortText { get; set; }
     [Required] public string DeliveryDate { get; set; } = null!;
-    [Required] public string Nozzle { get; set; } = null!;
-    [Required] public string Factory { get; set; } = null!;
-    [Required] public string ProductionOrder { get; set; } = null!;
-    [Required] public string PlannedOrder { get; set; } = null!;
-    [Required] public string Plant { get; set; } = null!;
+    public string? Nozzle { get; set; } 
+    public string? Factory { get; set; } 
+    public string? ProductionOrder { get; set; } 
+    public string? PlannedOrder { get; set; }
+    public string? Plant { get; set; }
 }

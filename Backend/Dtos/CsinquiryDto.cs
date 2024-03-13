@@ -10,7 +10,7 @@ public class CsinquiryDto
     [Required] public int ContainersizeA { get; set; }
     [Required] public int ContainersizeB { get; set; }
     [Required] public int ContainersizeHc { get; set; }
-    [Required] public bool FreeDetention { get; set; }
+    [Required] public int FreeDetention { get; set; }
     [Required] public bool Thctb { get; set; }
     [Required] public bool IsFastLine { get; set; }
     [Required] public bool IsDirectLine { get; set; }

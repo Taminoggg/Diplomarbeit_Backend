@@ -58,13 +58,13 @@ public class TlinquiriesController : ControllerBase
         return ToTlinquiryDto(tlinquiry);
     }
 
-    private TlinquiryDto ToTlinquiryDto(Tlinquiry tlinquiry)
+    private static TlinquiryDto ToTlinquiryDto(Tlinquiry tlinquiry)
     {
         return new TlinquiryDto
         {
-            DebtCapitalGeneralForerunEur = tlinquiry.DebtCapitalGeneralForerunEur,
-            DebtCapitalMainDol = tlinquiry.DebtCapitalMainDol,
-            DebtCapitalTrailingDol = tlinquiry.DebtCapitalTrailingDol,
+            SCGeneral = tlinquiry.SCGeneral,
+            SCMain = tlinquiry.SCMainRun,
+            SCTrail = tlinquiry.SCTrail,
             PortOfDeparture = tlinquiry.PortOfDeparture,
             RetrieveDate = tlinquiry.RetrieveDate?.ToString("yyyy-MM-dd") ?? "",
             AcceptingPort = tlinquiry.AcceptingPort,
@@ -73,16 +73,12 @@ public class TlinquiriesController : ControllerBase
             Eta = tlinquiry.Eta?.ToString("yyyy-MM-dd") ?? "",
             Ets = tlinquiry.Ets?.ToString("yyyy-MM-dd") ?? "",
             ExpectedRetrieveWeek = tlinquiry.ExpectedRetrieveWeek?.ToString("yyyy-MM-dd") ?? "",
-            InquiryNumber = tlinquiry.InquiryNumber,
             InvoiceOn = tlinquiry.InvoiceOn?.ToString("yyyy-MM-dd") ?? "",
-            IsContainer40 = tlinquiry.IsContainer40,
-            IsContainerHc = tlinquiry.IsContainerHc,
             RetrieveLocation = tlinquiry.RetrieveLocation,
             Sped = tlinquiry.Sped,
-            WeightInKg = tlinquiry.WeightInKg,
             Id = tlinquiry.Id,
             ApprovedByCrTl = tlinquiry.ApprovedByCrTl,
             ApprovedByCrTlTime = tlinquiry.ApprovedByCrTlTime?.ToString("yyyy-MM-dd") ?? ""
-    };
+        };
     }
 }

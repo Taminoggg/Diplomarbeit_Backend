@@ -32,9 +32,11 @@ public class ChecklistsController : ControllerBase
     }
 
     [HttpPost]
-    public ChecklistDto Checklist(AddChecklistDto addChecklistDto)
+    public ChecklistDto? Checklist(AddChecklistDto addChecklistDto)
     {
-        return new ChecklistDto().CopyFrom(_checklistService.AddNewChecklist(addChecklistDto));
+        var checklistWithId = _checklistService.AddNewChecklist(addChecklistDto);
+        if (checklistWithId == null) return null;
+        return new ChecklistDto().CopyFrom(checklistWithId);
     }
 
     [HttpPut]

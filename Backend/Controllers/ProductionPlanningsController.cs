@@ -43,15 +43,23 @@ public class ProductionPlanningsController : ControllerBase
         return ToProductionPlanningDto(prodctionPlanning);
     }
 
-    [HttpPost]
-    public ProductionPlanningDto? Post()
+    [HttpPut]
+    public ProductionPlanningDto? Put(EditProductionPlanningDto editProductionPlanningDto)
     {
-        var prodctionPlanning = _productionPlanningService.Post();
+        var prodctionPlanning = _productionPlanningService.Put(editProductionPlanningDto);
         if (prodctionPlanning == null) return null;
         return ToProductionPlanningDto(prodctionPlanning);
     }
 
-    private ProductionPlanningDto ToProductionPlanningDto(ProductionPlanning productionPlanning)
+    [HttpPost]
+    public ProductionPlanningDto? Post(AddProductionPlanningDto addProductionPlanningDto)
+    {
+        var prodctionPlanning = _productionPlanningService.Post(addProductionPlanningDto);
+        if (prodctionPlanning == null) return null;
+        return ToProductionPlanningDto(prodctionPlanning);
+    }
+
+    private static ProductionPlanningDto ToProductionPlanningDto(ProductionPlanning productionPlanning)
     {
         return new ProductionPlanningDto
         {
@@ -59,7 +67,9 @@ public class ProductionPlanningsController : ControllerBase
             ApprovedByPpPp = productionPlanning.ApprovedByPpPp,
             Id = productionPlanning.Id,
             ApprovedByPpCsTime = productionPlanning.ApprovedByPpCsTime?.ToString("yyyy-MM-dd") ?? "",
-            ApprovedByPpPpTime = productionPlanning.ApprovedByPpPpTime?.ToString("yyyy-MM-dd") ?? ""
+            ApprovedByPpPpTime = productionPlanning.ApprovedByPpPpTime?.ToString("yyyy-MM-dd") ?? "",
+            RecievingCountry = productionPlanning.RecievingCountry,
+            CustomerPriority = productionPlanning.CustomerPriority
         };
     }
 }

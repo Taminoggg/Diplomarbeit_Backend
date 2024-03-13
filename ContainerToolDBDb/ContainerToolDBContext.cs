@@ -129,15 +129,26 @@ public partial class ContainerToolDBContext : DbContext
 
         modelBuilder.Entity<Tlinquiry>(entity =>
         {
-            entity.ToTable("TLInquiries");
+            entity.ToTable("Tlinquiries");
 
-            entity.Property(e => e.DebtCapitalGeneralForerunEur).HasColumnName("DebtCapitalGeneralForerunEUR");
-            entity.Property(e => e.DebtCapitalMainDol).HasColumnName("DebtCapitalMainDOL");
-            entity.Property(e => e.DebtCapitalTrailingDol).HasColumnName("DebtCapitalTrailingDOL");
-            entity.Property(e => e.Eta).HasColumnName("ETA");
+            entity.HasKey(e => e.Id);
+
+            entity.Property(e => e.Sped).HasColumnName("Sped").IsRequired();
+            entity.Property(e => e.Country).HasColumnName("Country").IsRequired();
+            entity.Property(e => e.AcceptingPort).HasColumnName("AcceptingPort").IsRequired();
+            entity.Property(e => e.ExpectedRetrieveWeek).HasColumnName("ExpectedRetrieveWeek");
+            entity.Property(e => e.InvoiceOn).HasColumnName("InvoiceOn");
+            entity.Property(e => e.RetrieveDate).HasColumnName("RetrieveDate");
+            entity.Property(e => e.RetrieveLocation).HasColumnName("RetrieveLocation").IsRequired();
+            entity.Property(e => e.SCGeneral).HasColumnName("SCGeneral").IsRequired();
+            entity.Property(e => e.SCMainRun).HasColumnName("SCMainRun").IsRequired();
+            entity.Property(e => e.SCTrail).HasColumnName("SCTrail").IsRequired();
+            entity.Property(e => e.PortOfDeparture).HasColumnName("PortOfDeparture").IsRequired();
             entity.Property(e => e.Ets).HasColumnName("ETS");
-            entity.Property(e => e.IsContainerHc).HasColumnName("IsContainerHC");
-            entity.Property(e => e.WeightInKg).HasColumnName("WeightInKG");
+            entity.Property(e => e.Eta).HasColumnName("ETA");
+            entity.Property(e => e.Boat).HasColumnName("Boat").IsRequired();
+            entity.Property(e => e.ApprovedByCrTl).HasColumnName("ApprovedByCrTL").IsRequired();
+            entity.Property(e => e.ApprovedByCrTlTime).HasColumnName("ApprovedByCrTLTime");
         });
 
         modelBuilder.Entity<ProductionPlanning>(entity =>
