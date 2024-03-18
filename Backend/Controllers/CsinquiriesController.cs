@@ -63,16 +63,15 @@ public class CsinquiriesController : ControllerBase
         return new CsinquiryDto
         {
             FreeDetention = csinquiry.FreeDetention,
+            Country = csinquiry.Country,
             IsDirectLine = csinquiry.IsDirectLine,
             Abnumber = csinquiry.Abnumber,
-            Container = csinquiry.Container,
             ContainersizeA = csinquiry.ContainersizeA,
             ContainersizeB = csinquiry.ContainersizeB,
             ContainersizeHc = csinquiry.ContainersizeHc,
             GrossWeightInKg = csinquiry.GrossWeightInKg,
             Incoterm = csinquiry.Incoterm,
             IsFastLine = csinquiry.IsFastLine,
-            LoadingPlattform = csinquiry.LoadingPlattform,
             ReadyToLoad = csinquiry.ReadyToLoad.ToString("yyyy-MM-dd"),
             Thctb = csinquiry.Thctb,
             Id = csinquiry.Id,

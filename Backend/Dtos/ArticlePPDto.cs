@@ -9,6 +9,7 @@ public class ArticlePPDto
     [Required] public int? MinHeigthRequired { get; set; }
     [Required] public string DesiredDeliveryDate { get; set; } = null!;
     [Required] public bool InquiryForFixedOrder { get; set; }
+    [Required] public bool InquiryForNonFixedOrder { get; set; }
     [Required] public bool InquiryForQuotation { get; set; }
     [Required] public string DeliveryDate { get; set; } = null!;
     [Required] public string ShortText { get; set; } = null!;

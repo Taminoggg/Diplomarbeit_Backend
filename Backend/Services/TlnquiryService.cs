@@ -56,10 +56,8 @@ public class TlinquiryService
             SCTrail = 1,
             PortOfDeparture = "",
             RetrieveDate = null,
-            Country = "",
             Eta = null,
             Ets = null,
-            ExpectedRetrieveWeek = null,
             InvoiceOn = null,
             RetrieveLocation = "",
             Sped = "",
@@ -79,9 +77,7 @@ public class TlinquiryService
         tlinquiry.Boat = editTlinquiryDto.Boat;
         tlinquiry.RetrieveDate = DateTime.ParseExact(editTlinquiryDto.RetrieveDate, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
         tlinquiry.RetrieveLocation = editTlinquiryDto.RetrieveLocation;
-        tlinquiry.ExpectedRetrieveWeek = DateTime.ParseExact(editTlinquiryDto.ExpectedRetrieveWeek, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
         tlinquiry.AcceptingPort = editTlinquiryDto.AcceptingPort;
-        tlinquiry.Country = editTlinquiryDto.Country;
         tlinquiry.SCGeneral = editTlinquiryDto.SCGeneral;
         tlinquiry.SCMainRun = editTlinquiryDto.SCMain;
         tlinquiry.SCTrail = editTlinquiryDto.SCTrail;

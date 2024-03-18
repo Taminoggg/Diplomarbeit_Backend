@@ -35,14 +35,14 @@ public class CsinquiryService
             FreeDetention = addCsinquiryDto.FreeDetention,
             Abnumber = addCsinquiryDto.Abnumber,
             GrossWeightInKg = addCsinquiryDto.BruttoWeightInKg,
-            Container = addCsinquiryDto.Container,
             ContainersizeA = addCsinquiryDto.ContainersizeA,
             ContainersizeB = addCsinquiryDto.ContainersizeB,
             ContainersizeHc = addCsinquiryDto.ContainersizeHc,
             Incoterm = addCsinquiryDto.Incoterm,
-            LoadingPlattform = addCsinquiryDto.LoadingPlattform,
             ReadyToLoad = DateTime.ParseExact(addCsinquiryDto.ReadyToLoad, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture),
             Thctb = addCsinquiryDto.Thctb,
+            Thcc = addCsinquiryDto.Thcc,
+            Country = addCsinquiryDto.Country,
             IsDirectLine = addCsinquiryDto.IsDirectLine,
             IsFastLine = addCsinquiryDto.IsFastLine,
             ApprovedByCrCsTime = null
@@ -79,14 +79,14 @@ public class CsinquiryService
             var csinquiry = _db.Csinquiries.Single(x => x.Id == editCsinquiryDto.Id);
             csinquiry.Thctb = editCsinquiryDto.Thctb;
             csinquiry.ContainersizeB = editCsinquiryDto.ContainersizeB;
-            csinquiry.Container = editCsinquiryDto.Container;
             csinquiry.Abnumber = editCsinquiryDto.Abnumber;
             csinquiry.GrossWeightInKg = editCsinquiryDto.GrossWeightInKg;
+            csinquiry.Country = editCsinquiryDto.Country;
             csinquiry.ContainersizeA = editCsinquiryDto.ContainersizeA;
             csinquiry.ContainersizeHc = editCsinquiryDto.ContainersizeHc;
             csinquiry.FreeDetention = editCsinquiryDto.FreeDetention;
+            csinquiry.Thcc = editCsinquiryDto.Thcc;
             csinquiry.Incoterm = editCsinquiryDto.Incoterm;
-            csinquiry.LoadingPlattform = editCsinquiryDto.LoadingPlattform;
             csinquiry.ReadyToLoad = DateTime.ParseExact(editCsinquiryDto.ReadyToLoad, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
             csinquiry.IsFastLine = editCsinquiryDto.IsFastLine;
             csinquiry.IsDirectLine = editCsinquiryDto.IsDirectLine;

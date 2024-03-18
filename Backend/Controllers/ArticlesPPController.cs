@@ -65,16 +65,17 @@ public class ArticlesPPController : ControllerBase
             DesiredDeliveryDate = article.DesiredDeliveryDate?.ToString("yyyy-MM-dd") ?? "",
             ArticleNumber = article.ArticleNumber,
             InquiryForFixedOrder = article.InquiryForFixedOrder,
+            InquiryForNonFixedOrder = article.InquiryForNonFixedOrder,
             InquiryForQuotation = article.InquiryForQuotation,
             MinHeigthRequired = article.MinHeigthRequired,
             Pallets = article.Pallets,
             DeliveryDate = article.DeliveryDate?.ToString("yyyy-MM-dd") ?? "",
-            Factory = article.Factory,
-            Nozzle = article.Nozzle,
-            PlannedOrder = article.PlannedOrder,
-            ProductionOrder = article.ProductionOrder,
-            ShortText = article.ShortText,
-            Plant = article.Plant,
+            Factory = article.Factory ?? "",
+            Nozzle = article.Nozzle ?? "",
+            PlannedOrder = article.PlannedOrder ?? "",
+            ProductionOrder = article.ProductionOrder ?? "",
+            ShortText = article.ShortText ?? "",
+            Plant = article.Plant ?? "",
             ProductionPlanningId = article.ProductionPlanningId
         };
     }

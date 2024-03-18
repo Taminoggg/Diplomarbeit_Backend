@@ -5,9 +5,7 @@ public class EditTlInqueryDto
     [RegularExpression(@"^[1-9]\d*$", ErrorMessage = "Only numbers greater than 0 allowed!")]
     [Required] public int Id { get; set; }
     [Required] public string Sped { get; set; } = null!;
-    [Required] public string Country { get; set; } = null!;
     [Required] public string AcceptingPort { get; set; } = null!;
-    [Required] public string ExpectedRetrieveWeek { get; set; } = null!;
     [Required] public string InvoiceOn { get; set; } = null!;
     [Required] public string RetrieveDate { get; set; } = null!;
     [Required] public string RetrieveLocation { get; set; } = null!;

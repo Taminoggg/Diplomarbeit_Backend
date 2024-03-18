@@ -8,9 +8,7 @@ public partial class Tlinquiry
 {
     public int Id { get; set; }
     public string Sped { get; set; } = null!;
-    public string Country { get; set; } = null!;
     public string AcceptingPort { get; set; } = null!;
-    public DateTime? ExpectedRetrieveWeek { get; set; }
     public DateTime? InvoiceOn { get; set; }
     public DateTime? RetrieveDate { get; set; }
     public string RetrieveLocation { get; set; } = null!;

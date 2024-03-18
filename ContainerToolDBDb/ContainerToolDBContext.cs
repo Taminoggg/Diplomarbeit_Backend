@@ -134,9 +134,7 @@ public partial class ContainerToolDBContext : DbContext
             entity.HasKey(e => e.Id);
 
             entity.Property(e => e.Sped).HasColumnName("Sped").IsRequired();
-            entity.Property(e => e.Country).HasColumnName("Country").IsRequired();
             entity.Property(e => e.AcceptingPort).HasColumnName("AcceptingPort").IsRequired();
-            entity.Property(e => e.ExpectedRetrieveWeek).HasColumnName("ExpectedRetrieveWeek");
             entity.Property(e => e.InvoiceOn).HasColumnName("InvoiceOn");
             entity.Property(e => e.RetrieveDate).HasColumnName("RetrieveDate");
             entity.Property(e => e.RetrieveLocation).HasColumnName("RetrieveLocation").IsRequired();

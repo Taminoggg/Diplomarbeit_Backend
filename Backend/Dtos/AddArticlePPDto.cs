@@ -11,5 +11,6 @@ public class AddArticlePPDto
     [Required] public int MinHeigthRequired { get; set; }
     [Required] public string DesiredDeliveryDate { get; set; } = null!;
     [Required] public bool InquiryForFixedOrder { get; set; }
+    [Required] public bool InquiryForNonFixedOrder { get; set; }
     [Required] public bool InquiryForQuotation { get; set; }
 }

@@ -39,6 +39,7 @@ Content-type: application/json
    "minHeigthRequired": 1,
    "desiredDeliveryDate": "abc",
    "inquiryForFixedOrder": True,
+   "inquiryForNonFixedOrder": True,
    "inquiryForQuotation": True
 }
 #####
@@ -96,7 +97,6 @@ POST {{baseUrl}}/Csinquiries
 Content-type: application/json
 
 {
-   "container": "abc",
    "abnumber": 1,
    "bruttoWeightInKg": 1,
    "incoterm": "abc",
@@ -104,9 +104,10 @@ Content-type: application/json
    "containersizeB": 1,
    "containersizeHc": 1,
    "freeDetention": 1,
+   "country": "abc",
    "thctb": True,
+   "thcc": True,
    "readyToLoad": "abc",
-   "loadingPlattform": "abc",
    "isDirectLine": True,
    "isFastLine": True
 }
@@ -116,7 +117,6 @@ Content-type: application/json
 
 {
    "id": 1,
-   "container": "abc",
    "abnumber": 1,
    "grossWeightInKg": 1,
    "incoterm": "abc",
@@ -125,8 +125,9 @@ Content-type: application/json
    "containersizeHc": 1,
    "freeDetention": 1,
    "thctb": True,
+   "thcc": True,
    "readyToLoad": "abc",
-   "loadingPlattform": "abc",
+   "country": "abc",
    "isFastLine": True,
    "isDirectLine": True
 }
@@ -190,8 +191,6 @@ GET {{baseUrl}}/Orders/ApprovedByPpCs?approved=True
 #####
 GET {{baseUrl}}/Orders/ApprovedByTl?approved=True
 #####
-GET {{baseUrl}}/Orders/Country?country=abc
-#####
 GET {{baseUrl}}/Orders/CreatedBy?createdBy=abc
 #####
 GET {{baseUrl}}/Orders/Customername?customername=abc
@@ -231,6 +230,42 @@ Content-type: application/json
    "additionalInformation": "abc",
    "customerName": "abc",
    "createdBy": "abc"
+}
+#####
+PUT {{baseUrl}}/Orders/OrderedByAbnumber
+Content-type: application/json
+
+{
+   "orderIds": 
+   [1],
+   "asc": True
+}
+#####
+PUT {{baseUrl}}/Orders/OrderedByCountry
+Content-type: application/json
+
+{
+   "orderIds": 
+   [1],
+   "asc": True
+}
+#####
+PUT {{baseUrl}}/Orders/OrderedByReadyToLoad
+Content-type: application/json
+
+{
+   "orderIds": 
+   [1],
+   "asc": True
+}
+#####
+PUT {{baseUrl}}/Orders/OrderedBySped
+Content-type: application/json
+
+{
+   "orderIds": 
+   [1],
+   "asc": True
 }
 #####
 PUT {{baseUrl}}/Orders/OrderSD
@@ -349,9 +384,7 @@ Content-type: application/json
 {
    "id": 1,
    "sped": "abc",
-   "country": "abc",
    "acceptingPort": "abc",
-   "expectedRetrieveWeek": "abc",
    "invoiceOn": "abc",
    "retrieveDate": "abc",
    "retrieveLocation": "abc",

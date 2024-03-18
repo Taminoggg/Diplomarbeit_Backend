@@ -14,10 +14,6 @@ public class OrderDto
     [Required] public string CreatedOn { get; set; } = null!;
     [Required] public string FinishedOn { get; set; } = null!;
     [Required] public int ChecklistId { get; set; }
-    [Required] public string Sped { get; set; } = null!;
-    [Required] public string Country { get; set; } = null!;
-    [Required] public string ReadyToLoad { get; set; } = null!;
-    [Required] public int AbNumber { get; set; }
     [Required] public int Csid { get; set; }
     [Required] public int Tlid { get; set; }
     [Required] public int PpId { get; set; }

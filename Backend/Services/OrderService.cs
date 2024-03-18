@@ -1,6 +1,7 @@
 ﻿using Backend.Dtos;
 using Backend.Services;
 using ContainerToolDB;
+using ContainerToolDBDb;
 using System.Globalization;
 using System.Linq;
 
@@ -96,7 +97,7 @@ public class OrderService
             .Include(x => x.Cs)
             .Include(x => x.Checklist)
             .OrderBy(x => x.Id)
-            .Where(y => _db.Tlinquiries.Single(x => x.Id == y.TlId).Country.ToLower().Contains(country.ToLower()))
+            .Where(y => _db.Csinquiries.Single(x => x.Id == y.Id).Country.ToLower().Contains(country.ToLower()))
             .ToList();
     }
 
@@ -162,6 +163,49 @@ public class OrderService
             Console.WriteLine(ex.Message);
             return null;
         }
+    }
+    public List<Order> GetOrdersOrderedBySped(OrderOrdersDto orderOrdersDto)
+    {        
+        var ordersToOrder = new List<Order>();
+        foreach (int orderId in orderOrdersDto.OrderIds)
+        {
+            ordersToOrder.Add(_db.Orders.Include(x => x.Cs).Include(x => x.Tl).Single(x => x.Id == orderId));
+        }
+        if (orderOrdersDto.Asc) return ordersToOrder.OrderBy(x => x.Tl?.Sped ?? "").ToList();
+        return ordersToOrder.OrderByDescending(x => x.Tl?.Sped ?? "").ToList();
+    }
+
+    public List<Order> GetOrdersOrderedByReadyToLoad(OrderOrdersDto orderOrdersDto)
+    {
+        var ordersToOrder = new List<Order>();
+        foreach (int orderId in orderOrdersDto.OrderIds)
+        {
+            ordersToOrder.Add(_db.Orders.Include(x => x.Cs).Include(x => x.Tl).Single(x => x.Id == orderId));
+        }
+        if (orderOrdersDto.Asc) return ordersToOrder.OrderBy(x => x.Cs?.ReadyToLoad ?? DateTime.Now).ToList();
+        return ordersToOrder.OrderByDescending(x => x.Cs?.ReadyToLoad ?? DateTime.Now).ToList();
+    }
+
+    public List<Order> GetOrdersOrderedByCountry(OrderOrdersDto orderOrdersDto)
+    {
+        var ordersToOrder = new List<Order>();
+        foreach (int orderId in orderOrdersDto.OrderIds)
+        {
+            ordersToOrder.Add(_db.Orders.Include(x => x.Cs).Include(x => x.Tl).Single(x => x.Id == orderId));
+        }
+        if (orderOrdersDto.Asc) return ordersToOrder.OrderBy(x => x.Cs?.Country ?? "").ToList();
+        return ordersToOrder.OrderByDescending(x => x.Cs?.Country ?? "").ToList();
+    }
+
+    public List<Order> GetOrdersOrderedByAbNumber(OrderOrdersDto orderOrdersDto)
+    {
+        var ordersToOrder = new List<Order>();
+        foreach (int orderId in orderOrdersDto.OrderIds)
+        {
+            ordersToOrder.Add(_db.Orders.Include(x => x.Cs).Include(x => x.Tl).Single(x => x.Id == orderId));
+        }
+        if (orderOrdersDto.Asc) return ordersToOrder.OrderBy(x => x.Cs?.Abnumber ?? 0).ToList();
+        return ordersToOrder.OrderByDescending(x => x.Cs?.Abnumber ?? 0).ToList();
     }
 
     public Order? AddOrder(AddOrderDto addOrderDto)

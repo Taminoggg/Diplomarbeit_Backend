@@ -97,6 +97,7 @@ public class ArticlePPService
                 DesiredDeliveryDate = DateTime.ParseExact(articleDto.DesiredDeliveryDate, "yyyy-MM-dd", CultureInfo.InvariantCulture),
                 Factory = "",
                 InquiryForFixedOrder = articleDto.InquiryForFixedOrder,
+                InquiryForNonFixedOrder = articleDto.InquiryForNonFixedOrder,
                 InquiryForQuotation = articleDto.InquiryForQuotation,
                 MinHeigthRequired = articleDto.MinHeigthRequired,
                 Nozzle = "",

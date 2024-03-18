@@ -19,7 +19,32 @@ namespace ContainerToolDB.Migrations
                 .HasAnnotation("ProductVersion", "7.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("ArticlePP", b =>
+            modelBuilder.Entity("ContainerToolDB.ArticleCR", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("ArticleNumber")
+                        .HasColumnType("int")
+                        .HasColumnName("ArticleNumber");
+
+                    b.Property<int>("CsinquiryId")
+                        .HasColumnType("int")
+                        .HasColumnName("CsinquiryId");
+
+                    b.Property<int>("Pallets")
+                        .HasColumnType("int")
+                        .HasColumnName("Pallets");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CsinquiryId");
+
+                    b.ToTable("ArticlesCR", (string)null);
+                });
+
+            modelBuilder.Entity("ContainerToolDB.ArticlePP", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -46,6 +71,9 @@ namespace ContainerToolDB.Migrations
                         .HasColumnType("tinyint(1)")
                         .HasColumnName("InquiryForFixedOrder");
 
+                    b.Property<bool>("InquiryForNonFixedOrder")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<bool>("InquiryForQuotation")
                         .HasColumnType("tinyint(1)")
                         .HasColumnName("InquiryForQuotation");
@@ -69,7 +97,6 @@ namespace ContainerToolDB.Migrations
                         .HasColumnName("PlannedOrder");
 
                     b.Property<string>("Plant")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("ProductionOrder")
@@ -96,31 +123,6 @@ namespace ContainerToolDB.Migrations
                     b.HasIndex("ProductionPlanningId1");
 
                     b.ToTable("ArticlesPP", (string)null);
-                });
-
-            modelBuilder.Entity("ContainerToolDB.ArticleCR", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("ArticleNumber")
-                        .HasColumnType("int")
-                        .HasColumnName("ArticleNumber");
-
-                    b.Property<int>("CsinquiryId")
-                        .HasColumnType("int")
-                        .HasColumnName("CsinquiryId");
-
-                    b.Property<int>("Pallets")
-                        .HasColumnType("int")
-                        .HasColumnName("Pallets");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CsinquiryId");
-
-                    b.ToTable("ArticlesCR", (string)null);
                 });
 
             modelBuilder.Entity("ContainerToolDB.ProductionPlanning", b =>
@@ -193,10 +195,6 @@ namespace ContainerToolDB.Migrations
                     b.Property<DateTime?>("ApprovedByCrCsTime")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("Container")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
                     b.Property<int>("ContainersizeA")
                         .HasColumnType("int");
 
@@ -206,6 +204,10 @@ namespace ContainerToolDB.Migrations
                     b.Property<int>("ContainersizeHc")
                         .HasColumnType("int")
                         .HasColumnName("ContainersizeHC");
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<int>("FreeDetention")
                         .HasColumnType("int");
@@ -225,12 +227,11 @@ namespace ContainerToolDB.Migrations
                     b.Property<bool>("IsFastLine")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<string>("LoadingPlattform")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
                     b.Property<DateTime>("ReadyToLoad")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<bool>("Thcc")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<bool>("Thctb")
                         .HasColumnType("tinyint(1)")
@@ -445,11 +446,6 @@ namespace ContainerToolDB.Migrations
                         .HasColumnType("longtext")
                         .HasColumnName("Boat");
 
-                    b.Property<string>("Country")
-                        .IsRequired()
-                        .HasColumnType("longtext")
-                        .HasColumnName("Country");
-
                     b.Property<DateTime?>("Eta")
                         .HasColumnType("datetime(6)")
                         .HasColumnName("ETA");
@@ -457,10 +453,6 @@ namespace ContainerToolDB.Migrations
                     b.Property<DateTime?>("Ets")
                         .HasColumnType("datetime(6)")
                         .HasColumnName("ETS");
-
-                    b.Property<DateTime?>("ExpectedRetrieveWeek")
-                        .HasColumnType("datetime(6)")
-                        .HasColumnName("ExpectedRetrieveWeek");
 
                     b.Property<DateTime?>("InvoiceOn")
                         .HasColumnType("datetime(6)")
@@ -502,7 +494,18 @@ namespace ContainerToolDB.Migrations
                     b.ToTable("Tlinquiries", (string)null);
                 });
 
-            modelBuilder.Entity("ArticlePP", b =>
+            modelBuilder.Entity("ContainerToolDB.ArticleCR", b =>
+                {
+                    b.HasOne("ContainerToolDBDb.Csinquiry", "Csinquiry")
+                        .WithMany("Articles")
+                        .HasForeignKey("CsinquiryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Csinquiry");
+                });
+
+            modelBuilder.Entity("ContainerToolDB.ArticlePP", b =>
                 {
                     b.HasOne("ContainerToolDB.ProductionPlanning", null)
                         .WithMany("Articles")
@@ -517,17 +520,6 @@ namespace ContainerToolDB.Migrations
                         .IsRequired();
 
                     b.Navigation("ProductionPlanning");
-                });
-
-            modelBuilder.Entity("ContainerToolDB.ArticleCR", b =>
-                {
-                    b.HasOne("ContainerToolDBDb.Csinquiry", "Csinquiry")
-                        .WithMany("Articles")
-                        .HasForeignKey("CsinquiryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Csinquiry");
                 });
 
             modelBuilder.Entity("ContainerToolDBDb.Message", b =>

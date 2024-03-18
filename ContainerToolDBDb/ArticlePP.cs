@@ -1,4 +1,4 @@
-﻿using ContainerToolDB;
+﻿namespace ContainerToolDB;
 
 public partial class ArticlePP
 {
@@ -14,6 +14,7 @@ public partial class ArticlePP
     public string? PlannedOrder { get; set; } = null!;
     public string? Plant { get; set; }
     public bool InquiryForFixedOrder { get; set; }
+    public bool InquiryForNonFixedOrder { get; set; }
     public bool InquiryForQuotation { get; set; }
     public int Pallets { get; set; }
     public int ProductionPlanningId { get; set; }

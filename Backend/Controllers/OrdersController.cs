@@ -78,18 +78,42 @@ public class OrdersController : ControllerBase
         .ToList();
     }
 
-    [HttpGet("Country")]
-    public List<OrderDto> GetOrdersWithCountry([FromQuery] string country)
-    {
-        return _orderService.GetOrdersWithCountry(country)
-            .Select(x => ToOrderDto(x))
-            .ToList();
-    }
-
     [HttpGet("Sped")]
     public List<OrderDto> GetOrdersWithSped([FromQuery] string sped)
     {
         return _orderService.GetOrdersWithSped(sped)
+            .Select(x => ToOrderDto(x))
+            .ToList();
+    }
+
+    [HttpPut("OrderedBySped")]
+    public List<OrderDto> GetOrdersOrderedBySped(OrderOrdersDto orderOrdersDto)
+    {
+        return _orderService.GetOrdersOrderedBySped(orderOrdersDto)
+            .Select(x => ToOrderDto(x))
+            .ToList();
+    }
+
+    [HttpPut("OrderedByCountry")]
+    public List<OrderDto> GetOrdersOrderedByCountry(OrderOrdersDto orderOrdersDto)
+    {
+        return _orderService.GetOrdersOrderedByCountry(orderOrdersDto)
+            .Select(x => ToOrderDto(x))
+            .ToList();
+    }
+
+    [HttpPut("OrderedByAbnumber")]
+    public List<OrderDto> GetOrdersOrderedByAbnumber(OrderOrdersDto orderOrdersDto)
+    {
+        return _orderService.GetOrdersOrderedByAbNumber(orderOrdersDto)
+            .Select(x => ToOrderDto(x))
+            .ToList();
+    }
+
+    [HttpPut("OrderedByReadyToLoad")]
+    public List<OrderDto> GetOrdersOrderedByReadyToLoad(OrderOrdersDto orderOrdersDto)
+    {
+        return _orderService.GetOrdersOrderedByReadyToLoad(orderOrdersDto)
             .Select(x => ToOrderDto(x))
             .ToList();
     }
@@ -149,18 +173,14 @@ public class OrdersController : ControllerBase
     private static OrderDto ToOrderDto(Order order) => new()
     {
         Id = order.Id,
-        AbNumber = order.Cs?.Abnumber ?? -1,
         ChecklistId = order.ChecklistId ?? -1,
-        Country = order.Tl?.Country ?? "",
         CreatedByCS = order.CreatedByCS,
         CreatedBySD = order.CreatedBySD,
         Csid = order.CsId ?? -1,
         CustomerName = order.CustomerName,
         LastUpdated = order.LastUpdatedOn.ToString("yyyy-MM-dd"),
-        ReadyToLoad = order.Cs?.ReadyToLoad.ToString("yyyy-MM-dd") ?? "",
         CreatedOn = order.CreatedOn.ToString("yyyy-MM-dd"),
         FinishedOn = order.FinishedOn?.ToString("yyyy-MM-dd") ?? "",
-        Sped = order.Tl?.Sped ?? "",
         Status = order.Status,
         Tlid = order.TlId ?? -1,
         AdditionalInformation = order.AdditionalInformation,
