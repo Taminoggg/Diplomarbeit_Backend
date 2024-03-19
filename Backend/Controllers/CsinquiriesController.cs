@@ -74,6 +74,7 @@ public class CsinquiriesController : ControllerBase
             IsFastLine = csinquiry.IsFastLine,
             ReadyToLoad = csinquiry.ReadyToLoad.ToString("yyyy-MM-dd"),
             Thctb = csinquiry.Thctb,
+            Thcc = csinquiry.Thcc,
             Id = csinquiry.Id,
             ApprovedByCrCs = csinquiry.ApprovedByCrCs,
             ApprovedByCrCsTime = csinquiry.ApprovedByCrCsTime?.ToString("yyyy-MM-dd") ?? ""
