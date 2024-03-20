@@ -14,6 +14,7 @@ public class StepService
         return _db.StepChecklists
             .Include(x => x.Step)
             .Where(x => x.ChecklistId == id)
+            .OrderBy(x => x.Step.StepNumber)
             .ToList();
     }
 

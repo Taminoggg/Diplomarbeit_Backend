@@ -64,7 +64,7 @@ public class ArticlePPService
         {
             var article = _db.ArticlesPP.Single(x => x.Id == editPPArticleDto.Id);
 
-            article.DeliveryDate = DateTime.ParseExact(editPPArticleDto.DeliveryDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            article.DeliveryDate = editPPArticleDto.DeliveryDate;
             article.Factory = editPPArticleDto.Factory;
             article.ShortText = editPPArticleDto.ShortText;
             article.Nozzle = editPPArticleDto.Nozzle;
@@ -93,8 +93,8 @@ public class ArticlePPService
                 ArticleNumber = articleDto.ArticleNumber,
                 ProductionPlanningId = articleDto.ProductionPlanningId,
                 Pallets = articleDto.Pallets,
-                DeliveryDate = null,
-                DesiredDeliveryDate = DateTime.ParseExact(articleDto.DesiredDeliveryDate, "yyyy-MM-dd", CultureInfo.InvariantCulture),
+                DeliveryDate = 0,
+                DesiredDeliveryDate = articleDto.DesiredDeliveryDate,
                 Factory = "",
                 InquiryForFixedOrder = articleDto.InquiryForFixedOrder,
                 InquiryForNonFixedOrder = articleDto.InquiryForNonFixedOrder,

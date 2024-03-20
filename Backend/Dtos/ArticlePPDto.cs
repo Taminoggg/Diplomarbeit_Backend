@@ -7,11 +7,11 @@ public class ArticlePPDto
     [Required] public int Pallets { get; set; }
     [Required] public int ProductionPlanningId { get; set; }
     [Required] public int? MinHeigthRequired { get; set; }
-    [Required] public string DesiredDeliveryDate { get; set; } = null!;
+    [Required] public int DesiredDeliveryDate { get; set; } 
     [Required] public bool InquiryForFixedOrder { get; set; }
     [Required] public bool InquiryForNonFixedOrder { get; set; }
     [Required] public bool InquiryForQuotation { get; set; }
-    [Required] public string DeliveryDate { get; set; } = null!;
+    [Required] public int DeliveryDate { get; set; } 
     [Required] public string ShortText { get; set; } = null!;
     [Required] public string Factory { get; set; } = null!;
     [Required] public string Nozzle { get; set; } = null!;

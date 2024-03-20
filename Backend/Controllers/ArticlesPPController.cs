@@ -62,14 +62,14 @@ public class ArticlesPPController : ControllerBase
         return new ArticlePPDto
         {
             Id = article.Id,
-            DesiredDeliveryDate = article.DesiredDeliveryDate?.ToString("yyyy-MM-dd") ?? "",
+            DesiredDeliveryDate = article.DesiredDeliveryDate,
             ArticleNumber = article.ArticleNumber,
             InquiryForFixedOrder = article.InquiryForFixedOrder,
             InquiryForNonFixedOrder = article.InquiryForNonFixedOrder,
             InquiryForQuotation = article.InquiryForQuotation,
             MinHeigthRequired = article.MinHeigthRequired,
             Pallets = article.Pallets,
-            DeliveryDate = article.DeliveryDate?.ToString("yyyy-MM-dd") ?? "",
+            DeliveryDate = article.DeliveryDate,
             Factory = article.Factory ?? "",
             Nozzle = article.Nozzle ?? "",
             PlannedOrder = article.PlannedOrder ?? "",

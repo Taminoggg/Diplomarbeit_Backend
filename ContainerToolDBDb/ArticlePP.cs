@@ -5,8 +5,8 @@ public partial class ArticlePP
     public int Id { get; set; }
     public int ArticleNumber { get; set; }
     public int MinHeigthRequired { get; set; }
-    public DateTime? DesiredDeliveryDate { get; set; }
-    public DateTime? DeliveryDate { get; set; }
+    public int DesiredDeliveryDate { get; set; }
+    public int DeliveryDate { get; set; }
     public string? ShortText { get; set; }
     public string? Factory { get; set; }
     public string? Nozzle { get; set; }

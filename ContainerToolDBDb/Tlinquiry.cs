@@ -12,9 +12,9 @@ public partial class Tlinquiry
     public DateTime? InvoiceOn { get; set; }
     public DateTime? RetrieveDate { get; set; }
     public string RetrieveLocation { get; set; } = null!;
-    public int SCGeneral { get; set; }
-    public int SCMainRun { get; set; }
-    public int SCTrail { get; set; }
+    public double SCGeneral { get; set; }
+    public double SCMainRun { get; set; }
+    public double SCTrail { get; set; }
     public string PortOfDeparture { get; set; } = null!;
     public DateTime? Ets { get; set; }
     public DateTime? Eta { get; set; }

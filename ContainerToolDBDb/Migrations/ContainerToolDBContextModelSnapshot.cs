@@ -54,12 +54,12 @@ namespace ContainerToolDB.Migrations
                         .HasColumnType("int")
                         .HasColumnName("ArticleNumber");
 
-                    b.Property<DateTime?>("DeliveryDate")
-                        .HasColumnType("datetime(6)")
+                    b.Property<int>("DeliveryDate")
+                        .HasColumnType("int")
                         .HasColumnName("DeliveryDate");
 
-                    b.Property<DateTime?>("DesiredDeliveryDate")
-                        .HasColumnType("datetime(6)")
+                    b.Property<int>("DesiredDeliveryDate")
+                        .HasColumnType("int")
                         .HasColumnName("DesiredDeliveryDate");
 
                     b.Property<string>("Factory")
@@ -472,16 +472,16 @@ namespace ContainerToolDB.Migrations
                         .HasColumnType("longtext")
                         .HasColumnName("RetrieveLocation");
 
-                    b.Property<int>("SCGeneral")
-                        .HasColumnType("int")
+                    b.Property<double>("SCGeneral")
+                        .HasColumnType("double")
                         .HasColumnName("SCGeneral");
 
-                    b.Property<int>("SCMainRun")
-                        .HasColumnType("int")
+                    b.Property<double>("SCMainRun")
+                        .HasColumnType("double")
                         .HasColumnName("SCMainRun");
 
-                    b.Property<int>("SCTrail")
-                        .HasColumnType("int")
+                    b.Property<double>("SCTrail")
+                        .HasColumnType("double")
                         .HasColumnName("SCTrail");
 
                     b.Property<string>("Sped")

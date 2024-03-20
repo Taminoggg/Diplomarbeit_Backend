@@ -14,8 +14,8 @@ POST {{baseUrl}}/ArticlesCR
 Content-type: application/json
 
 {
-      "articleNumber": 1,
-      "pallets": 1,
+   "articleNumber": 1,
+   "pallets": 1,
    "csInquiryId": 1
 }
 #####
@@ -37,7 +37,7 @@ Content-type: application/json
    "pallets": 1,
    "productionPlanningId": 1,
    "minHeigthRequired": 1,
-   "desiredDeliveryDate": "abc",
+   "desiredDeliveryDate": 1,
    "inquiryForFixedOrder": True,
    "inquiryForNonFixedOrder": True,
    "inquiryForQuotation": True
@@ -48,9 +48,9 @@ Content-type: application/json
 
 {
    "id": 1,
-   "shortText": "abc",
-   "deliveryDate": "abc",
+   "deliveryDate": 1,
    "nozzle": "abc",
+   "shortText": "abc",
    "factory": "abc",
    "productionOrder": "abc",
    "plannedOrder": "abc",
@@ -71,10 +71,10 @@ POST {{baseUrl}}/Checklists
 Content-type: application/json
 
 {
-      "checklistname": "abc",
-      "generatedByAdmin": True,
-      "id": 1
-   }
+   "checklistname": "abc",
+   "generatedByAdmin": True,
+   "id": 1
+}
 #####
 PUT {{baseUrl}}/Checklists
 Content-type: application/json
@@ -173,7 +173,7 @@ Content-type: application/json
    "content": "abc",
    "from": "abc",
    "attachmentId": 1
-   }
+}
 #####
 
 ################################################## Orders
@@ -236,28 +236,28 @@ PUT {{baseUrl}}/Orders/OrderedByAbnumber
 Content-type: application/json
 
 {
-      "orderIds": 
+   "orderIds": 
    [1],
-      "asc": True
-   }
+   "asc": True
+}
 #####
 PUT {{baseUrl}}/Orders/OrderedByCountry
 Content-type: application/json
 
 {
-      "orderIds": 
-      [1],
-      "asc": True
-   }
+   "orderIds": 
+   [1],
+   "asc": True
+}
 #####
 PUT {{baseUrl}}/Orders/OrderedByReadyToLoad
 Content-type: application/json
 
 {
-      "orderIds": 
-      [1],
-      "asc": True
-   }
+   "orderIds": 
+   [1],
+   "asc": True
+}
 #####
 PUT {{baseUrl}}/Orders/OrderedBySped
 Content-type: application/json
@@ -265,17 +265,17 @@ Content-type: application/json
 {
    "orderIds": 
    [1],
-      "asc": True
-   }
+   "asc": True
+}
 #####
 PUT {{baseUrl}}/Orders/OrderSD
 Content-type: application/json
 
 {
-      "id": 1,
-      "additionalInformation": "abc",
-      "createdBy": "abc"
-   }
+   "id": 1,
+   "additionalInformation": "abc",
+   "createdBy": "abc"
+}
 #####
 PUT {{baseUrl}}/Orders/Status
 Content-type: application/json
@@ -354,10 +354,10 @@ PUT {{baseUrl}}/Steps
 Content-type: application/json
 
 {
-      "id": 1,
-      "stepNumber": 1,
-      "stepDescription": "abc",
-      "stepName": "abc"
+   "id": 1,
+   "stepNumber": 1,
+   "stepDescription": "abc",
+   "stepName": "abc"
 }
 #####
 PUT {{baseUrl}}/Steps/CompleteStep
