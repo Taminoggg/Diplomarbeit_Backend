@@ -5,7 +5,6 @@ namespace ContainerToolDBDb;
 
 public partial class ContainerToolDBContext : DbContext
 {
-    public ContainerToolDBContext() { }
     public ContainerToolDBContext(DbContextOptions<ContainerToolDBContext> options) : base(options) { }
 
     public virtual DbSet<Checklist> Checklists { get; set; }

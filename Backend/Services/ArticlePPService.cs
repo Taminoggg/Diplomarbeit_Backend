@@ -93,7 +93,7 @@ public class ArticlePPService
                 ArticleNumber = articleDto.ArticleNumber,
                 ProductionPlanningId = articleDto.ProductionPlanningId,
                 Pallets = articleDto.Pallets,
-                DeliveryDate = 0,
+                DeliveryDate = -1,
                 DesiredDeliveryDate = articleDto.DesiredDeliveryDate,
                 Factory = "",
                 InquiryForFixedOrder = articleDto.InquiryForFixedOrder,

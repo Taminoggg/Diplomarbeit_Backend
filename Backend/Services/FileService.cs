@@ -10,6 +10,7 @@ public class FileService
     private readonly ContainerToolDBContext _db;
 
     public FileService(ContainerToolDBContext db) => _db = db;
+    private string baseFilePath = "C:\\Users\\gutja\\Tamino\\Diplomarbeit\\";
 
     public List<ContainerToolDBDb.File> GetAllFiles()
     {
@@ -40,7 +41,7 @@ public class FileService
 
     public ContainerToolDBDb.File PostFile([FromForm] IFormFile file)
     {
-        var filePath = Path.Combine("C:\\Users\\gutja\\Tamino\\Diplomarbeit\\", file.FileName);
+        var filePath = Path.Combine(baseFilePath, file.FileName);
 
         using (var fileStream = new FileStream(filePath, FileMode.Create))
         {
