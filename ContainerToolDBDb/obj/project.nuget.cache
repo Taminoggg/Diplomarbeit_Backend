@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "CLDXDzA6T1BuIyELZ+ofAi/ndZ5fJqv2xoWRf4tl8rBSbsNM6Ao1il20EY8oyWXbct3GoIsBRJTHSTFmENG3ig==",
+  "dgSpecHash": "W+5Kc6Wco4NkYc8Mj4XxssCRnsoqjvh6xiSz29wQI6YDyWaOFZwArbzPuDBYgB4kN9LCUPJvejDx1H4q80IWqA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\gutja\\Documents\\GitHub\\DiplomBackend\\ContainerToolDBDb\\ContainerToolDB.csproj",
+  "projectFilePath": "C:\\Users\\gutja\\Documents\\GitHub\\Diplomarbeit_Backend\\ContainerToolDBDb\\ContainerToolDB.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\gutja\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\gutja\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.2\\microsoft.entityframeworkcore.7.0.2.nupkg.sha512",

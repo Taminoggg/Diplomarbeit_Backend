@@ -38,9 +38,9 @@ Content-type: application/json
    "productionPlanningId": 1,
    "minHeigthRequired": 1,
    "desiredDeliveryDate": 1,
-   "inquiryForFixedOrder": True,
-   "inquiryForNonFixedOrder": True,
-   "inquiryForQuotation": True
+   "inquiryForFixedOrder": true,
+   "inquiryForNonFixedOrder": true,
+   "inquiryForQuotation": true
 }
 #####
 PUT {{baseUrl}}/ArticlesPP
@@ -72,7 +72,7 @@ Content-type: application/json
 
 {
    "checklistname": "abc",
-   "generatedByAdmin": True,
+   "generatedByAdmin": true,
    "id": 1
 }
 #####
@@ -82,7 +82,7 @@ Content-type: application/json
 {
    "id": 1,
    "checklistname": "abc",
-   "generatedByAdmin": True
+   "generatedByAdmin": true
 }
 #####
 
@@ -105,11 +105,11 @@ Content-type: application/json
    "containersizeHc": 1,
    "freeDetention": 1,
    "country": "abc",
-   "thctb": True,
-   "thcc": True,
+   "thctb": true,
+   "thcc": true,
    "readyToLoad": "abc",
-   "isDirectLine": True,
-   "isFastLine": True
+   "isDirectLine": true,
+   "isFastLine": true
 }
 #####
 PUT {{baseUrl}}/Csinquiries
@@ -124,12 +124,12 @@ Content-type: application/json
    "containersizeB": 1,
    "containersizeHc": 1,
    "freeDetention": 1,
-   "thctb": True,
-   "thcc": True,
+   "thctb": true,
+   "thcc": true,
    "readyToLoad": "abc",
    "country": "abc",
-   "isFastLine": True,
-   "isDirectLine": True
+   "isFastLine": true,
+   "isDirectLine": true
 }
 #####
 PUT {{baseUrl}}/Csinquiries/ApproveCrCs
@@ -137,7 +137,7 @@ Content-type: application/json
 
 {
    "id": 1,
-   "status": True
+   "status": true
 }
 #####
 
@@ -219,7 +219,7 @@ Content-type: application/json
 
 {
    "id": 1,
-   "status": True
+   "status": true
 }
 #####
 PUT {{baseUrl}}/Orders/OrderCS
@@ -238,7 +238,7 @@ Content-type: application/json
 {
    "orderIds": 
    [1],
-   "asc": True
+   "asc": true
 }
 #####
 PUT {{baseUrl}}/Orders/OrderedByCountry
@@ -247,7 +247,7 @@ Content-type: application/json
 {
    "orderIds": 
    [1],
-   "asc": True
+   "asc": true
 }
 #####
 PUT {{baseUrl}}/Orders/OrderedByReadyToLoad
@@ -256,7 +256,7 @@ Content-type: application/json
 {
    "orderIds": 
    [1],
-   "asc": True
+   "asc": true
 }
 #####
 PUT {{baseUrl}}/Orders/OrderedBySped
@@ -265,7 +265,7 @@ Content-type: application/json
 {
    "orderIds": 
    [1],
-   "asc": True
+   "asc": true
 }
 #####
 PUT {{baseUrl}}/Orders/OrderSD
@@ -290,7 +290,7 @@ Content-type: application/json
 
 {
    "id": 1,
-   "status": True
+   "status": true
 }
 #####
 
@@ -321,7 +321,7 @@ Content-type: application/json
 
 {
    "id": 1,
-   "status": True
+   "status": true
 }
 #####
 PUT {{baseUrl}}/ProductionPlannings/ApprovePpPp
@@ -329,7 +329,7 @@ Content-type: application/json
 
 {
    "id": 1,
-   "status": True
+   "status": true
 }
 #####
 
@@ -365,7 +365,7 @@ Content-type: application/json
 
 {
    "id": 1,
-   "isCompleted": True
+   "isCompleted": true
 }
 #####
 
@@ -402,6 +402,6 @@ Content-type: application/json
 
 {
    "id": 1,
-   "status": True
+   "status": true
 }
 #####

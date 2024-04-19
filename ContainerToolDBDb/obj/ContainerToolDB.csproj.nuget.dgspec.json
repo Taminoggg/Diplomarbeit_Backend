@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\gutja\\Documents\\GitHub\\DiplomBackend\\ContainerToolDBDb\\ContainerToolDB.csproj": {}
+    "C:\\Users\\gutja\\Documents\\GitHub\\Diplomarbeit_Backend\\ContainerToolDBDb\\ContainerToolDB.csproj": {}
   },
   "projects": {
-    "C:\\Users\\gutja\\Documents\\GitHub\\DiplomBackend\\ContainerToolDBDb\\ContainerToolDB.csproj": {
+    "C:\\Users\\gutja\\Documents\\GitHub\\Diplomarbeit_Backend\\ContainerToolDBDb\\ContainerToolDB.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\gutja\\Documents\\GitHub\\DiplomBackend\\ContainerToolDBDb\\ContainerToolDB.csproj",
+        "projectUniqueName": "C:\\Users\\gutja\\Documents\\GitHub\\Diplomarbeit_Backend\\ContainerToolDBDb\\ContainerToolDB.csproj",
         "projectName": "ContainerToolDB",
-        "projectPath": "C:\\Users\\gutja\\Documents\\GitHub\\DiplomBackend\\ContainerToolDBDb\\ContainerToolDB.csproj",
+        "projectPath": "C:\\Users\\gutja\\Documents\\GitHub\\Diplomarbeit_Backend\\ContainerToolDBDb\\ContainerToolDB.csproj",
         "packagesPath": "C:\\Users\\gutja\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\gutja\\Documents\\GitHub\\DiplomBackend\\ContainerToolDBDb\\obj\\",
+        "outputPath": "C:\\Users\\gutja\\Documents\\GitHub\\Diplomarbeit_Backend\\ContainerToolDBDb\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\gutja\\AppData\\Roaming\\NuGet\\NuGet.Config",

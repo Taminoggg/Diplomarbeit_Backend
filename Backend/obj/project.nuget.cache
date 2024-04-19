@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "nrd+dNPpOhHlHuRTx2bP/Vzxs2xzKKi8Zfqi3WcuQyjDj49oAclAVNz46iXaTQIIAXFRnl9OebUsoMhz1R4XRw==",
+  "dgSpecHash": "kinj5joX/jkuGR0xhNLHNrhAzJSTg9zm4dw2w3foQN7lJBW3U2XPm9oAjlf9uEsMG4CHpE3NmOA2SKTc8dHtdQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\gutja\\Documents\\GitHub\\DiplomBackend\\Backend\\Backend.csproj",
+  "projectFilePath": "C:\\Users\\gutja\\Documents\\GitHub\\Diplomarbeit_Backend\\Backend\\Backend.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\gutja\\.nuget\\packages\\grueneisr.restclientgenerator\\1.2.1\\grueneisr.restclientgenerator.1.2.1.nupkg.sha512",
+    "C:\\Users\\gutja\\.nuget\\packages\\grueneisr.restclientgenerator\\1.2.2\\grueneisr.restclientgenerator.1.2.2.nupkg.sha512",
     "C:\\Users\\gutja\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\gutja\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\gutja\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",
